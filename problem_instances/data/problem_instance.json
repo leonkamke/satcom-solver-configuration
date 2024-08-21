@@ -1,0 +1,1398 @@
+[
+    {
+        "serviceTargets": [
+            {
+                "serviceTargetID": 0,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 9,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.28
+            },
+            {
+                "serviceTargetID": 1,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 20,
+                    "node2Id": 49,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.88
+            },
+            {
+                "serviceTargetID": 2,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 38,
+                    "node2Id": 39,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.9
+            },
+            {
+                "serviceTargetID": 3,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 15,
+                    "node2Id": 36,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.48
+            },
+            {
+                "serviceTargetID": 4,
+                "priority": 1,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 5,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.18
+            },
+            {
+                "serviceTargetID": 5,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 36,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.62
+            },
+            {
+                "serviceTargetID": 6,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 35,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.68
+            },
+            {
+                "serviceTargetID": 7,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 4,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.06
+            },
+            {
+                "serviceTargetID": 8,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 1,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.73
+            },
+            {
+                "serviceTargetID": 9,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 12,
+                    "node2Id": 22,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.54
+            },
+            {
+                "serviceTargetID": 10,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 48,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.69
+            },
+            {
+                "serviceTargetID": 11,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 2,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.53
+            },
+            {
+                "serviceTargetID": 12,
+                "priority": 1,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 19,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.03
+            },
+            {
+                "serviceTargetID": 13,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 33,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.11
+            },
+            {
+                "serviceTargetID": 14,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 0,
+                    "node2Id": 46,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.26
+            },
+            {
+                "serviceTargetID": 15,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 39,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.11
+            },
+            {
+                "serviceTargetID": 16,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 13,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.43
+            },
+            {
+                "serviceTargetID": 17,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 20,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.68
+            },
+            {
+                "serviceTargetID": 18,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 46,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.4
+            },
+            {
+                "serviceTargetID": 19,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 46,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.9
+            },
+            {
+                "serviceTargetID": 20,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 37,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.91
+            },
+            {
+                "serviceTargetID": 21,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 22,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.78
+            },
+            {
+                "serviceTargetID": 22,
+                "priority": 1,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 40,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.63
+            },
+            {
+                "serviceTargetID": 23,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 11,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.56
+            },
+            {
+                "serviceTargetID": 24,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 12,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.96
+            },
+            {
+                "serviceTargetID": 25,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 25,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.91
+            },
+            {
+                "serviceTargetID": 26,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 13,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.44
+            },
+            {
+                "serviceTargetID": 27,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 47,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.78
+            },
+            {
+                "serviceTargetID": 28,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 6,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.5
+            },
+            {
+                "serviceTargetID": 29,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 12,
+                    "node2Id": 29,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.41
+            },
+            {
+                "serviceTargetID": 30,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 23,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.53
+            },
+            {
+                "serviceTargetID": 31,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 10,
+                    "node2Id": 30,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.89
+            },
+            {
+                "serviceTargetID": 32,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 24,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.39
+            },
+            {
+                "serviceTargetID": 33,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": 43,
+                    "node2Id": 26,
+                    "keyType": "PWK"
+                },
+                "percentageCompleted": 0.94
+            },
+            {
+                "serviceTargetID": 34,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 36,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.28
+            },
+            {
+                "serviceTargetID": 35,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 45,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.54
+            },
+            {
+                "serviceTargetID": 36,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 17,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.85
+            },
+            {
+                "serviceTargetID": 37,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 31,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.73
+            },
+            {
+                "serviceTargetID": 38,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 31,
+                    "keyType": "KM"
+                },
+                "percentageCompleted": 0.27
+            },
+            {
+                "serviceTargetID": 39,
+                "priority": 0,
+                "keyPolicy": {
+                    "node1Id": -1,
+                    "node2Id": 39,
+                    "keyType": "QK"
+                },
+                "percentageCompleted": 0.71
+            }
+        ],
+        "visibilitySlots": [
+            {
+                "visibilitySlotId": 0,
+                "nodeId": 7,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:07:00",
+                "visibilityEnd": "2023-01-14T00:15:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5696421491593211,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 1,
+                "nodeId": 12,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:10:00",
+                "visibilityEnd": "2023-01-14T00:16:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.45957459933041844,
+                "achievableKeyVolume": 642,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 2,
+                "nodeId": 12,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:15:00",
+                "visibilityEnd": "2023-01-14T00:25:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.537549869882865,
+                "achievableKeyVolume": 970,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 3,
+                "nodeId": 12,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:16:00",
+                "visibilityEnd": "2023-01-14T00:25:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.45513585188927796,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 4,
+                "nodeId": 12,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:18:00",
+                "visibilityEnd": "2023-01-14T00:26:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.4261929504758596,
+                "achievableKeyVolume": 840,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 5,
+                "nodeId": 8,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:20:00",
+                "visibilityEnd": "2023-01-14T00:28:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5744277453876342,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 6,
+                "nodeId": 6,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:24:00",
+                "visibilityEnd": "2023-01-14T00:30:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6699839167240225,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 7,
+                "nodeId": 4,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:29:00",
+                "visibilityEnd": "2023-01-14T00:35:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6050765070984491,
+                "achievableKeyVolume": 648,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 8,
+                "nodeId": 22,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:46:00",
+                "visibilityEnd": "2023-01-14T00:52:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7538398825079139,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 9,
+                "nodeId": 22,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:47:00",
+                "visibilityEnd": "2023-01-14T00:52:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5853391020316582,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 10,
+                "nodeId": 14,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T00:56:00",
+                "visibilityEnd": "2023-01-14T01:01:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6078868543173016,
+                "achievableKeyVolume": 565,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 11,
+                "nodeId": 37,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:03:00",
+                "visibilityEnd": "2023-01-14T01:10:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.57618424551941,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 12,
+                "nodeId": 34,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:06:00",
+                "visibilityEnd": "2023-01-14T01:13:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6629966074869629,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 13,
+                "nodeId": 36,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:08:00",
+                "visibilityEnd": "2023-01-14T01:17:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7021117439562281,
+                "achievableKeyVolume": 999,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 14,
+                "nodeId": 28,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:09:00",
+                "visibilityEnd": "2023-01-14T01:15:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.654636974735007,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 15,
+                "nodeId": 31,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:13:00",
+                "visibilityEnd": "2023-01-14T01:21:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7316390516373191,
+                "achievableKeyVolume": 760,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 16,
+                "nodeId": 34,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:15:00",
+                "visibilityEnd": "2023-01-14T01:20:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5781324691437463,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 17,
+                "nodeId": 31,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:18:00",
+                "visibilityEnd": "2023-01-14T01:22:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.41559748732858226,
+                "achievableKeyVolume": 448,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 18,
+                "nodeId": 37,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:25:00",
+                "visibilityEnd": "2023-01-14T01:31:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.3443366681750987,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 19,
+                "nodeId": 33,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:29:00",
+                "visibilityEnd": "2023-01-14T01:38:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5269527097336112,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 20,
+                "nodeId": 39,
+                "orbitId": 0,
+                "visibilityStart": "2023-01-14T01:36:00",
+                "visibilityEnd": "2023-01-14T01:42:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7168897996158087,
+                "achievableKeyVolume": 690,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 21,
+                "nodeId": 0,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:04:00",
+                "visibilityEnd": "2023-01-14T02:12:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7304266854307107,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 22,
+                "nodeId": 7,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:08:00",
+                "visibilityEnd": "2023-01-14T02:12:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5741313161721139,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 23,
+                "nodeId": 4,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:11:00",
+                "visibilityEnd": "2023-01-14T02:22:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6013270231652105,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 24,
+                "nodeId": 7,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:12:00",
+                "visibilityEnd": "2023-01-14T02:18:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.49058751405818896,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 25,
+                "nodeId": 5,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:16:00",
+                "visibilityEnd": "2023-01-14T02:25:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7112200178433505,
+                "achievableKeyVolume": 945,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 26,
+                "nodeId": 8,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:19:00",
+                "visibilityEnd": "2023-01-14T02:23:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7545989165509817,
+                "achievableKeyVolume": 428,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 27,
+                "nodeId": 4,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:23:00",
+                "visibilityEnd": "2023-01-14T02:33:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5802648361416246,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 28,
+                "nodeId": 3,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:24:00",
+                "visibilityEnd": "2023-01-14T02:28:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5760925254138982,
+                "achievableKeyVolume": 356,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 29,
+                "nodeId": 8,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:25:00",
+                "visibilityEnd": "2023-01-14T02:33:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6076370434196076,
+                "achievableKeyVolume": 816,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 30,
+                "nodeId": 18,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:35:00",
+                "visibilityEnd": "2023-01-14T02:45:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6088953444918493,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 31,
+                "nodeId": 15,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:38:00",
+                "visibilityEnd": "2023-01-14T02:44:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6997851946447792,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 32,
+                "nodeId": 22,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:47:00",
+                "visibilityEnd": "2023-01-14T02:54:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5971173303284532,
+                "achievableKeyVolume": 658,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 33,
+                "nodeId": 16,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T02:48:00",
+                "visibilityEnd": "2023-01-14T02:53:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7110124038253544,
+                "achievableKeyVolume": 540,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 34,
+                "nodeId": 28,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:00:00",
+                "visibilityEnd": "2023-01-14T03:07:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6362128061329215,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 35,
+                "nodeId": 32,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:01:00",
+                "visibilityEnd": "2023-01-14T03:07:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6871788029744255,
+                "achievableKeyVolume": 720,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 36,
+                "nodeId": 26,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:04:00",
+                "visibilityEnd": "2023-01-14T03:11:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5695182664255284,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 37,
+                "nodeId": 25,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:07:00",
+                "visibilityEnd": "2023-01-14T03:15:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6780962955331727,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 38,
+                "nodeId": 25,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:19:00",
+                "visibilityEnd": "2023-01-14T03:27:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7139480592180614,
+                "achievableKeyVolume": 800,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 39,
+                "nodeId": 34,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:29:00",
+                "visibilityEnd": "2023-01-14T03:33:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6791170082179706,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 40,
+                "nodeId": 49,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:30:00",
+                "visibilityEnd": "2023-01-14T03:34:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5349406911476822,
+                "achievableKeyVolume": 344,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 41,
+                "nodeId": 47,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:32:00",
+                "visibilityEnd": "2023-01-14T03:37:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6106075089901947,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 42,
+                "nodeId": 40,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:34:00",
+                "visibilityEnd": "2023-01-14T03:41:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5609732746132591,
+                "achievableKeyVolume": 651,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 43,
+                "nodeId": 44,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:40:00",
+                "visibilityEnd": "2023-01-14T03:46:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6825694023658948,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 44,
+                "nodeId": 47,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:43:00",
+                "visibilityEnd": "2023-01-14T03:49:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.8093503327080521,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 45,
+                "nodeId": 40,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:47:00",
+                "visibilityEnd": "2023-01-14T03:55:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6020705772989663,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 46,
+                "nodeId": 38,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:48:00",
+                "visibilityEnd": "2023-01-14T03:53:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6944814624200396,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 47,
+                "nodeId": 47,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:49:00",
+                "visibilityEnd": "2023-01-14T03:57:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.528716870768357,
+                "achievableKeyVolume": 896,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 48,
+                "nodeId": 43,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:50:00",
+                "visibilityEnd": "2023-01-14T03:57:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6092423948063994,
+                "achievableKeyVolume": 728,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 49,
+                "nodeId": 41,
+                "orbitId": 1,
+                "visibilityStart": "2023-01-14T03:58:00",
+                "visibilityEnd": "2023-01-14T04:04:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.3941530588905711,
+                "achievableKeyVolume": 612,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 50,
+                "nodeId": 6,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:04:00",
+                "visibilityEnd": "2023-01-14T04:10:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7255348247165171,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 51,
+                "nodeId": 1,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:12:00",
+                "visibilityEnd": "2023-01-14T04:18:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.48292343604951843,
+                "achievableKeyVolume": 462,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 52,
+                "nodeId": 0,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:16:00",
+                "visibilityEnd": "2023-01-14T04:22:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5250664343115564,
+                "achievableKeyVolume": 594,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 53,
+                "nodeId": 12,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:19:00",
+                "visibilityEnd": "2023-01-14T04:27:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.3982295328380152,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 54,
+                "nodeId": 14,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:33:00",
+                "visibilityEnd": "2023-01-14T04:42:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.8275771132855554,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 55,
+                "nodeId": 15,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:35:00",
+                "visibilityEnd": "2023-01-14T04:41:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.8129170101837215,
+                "achievableKeyVolume": 594,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 56,
+                "nodeId": 19,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:39:00",
+                "visibilityEnd": "2023-01-14T04:44:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.556497945160356,
+                "achievableKeyVolume": 475,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 57,
+                "nodeId": 22,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:43:00",
+                "visibilityEnd": "2023-01-14T04:50:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7201772851142174,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 58,
+                "nodeId": 24,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:44:00",
+                "visibilityEnd": "2023-01-14T04:51:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6599191458099527,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 59,
+                "nodeId": 20,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:47:00",
+                "visibilityEnd": "2023-01-14T04:56:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5551402447098895,
+                "achievableKeyVolume": 864,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 60,
+                "nodeId": 14,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:54:00",
+                "visibilityEnd": "2023-01-14T05:00:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6305779481811558,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 61,
+                "nodeId": 22,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:57:00",
+                "visibilityEnd": "2023-01-14T05:04:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5586230101317551,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 62,
+                "nodeId": 21,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T04:58:00",
+                "visibilityEnd": "2023-01-14T05:06:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6791133305158737,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 63,
+                "nodeId": 35,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:01:00",
+                "visibilityEnd": "2023-01-14T05:09:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6111400561168645,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 64,
+                "nodeId": 30,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:14:00",
+                "visibilityEnd": "2023-01-14T05:22:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.4862124651029804,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 65,
+                "nodeId": 36,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:27:00",
+                "visibilityEnd": "2023-01-14T05:31:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.49602705308937584,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 66,
+                "nodeId": 43,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:33:00",
+                "visibilityEnd": "2023-01-14T05:39:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5693442615084914,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 67,
+                "nodeId": 43,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:34:00",
+                "visibilityEnd": "2023-01-14T05:43:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5071034482880404,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 68,
+                "nodeId": 45,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:39:00",
+                "visibilityEnd": "2023-01-14T05:43:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5745219608754488,
+                "achievableKeyVolume": 436,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 69,
+                "nodeId": 46,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:43:00",
+                "visibilityEnd": "2023-01-14T05:52:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.3515912623217235,
+                "achievableKeyVolume": 999,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 70,
+                "nodeId": 39,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:46:00",
+                "visibilityEnd": "2023-01-14T05:51:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7664888475834952,
+                "achievableKeyVolume": 530,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 71,
+                "nodeId": 41,
+                "orbitId": 2,
+                "visibilityStart": "2023-01-14T05:54:00",
+                "visibilityEnd": "2023-01-14T06:01:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.47695526119926585,
+                "achievableKeyVolume": 847,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 72,
+                "nodeId": 3,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:15:00",
+                "visibilityEnd": "2023-01-14T06:23:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5886347860186579,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 73,
+                "nodeId": 7,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:18:00",
+                "visibilityEnd": "2023-01-14T06:23:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5790591860009964,
+                "achievableKeyVolume": 445,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 74,
+                "nodeId": 3,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:19:00",
+                "visibilityEnd": "2023-01-14T06:30:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.4864028689808758,
+                "achievableKeyVolume": 979,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 75,
+                "nodeId": 6,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:23:00",
+                "visibilityEnd": "2023-01-14T06:31:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.49665244706221034,
+                "achievableKeyVolume": 840,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 76,
+                "nodeId": 22,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:33:00",
+                "visibilityEnd": "2023-01-14T06:39:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5153907813926113,
+                "achievableKeyVolume": 630,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 77,
+                "nodeId": 24,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:38:00",
+                "visibilityEnd": "2023-01-14T06:46:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5484963967685214,
+                "achievableKeyVolume": 840,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 78,
+                "nodeId": 13,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:41:00",
+                "visibilityEnd": "2023-01-14T06:49:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5290630786275359,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 79,
+                "nodeId": 24,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:48:00",
+                "visibilityEnd": "2023-01-14T06:52:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6011523278403225,
+                "achievableKeyVolume": 388,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 80,
+                "nodeId": 13,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:52:00",
+                "visibilityEnd": "2023-01-14T06:58:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.5263177084432866,
+                "achievableKeyVolume": 540,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 81,
+                "nodeId": 20,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T06:53:00",
+                "visibilityEnd": "2023-01-14T07:01:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.6176299906622502,
+                "achievableKeyVolume": 848,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 82,
+                "nodeId": 36,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:06:00",
+                "visibilityEnd": "2023-01-14T07:14:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.34715721254278353,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 83,
+                "nodeId": 32,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:07:00",
+                "visibilityEnd": "2023-01-14T07:13:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6400414486527876,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 84,
+                "nodeId": 35,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:15:00",
+                "visibilityEnd": "2023-01-14T07:19:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.5381433367252398,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 85,
+                "nodeId": 29,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:18:00",
+                "visibilityEnd": "2023-01-14T07:24:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.6902611117964284,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 86,
+                "nodeId": 48,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:32:00",
+                "visibilityEnd": "2023-01-14T07:40:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7119360459327917,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 87,
+                "nodeId": 40,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:34:00",
+                "visibilityEnd": "2023-01-14T07:39:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.7283996735111858,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 88,
+                "nodeId": 48,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:40:00",
+                "visibilityEnd": "2023-01-14T07:50:00",
+                "communicationType": "QUANTUM_AND_OPTICAL",
+                "linkAvailabilityPercentage": 0.7264873610262297,
+                "achievableKeyVolume": 990,
+                "requiredPower": 0
+            },
+            {
+                "visibilitySlotId": 89,
+                "nodeId": 43,
+                "orbitId": 3,
+                "visibilityStart": "2023-01-14T07:58:00",
+                "visibilityEnd": "2023-01-14T08:02:00",
+                "communicationType": "OPTICAL_ONLY",
+                "linkAvailabilityPercentage": 0.4834230402812437,
+                "achievableKeyVolume": 0,
+                "requiredPower": 0
+            }
+        ]
+    }
+]
