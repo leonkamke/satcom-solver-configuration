@@ -163,3 +163,4 @@ cython_debug/
 
 # Own added ignores
 /src/output/visualizations/*
+smac3_output
