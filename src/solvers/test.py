@@ -7,6 +7,9 @@ from datetime import datetime, timedelta
 # Step duration in seconds for elevation angles
 step_duration = 10
 
+# Minimum elevation angle in degrees
+min_elevation_angle = 20
+
 # Calculate key volume
 def calculate_key_volume(row):
     # Approximated key rate depending on elevation angle of satellite
@@ -88,7 +91,9 @@ end_time_np = np.datetime64('2025-02-13T00:00:00')
 # Calculate Passes for Each Ground Terminal
 passes_data = []
 
-for terminal in ground_terminals:
+print("Calculating satellite passes ...")
+
+for terminal in quarc_ground_terminals:
     ground_station = Topos(latitude_degrees=terminal["lat"], 
                            longitude_degrees=terminal["lon"], 
                            elevation_m=terminal["alt"])
@@ -112,7 +117,7 @@ for terminal in ground_terminals:
         elevation_angles.append((time.utc_iso(), alt.degrees))
     
     # Filter for Above Horizon Passes
-    elevation_angles = [(t, e) for t, e in elevation_angles if e > 0]
+    elevation_angles = [(t, e) for t, e in elevation_angles if e >= min_elevation_angle]
     
     # Group into Passes
     current_pass = []
@@ -126,17 +131,6 @@ for terminal in ground_terminals:
     if current_pass:
         passes_data.append({"station": terminal["name"], "pass": current_pass})
 
-# Filter for passes with a minimum elevation of 20 degrees
-filtered_passes_data = []
-for pass_data in passes_data:
-    # Extract elevation angles from the pass
-    elevations = [e for t, e in pass_data["pass"]]
-    if max(elevations) >= 20:  # Check if the pass has a maximum elevation >= 20 degrees
-        filtered_passes_data.append(pass_data)
-
-# Replace passes_data with the filtered data
-passes_data = filtered_passes_data
-
 
 # Convert to DataFrame
 pass_windows = []
@@ -146,7 +140,10 @@ for pass_info in passes_data:
     pass_windows.append({"Station": station, "Start": times[0], "End": times[-1], "Elevations": elevations})
 df_pass_windows = pd.DataFrame(pass_windows)
 
+print("Calculating key volumes ...")
+
 # Calculate approximated key volume
 df_pass_windows["Key Volume"] = df_pass_windows.apply(calculate_key_volume, axis=1)
 
 df_pass_windows.to_csv("testcsv.csv")
+print(df_pass_windows)

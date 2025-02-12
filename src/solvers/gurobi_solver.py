@@ -64,14 +64,14 @@ x = model.addVars(V, S, vtype=GRB.BINARY, name="x")
 
 # Objective function
 model.setObjective(
-    quicksum(x[i, j] * (1 + bi[i] * pj[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
+    quicksum(x[i, j] * (1 + bi[i] * pj[j] * mj[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
     GRB.MAXIMIZE
 )
 
 # Constraints
 print("Start defining constraints")
-# Non-overlapping satellite passes
 
+# Non-overlapping satellite passes
 for i in V:
     for j in V:
         if ti[i] < ti[j]:
@@ -96,9 +96,9 @@ for i in V:
         model.addConstr(x[i, j] * (ni[i] - sj[j]) == 0)
 
 # The operation mode must match
-for i in V:
+"""for i in V:
     for j in S:
-        model.addConstr(x[i, j] * oi[i] * (oi[i] - mj[j]) == 0)
+        model.addConstr(x[i, j] * oi[i] * (oi[i] - mj[j]) == 0)"""
 
 
 # Each service target can be served at most once
