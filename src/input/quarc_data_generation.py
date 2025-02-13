@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 
 # Step duration in seconds for elevation angles
-step_duration = 10
+step_duration = 5
 
 # Minimum elevation angle in degrees
 min_elevation_angle = 20
@@ -121,7 +121,7 @@ for terminal in ground_terminals:
     elevation_angles = []
     for time in skyfield_times:
         alt, az, distance = observer.at(time).altaz()
-        elevation_angles.append((time.utc_iso(), alt.degrees))
+        elevation_angles.append((time.utc_iso().replace('Z', ''), alt.degrees))
     
     # Filter for Above Horizon Passes
     elevation_angles = [(t, e) for t, e in elevation_angles if e >= min_elevation_angle]
