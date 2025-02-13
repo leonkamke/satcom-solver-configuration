@@ -9,13 +9,67 @@ from skyfield.api import Topos, load, EarthSatellite
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
+import requests
 
+# Observation Time Period
+start_time_np = np.datetime64('2024-02-12T00:00:00')
+end_time_np = np.datetime64('2024-02-13T00:00:00')
 
 # Step duration in seconds for elevation angles
-step_duration = 5
+step_duration = 10
 
 # Minimum elevation angle in degrees
 min_elevation_angle = 20
+
+# Function for getting weather data for a specific day and position
+def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
+    # Base URL for the Open-Meteo API
+    url = "https://archive-api.open-meteo.com/v1/era5"
+    params = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "start_date": date,
+        "end_date": date,
+        "daily": "sunshine_duration,sunrise,sunset",
+        "timezone": "auto"
+    }
+    
+    # Make the request
+    response = requests.get(url, params=params)
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch data: {response.status_code}, {response.text}")
+    
+    # Parse the JSON response
+    data = response.json()
+    
+    # Extract relevant data
+    sunrise = data["daily"]["sunrise"][0]
+    sunset = data["daily"]["sunset"][0]
+    sunshine_duration = data["daily"]["sunshine_duration"][0]  # In seconds
+
+    # Convert sunrise and sunset to datetime objects
+    sunrise_time = datetime.fromisoformat(sunrise)
+    sunset_time = datetime.fromisoformat(sunset)
+
+    # Calculate the duration between sunrise and sunset in seconds
+    daylight_duration_seconds = (sunset_time - sunrise_time).seconds
+
+    # Calculate cloud coverage (1 - sunshine_duration / daylight_duration)
+    cloud_coverage = 1 - (sunshine_duration / daylight_duration_seconds)
+    
+    # Convert sunshine duration to hours for easier interpretation
+    sunshine_duration_hours = sunshine_duration / 3600
+
+    return {
+        "date": date,
+        "latitude": latitude,
+        "longitude": longitude,
+        "sunrise": sunrise,
+        "sunset": sunset,
+        "sunshine_duration_hours": sunshine_duration_hours,
+        "daylight_duration_hours": daylight_duration_seconds / 3600,  # Convert seconds to hours
+        "cloud_coverage_fraction": cloud_coverage  # Value between 0 (clear) and 1 (fully cloudy)
+    }
 
 # Calculate key volume
 def calculate_key_volume(row):
@@ -40,70 +94,66 @@ satellite = EarthSatellite(tle_lines[0], tle_lines[1], 'QUARC', ts)
 satellite_name = satellite.name
 
 # QUARC Ground Terminal locations UK
-quarc_ground_terminals = [
-    {"name": "Station1", "lat": 61, "lon": -1, "alt": 0},
-    {"name": "Station2", "lat": 60, "lon": -1, "alt": 0},
-    {"name": "Station3", "lat": 59, "lon": -3, "alt": 0},
-    {"name": "Station4", "lat": 58, "lon": -4, "alt": 0},
-    {"name": "Station5", "lat": 58, "lon": -5, "alt": 0},
-    {"name": "Station6", "lat": 58, "lon": -7, "alt": 0},
-    {"name": "Station7", "lat": 57, "lon": -3, "alt": 0},
-    {"name": "Station8", "lat": 57, "lon": -4, "alt": 0},
-    {"name": "Station9", "lat": 57, "lon": -5, "alt": 0},
-    {"name": "Station10", "lat": 57, "lon": -6, "alt": 0},
-    {"name": "Station11", "lat": 56, "lon": -3, "alt": 0},
-    {"name": "Station12", "lat": 56, "lon": -4, "alt": 0},
-    {"name": "Station13", "lat": 56, "lon": -5, "alt": 0},
-    {"name": "Station14", "lat": 56, "lon": -6, "alt": 0},
-    {"name": "Station15", "lat": 55, "lon": -2, "alt": 0},
-    {"name": "Station16", "lat": 55, "lon": -3, "alt": 0},
-    {"name": "Station17", "lat": 55, "lon": -4, "alt": 0},
-    {"name": "Station18", "lat": 55, "lon": -5, "alt": 0},
-    {"name": "Station19", "lat": 55, "lon": -6, "alt": 0},
-    {"name": "Station20", "lat": 55, "lon": -7, "alt": 0},
-    {"name": "Station21", "lat": 55, "lon": -4, "alt": 0},
-    {"name": "Station22", "lat": 54, "lon": -1, "alt": 0},
-    {"name": "Station23", "lat": 54, "lon": -2, "alt": 0},
-    {"name": "Station24", "lat": 54, "lon": -3, "alt": 0},
-    {"name": "Station25", "lat": 54, "lon": -6, "alt": 0},
-    {"name": "Station26", "lat": 53, "lon": 1, "alt": 0},
-    {"name": "Station27", "lat": 53, "lon": 0, "alt": 0},
-    {"name": "Station28", "lat": 53, "lon": -1, "alt": 0},
-    {"name": "Station29", "lat": 53, "lon": -2, "alt": 0},
-    {"name": "Station30", "lat": 53, "lon": -3, "alt": 0},
-    {"name": "Station31", "lat": 53, "lon": -4, "alt": 0},
-    {"name": "Station32", "lat": 52, "lon": 1, "alt": 0},
-    {"name": "Station33", "lat": 52, "lon": 0, "alt": 0},
-    {"name": "Station34", "lat": 52, "lon": -1, "alt": 0},
-    {"name": "Station35", "lat": 52, "lon": -2, "alt": 0},
-    {"name": "Station36", "lat": 52, "lon": -3, "alt": 0},
-    {"name": "Station37", "lat": 52, "lon": -4, "alt": 0},
-    {"name": "Station38", "lat": 51, "lon": 1, "alt": 0},
-    {"name": "Station39", "lat": 51, "lon": 0, "alt": 0},
-    {"name": "Station40", "lat": 51, "lon": -1, "alt": 0},
-    {"name": "Station41", "lat": 51, "lon": -2, "alt": 0},
-    {"name": "Station42", "lat": 51, "lon": -3, "alt": 0},
-    {"name": "Station43", "lat": 51, "lon": -4, "alt": 0},
-]
-
-ground_terminals = [
-    {"name": "Station1", "lat": 61, "lon": -1, "alt": 0}
-]
+quarc_ground_terminals = {
+    "Station1": {"lat": 61, "lon": -1, "alt": 0},
+    "Station2": {"lat": 60, "lon": -1, "alt": 0},
+    "Station3": {"lat": 59, "lon": -3, "alt": 0},
+    "Station4": {"lat": 58, "lon": -4, "alt": 0},
+    "Station5": {"lat": 58, "lon": -5, "alt": 0},
+    "Station6": {"lat": 58, "lon": -7, "alt": 0},
+    "Station7": {"lat": 57, "lon": -3, "alt": 0},
+    "Station8": {"lat": 57, "lon": -4, "alt": 0},
+    "Station9": {"lat": 57, "lon": -5, "alt": 0},
+    "Station10": {"lat": 57, "lon": -6, "alt": 0},
+    "Station11": {"lat": 56, "lon": -3, "alt": 0},
+    "Station12": {"lat": 56, "lon": -4, "alt": 0},
+    "Station13": {"lat": 56, "lon": -5, "alt": 0},
+    "Station14": {"lat": 56, "lon": -6, "alt": 0},
+    "Station15": {"lat": 55, "lon": -2, "alt": 0},
+    "Station16": {"lat": 55, "lon": -3, "alt": 0},
+    "Station17": {"lat": 55, "lon": -4, "alt": 0},
+    "Station18": {"lat": 55, "lon": -5, "alt": 0},
+    "Station19": {"lat": 55, "lon": -6, "alt": 0},
+    "Station20": {"lat": 55, "lon": -7, "alt": 0},
+    "Station21": {"lat": 55, "lon": -4, "alt": 0},
+    "Station22": {"lat": 54, "lon": -1, "alt": 0},
+    "Station23": {"lat": 54, "lon": -2, "alt": 0},
+    "Station24": {"lat": 54, "lon": -3, "alt": 0},
+    "Station25": {"lat": 54, "lon": -6, "alt": 0},
+    "Station26": {"lat": 53, "lon": 1, "alt": 0},
+    "Station27": {"lat": 53, "lon": 0, "alt": 0},
+    "Station28": {"lat": 53, "lon": -1, "alt": 0},
+    "Station29": {"lat": 53, "lon": -2, "alt": 0},
+    "Station30": {"lat": 53, "lon": -3, "alt": 0},
+    "Station31": {"lat": 53, "lon": -4, "alt": 0},
+    "Station32": {"lat": 52, "lon": 1, "alt": 0},
+    "Station33": {"lat": 52, "lon": 0, "alt": 0},
+    "Station34": {"lat": 52, "lon": -1, "alt": 0},
+    "Station35": {"lat": 52, "lon": -2, "alt": 0},
+    "Station36": {"lat": 52, "lon": -3, "alt": 0},
+    "Station37": {"lat": 52, "lon": -4, "alt": 0},
+    "Station38": {"lat": 51, "lon": 1, "alt": 0},
+    "Station39": {"lat": 51, "lon": 0, "alt": 0},
+    "Station40": {"lat": 51, "lon": -1, "alt": 0},
+    "Station41": {"lat": 51, "lon": -2, "alt": 0},
+    "Station42": {"lat": 51, "lon": -3, "alt": 0},
+    "Station43": {"lat": 51, "lon": -4, "alt": 0},
+}
 
 
-# Observation Time Period
-start_time_np = np.datetime64('2025-02-12T00:00:00')
-end_time_np = np.datetime64('2025-02-13T00:00:00')
+ground_terminals = {
+    "Station1": {"lat": 61, "lon": -1, "alt": 0}
+}
 
 # Calculate Passes for Each Ground Terminal
-passes_data = []
-
 print("Calculating satellite passes ...")
 
-for terminal in ground_terminals:
-    ground_station = Topos(latitude_degrees=terminal["lat"], 
-                           longitude_degrees=terminal["lon"], 
-                           elevation_m=terminal["alt"])
+passes_data = []
+
+for terminal, position in ground_terminals.items():
+    ground_station = Topos(latitude_degrees=position["lat"], 
+                           longitude_degrees=position["lon"], 
+                           elevation_m=position["alt"])
     observer = satellite - ground_station
 
     # Create evenly spaced time steps
@@ -133,10 +183,10 @@ for terminal in ground_terminals:
             current_pass.append((t, e))
         else:
             if current_pass:
-                passes_data.append({"station": terminal["name"], "pass": current_pass})
+                passes_data.append({"station": terminal, "pass": current_pass})
             current_pass = [(t, e)]
     if current_pass:
-        passes_data.append({"station": terminal["name"], "pass": current_pass})
+        passes_data.append({"station": terminal, "pass": current_pass})
 
 
 # Convert to DataFrame
