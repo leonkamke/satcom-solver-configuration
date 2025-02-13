@@ -5,6 +5,7 @@ Link: https://www.mdpi.com/2410-387X/4/1/7
 """
 
 from skyfield.api import Topos, load, EarthSatellite
+from skyfield.elementslib import osculating_elements_of
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -123,11 +124,11 @@ def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
 # Calculate key volume using QUARC approximation
 def calculate_key_volume(row):
     # Approximated key rate depending on elevation angle of satellite
-    def quarcKeyRateApproximation(elevation):
+    def quarc_key_rate_approximation(elevation):
         return -0.0145 * (elevation**3) + 2.04 * (elevation**2) - 20.65 * elevation + 88.42
     
     elevation_angles = row["Elevations"]
-    key_rates = [quarcKeyRateApproximation(e) for e in elevation_angles]
+    key_rates = [quarc_key_rate_approximation(e) for e in elevation_angles]
     key_volume = sum(rate * step_duration for rate in key_rates)  # Volume in bits
 
     # Adjust key volume depending on cloud coverage
@@ -150,11 +151,26 @@ def get_problem_instance(start_time, end_time, step_duration, min_elevation_angl
     # Load the satellite from TLE
     satellite = EarthSatellite(tle_lines[0], tle_lines[1], 'QUARC', ts)
 
+    # Compute orbital period in seconds
+    earth = satellite.at(ts.now())
+    elements = osculating_elements_of(earth)
+    orbit_duration = elements.period_in_days * 24 * 60 * 60
+
+    # Function that assigns a satellite pass to an orbit
+    def assign_orbit(row):
+        # Calculate the time difference between the start of the pass and the orbit start time
+        orbit_start_time = start_time
+        pass_start_time = pd.to_datetime(row['Start'])
+        time_difference = (pass_start_time - orbit_start_time).total_seconds()
+        # Calculate orbit ID
+        orbit_id = int(time_difference // orbit_duration)
+        return orbit_id
+
     # Calculate Passes for Each Ground Terminal
     print("Calculating satellite passes ...")
 
     passes_data = []
-    for terminal, position in quarc_ground_terminals.items():
+    for terminal, position in ground_terminals.items():
         ground_station = Topos(latitude_degrees=position["lat"], 
                             longitude_degrees=position["lon"], 
                             elevation_m=position["alt"])
@@ -200,11 +216,14 @@ def get_problem_instance(start_time, end_time, step_duration, min_elevation_angl
         satellite_passes.append({"Station": station, "Start": times[0], "End": times[-1], "Elevations": elevations})
     df_satellite_passes = pd.DataFrame(satellite_passes)
 
-    print("Calculating key volumes ...")
-
     # Calculate approximated key volume
+    print("Calculating key volumes ...")
     df_satellite_passes["Key Volume"] = df_satellite_passes.apply(calculate_key_volume, axis=1)
     df_satellite_passes = df_satellite_passes.drop('Elevations', axis=1)
+
+    # Calculate orbits
+    print("Calculate orbits")
+    df_satellite_passes["Orbit"] = df_satellite_passes.apply(assign_orbit, axis=1)
 
     return df_satellite_passes
 

@@ -18,12 +18,11 @@ class ServiceTarget:
     
 
 class SatellitePass:
-    def __init__(self, id, nodeId, startTime, endTime, possibleOperation, achievableKeyVolume, orbitId):
+    def __init__(self, id, nodeId, startTime, endTime, achievableKeyVolume, orbitId):
         self.id = id
         self.nodeId = nodeId
         self.startTime = startTime
         self.endTime = endTime
-        self.possibleOperation = possibleOperation
         self.achievableKeyVolume = achievableKeyVolume
         self.orbitId = orbitId
 
@@ -132,7 +131,7 @@ def generate_random_satellite_passes(parameters):
             # Sample required power (Calc power per second for both channels and multiply with duration)
             # requiredPower = 0
 
-            sp = SatellitePass(id, nodeId, startTime, endTime, communicationType, achievableKeyVolume, orbitId)
+            sp = SatellitePass(id, nodeId, startTime, endTime, achievableKeyVolume, orbitId)
             id += 1
             satellitePasses.append(sp.to_dict())
             
