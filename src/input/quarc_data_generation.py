@@ -1,5 +1,5 @@
 """
-Creation of problem instances based on the article:
+Creation of satellite passes over ground terminals based on the article:
 'QUARC: Quantum Research Cubesat—A Constellation for Quantum Communication'
 Link: https://www.mdpi.com/2410-387X/4/1/7
 """
@@ -11,64 +11,29 @@ import pandas as pd
 from datetime import datetime
 import requests
 
-# QUARC Ground Terminal locations in UK
-quarc_ground_terminals = {
-    "Station1": {"lat": 61, "lon": -1, "alt": 0},
-    "Station2": {"lat": 60, "lon": -1, "alt": 0},
-    "Station3": {"lat": 59, "lon": -3, "alt": 0},
-    "Station4": {"lat": 58, "lon": -4, "alt": 0},
-    "Station5": {"lat": 58, "lon": -5, "alt": 0},
-    "Station6": {"lat": 58, "lon": -7, "alt": 0},
-    "Station7": {"lat": 57, "lon": -3, "alt": 0},
-    "Station8": {"lat": 57, "lon": -4, "alt": 0},
-    "Station9": {"lat": 57, "lon": -5, "alt": 0},
-    "Station10": {"lat": 57, "lon": -6, "alt": 0},
-    "Station11": {"lat": 56, "lon": -3, "alt": 0},
-    "Station12": {"lat": 56, "lon": -4, "alt": 0},
-    "Station13": {"lat": 56, "lon": -5, "alt": 0},
-    "Station14": {"lat": 56, "lon": -6, "alt": 0},
-    "Station15": {"lat": 55, "lon": -2, "alt": 0},
-    "Station16": {"lat": 55, "lon": -3, "alt": 0},
-    "Station17": {"lat": 55, "lon": -4, "alt": 0},
-    "Station18": {"lat": 55, "lon": -5, "alt": 0},
-    "Station19": {"lat": 55, "lon": -6, "alt": 0},
-    "Station20": {"lat": 55, "lon": -7, "alt": 0},
-    "Station21": {"lat": 55, "lon": -4, "alt": 0},
-    "Station22": {"lat": 54, "lon": -1, "alt": 0},
-    "Station23": {"lat": 54, "lon": -2, "alt": 0},
-    "Station24": {"lat": 54, "lon": -3, "alt": 0},
-    "Station25": {"lat": 54, "lon": -6, "alt": 0},
-    "Station26": {"lat": 53, "lon": 1, "alt": 0},
-    "Station27": {"lat": 53, "lon": 0, "alt": 0},
-    "Station28": {"lat": 53, "lon": -1, "alt": 0},
-    "Station29": {"lat": 53, "lon": -2, "alt": 0},
-    "Station30": {"lat": 53, "lon": -3, "alt": 0},
-    "Station31": {"lat": 53, "lon": -4, "alt": 0},
-    "Station32": {"lat": 52, "lon": 1, "alt": 0},
-    "Station33": {"lat": 52, "lon": 0, "alt": 0},
-    "Station34": {"lat": 52, "lon": -1, "alt": 0},
-    "Station35": {"lat": 52, "lon": -2, "alt": 0},
-    "Station36": {"lat": 52, "lon": -3, "alt": 0},
-    "Station37": {"lat": 52, "lon": -4, "alt": 0},
-    "Station38": {"lat": 51, "lon": 1, "alt": 0},
-    "Station39": {"lat": 51, "lon": 0, "alt": 0},
-    "Station40": {"lat": 51, "lon": -1, "alt": 0},
-    "Station41": {"lat": 51, "lon": -2, "alt": 0},
-    "Station42": {"lat": 51, "lon": -3, "alt": 0},
-    "Station43": {"lat": 51, "lon": -4, "alt": 0},
-}
+class SatellitePass:
+    def __init__(self, id, nodeId, startTime, endTime, achievableKeyVolume, orbitId):
+        self.id = id
+        self.nodeId = nodeId
+        self.startTime = startTime
+        self.endTime = endTime
+        self.achievableKeyVolume = achievableKeyVolume
+        self.orbitId = orbitId
+    
+    def __repr__(self):
+        return (f"SatellitePass(id={self.id}, nodeId={self.nodeId}, startTime={self.startTime}, "
+                f"endTime={self.endTime}, achievableKeyVolume={self.achievableKeyVolume}, orbitId={self.orbitId})")
 
-ground_terminals = {
-    "Station1": {"lat": 61, "lon": -1, "alt": 0}
-}
-
+    def to_dict(self):
+        return self.__dict__
+    
 # Load TLE Data for the Satellite
 ts = load.timescale()
 
 # UK-DMC 2
 tle_lines = [
-    "1 35683U 09041C   25042.20210648  .00000023  00000+0  12345-4 0  9991",
-    "2 35683  97.9500 123.4567 0001234  98.7654 261.2345 14.12345678901234",
+    "1 35683U 09041C   25045.14309186  .00001921  00000-0  29495-3 0  9992",
+    "2 35683  97.8105 189.5655 0001400  83.0116 277.1253 14.74670943834658",
 ]
 
 # Function for getting weather data for a specific day and position
@@ -121,33 +86,25 @@ def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
         "cloud_coverage_fraction": cloud_coverage  # Value between 0 (clear) and 1 (fully cloudy)
     }
 
-# Calculate key volume using QUARC approximation
-def calculate_key_volume(row):
-    # Approximated key rate depending on elevation angle of satellite
-    def quarc_key_rate_approximation(elevation):
-        return -0.0145 * (elevation**3) + 2.04 * (elevation**2) - 20.65 * elevation + 88.42
-    
-    elevation_angles = row["Elevations"]
-    key_rates = [quarc_key_rate_approximation(e) for e in elevation_angles]
-    key_volume = sum(rate * step_duration for rate in key_rates)  # Volume in bits
+def convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes):
+    # Convert DataFrame rows to SatellitePass objects
+    satellite_passes = []
+    for idx, row in df_satellite_passes.iterrows():
+        satellite_pass = SatellitePass(
+            id=idx,
+            nodeId=row['Station'],
+            startTime=row['Start'],
+            endTime=row['End'],
+            achievableKeyVolume=row['Key Volume'],
+            orbitId=row['Orbit']
+        )
+        satellite_passes.append(satellite_pass.to_dict())
 
-    # Adjust key volume depending on cloud coverage
-    terminal = row["Station"]
-    lat = quarc_ground_terminals[terminal]["lat"]
-    lon = quarc_ground_terminals[terminal]["lon"]
-    date = row["Start"]
-    # Parse the string into a datetime object
-    date_object = datetime.strptime(row["Start"], "%Y-%m-%dT%H:%M:%S")
-    # Format the datetime object to 'YYYY-MM-DD'
-    date = date_object.strftime("%Y-%m-%d")
+    # Sort the SatellitePass objects by startTime
+    satellite_passes.sort(key=lambda sp: sp["startTime"])
+    return satellite_passes
 
-    # Fetch weather data
-    cloud_coverage_fraction = fetch_weather_data_with_cloud_coverage(lat, lon, date)["cloud_coverage_fraction"]
-
-    # Use cloud coverage to adjust key volume
-    return key_volume * (1 - cloud_coverage_fraction)
-
-def get_problem_instance(start_time, end_time, step_duration, min_elevation_angle):
+def get_quarc_satellite_passes(ground_terminals, start_time, end_time, step_duration, min_elevation_angle):
     # Load the satellite from TLE
     satellite = EarthSatellite(tle_lines[0], tle_lines[1], 'QUARC', ts)
 
@@ -165,6 +122,32 @@ def get_problem_instance(start_time, end_time, step_duration, min_elevation_angl
         # Calculate orbit ID
         orbit_id = int(time_difference // orbit_duration)
         return orbit_id
+    
+    # Calculate key volume using QUARC approximation
+    def calculate_key_volume(row):
+        # Approximated key rate depending on elevation angle of satellite
+        def quarc_key_rate_approximation(elevation):
+            return -0.0145 * (elevation**3) + 2.04 * (elevation**2) - 20.65 * elevation + 88.42
+        
+        elevation_angles = row["Elevations"]
+        key_rates = [quarc_key_rate_approximation(e) for e in elevation_angles]
+        key_volume = sum(rate * step_duration for rate in key_rates)  # Volume in bits
+
+        # Adjust key volume depending on cloud coverage
+        terminal = row["Station"]
+        lat = ground_terminals[terminal]["lat"]
+        lon = ground_terminals[terminal]["lon"]
+        date = row["Start"]
+        # Parse the string into a datetime object
+        date_object = datetime.strptime(row["Start"], "%Y-%m-%dT%H:%M:%S")
+        # Format the datetime object to 'YYYY-MM-DD'
+        date = date_object.strftime("%Y-%m-%d")
+
+        # Fetch weather data
+        cloud_coverage_fraction = fetch_weather_data_with_cloud_coverage(lat, lon, date)["cloud_coverage_fraction"]
+
+        # Use cloud coverage to adjust key volume
+        return key_volume * (1 - cloud_coverage_fraction)
 
     # Calculate Passes for Each Ground Terminal
     print("Calculating satellite passes ...")
@@ -222,21 +205,10 @@ def get_problem_instance(start_time, end_time, step_duration, min_elevation_angl
     df_satellite_passes = df_satellite_passes.drop('Elevations', axis=1)
 
     # Calculate orbits
-    print("Calculate orbits")
+    print("Calculating orbits ...")
     df_satellite_passes["Orbit"] = df_satellite_passes.apply(assign_orbit, axis=1)
 
-    return df_satellite_passes
+    # Convert satellite passes dataframe to list of satellite pass objects
+    satellite_passes_dict_list = convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes)
 
-
-# Observation Time Period
-start_time = np.datetime64('2024-02-12T00:00:00')
-end_time = np.datetime64('2024-02-13T00:00:00')
-
-# Step duration in seconds for elevation angles
-step_duration = 10
-
-# Minimum elevation angle in degrees
-min_elevation_angle = 20
-
-satellite_passes_df = get_problem_instance(start_time, end_time, step_duration, min_elevation_angle)
-print(satellite_passes_df)
+    return satellite_passes_dict_list
