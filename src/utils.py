@@ -4,17 +4,20 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-PROBLEM_INSTANCE_PATH = "./src/input/data/problem_instance.json"
+PROBLEM_INSTANCE_PATH = "./src/input/data/problem_instances.json"
 SOLUTION_VISUALIZATION_PATH = "./src/output/visualizations/"
 
 def readProblemInstance(input_path=PROBLEM_INSTANCE_PATH):
     with open(input_path, 'r') as file:
         data = json.load(file)
 
-        serviceTargets = data[0]['serviceTargets']
-        satellitePasses = data[0]['satellitePasses']
+        service_targets = data[0]['service_targets']
+        satellite_passes = data[0]['satellite_passes']
 
-        return [serviceTargets, satellitePasses]
+        return {
+            "satellite_passes": satellite_passes,
+            "service_targets": service_targets
+        }
 
 
 def plotOptimizationResult(serviceTargets, satellitePasses, contacts, optimizer, output_path=SOLUTION_VISUALIZATION_PATH):

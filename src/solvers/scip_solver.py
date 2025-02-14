@@ -4,50 +4,47 @@ from ..utils import *
 
 # Read problem instance
 problemInstance = readProblemInstance()
-serviceTargets = problemInstance[0]
-satellitePasses = problemInstance[1]
+satellite_passes = problemInstance["satellite_passes"]
+service_targets = problemInstance["service_targets"]
 
 # Set parameters for optimization problem
-V = list(range(len(satellitePasses)))
-S = list(range(len(serviceTargets)))
+V = list(range(len(satellite_passes)))
+S = list(range(len(service_targets)))
 
-di = {}
-ti = {}
-bi = {}
-oi = {}
-ni = {}
-fi = {}
+d = {}
+t = {}
+b = {}
+n = {}
+f = {}
 
-reference_time = datetime.fromisoformat(satellitePasses[0]["startTime"])
-for satellitePass in satellitePasses:
+reference_time = datetime.fromisoformat(satellite_passes[0]["startTime"])
+for satellitePass in satellite_passes:
     id = satellitePass["id"]
     start_time = datetime.fromisoformat(satellitePass["startTime"])
     end_time = datetime.fromisoformat(satellitePass["endTime"])
 
     # Calculate relative start time (seconds from reference_time)
     start_seconds = (start_time - reference_time).total_seconds()
-    ti[id] = start_seconds
+    t[id] = start_seconds
 
     # Calculate duration (seconds)
     duration_seconds = (end_time - start_time).total_seconds()
-    di[id] = duration_seconds
+    d[id] = duration_seconds
 
-    bi[id] = satellitePass["achievableKeyVolume"]
+    b[id] = satellitePass["achievableKeyVolume"]
 
-    oi[id] = 0 if satellitePass["possibleOperation"] == "QKD" else 1
+    n[id] = satellitePass["nodeId"]
 
-    ni[id] = satellitePass["nodeId"]
+    f[id] = satellitePass["orbitId"]
 
-    fi[id] = satellitePass["orbitId"]
-
-pj = {}
-sj = {}
-mj = {}
-for serviceTarget in serviceTargets:
+p = {}
+s = {}
+m = {}
+for serviceTarget in service_targets:
     id = serviceTarget["id"]
-    pj[id] = serviceTarget["priority"]
-    sj[id] = serviceTarget["nodeId"]
-    mj[id] = 0 if serviceTarget["requestedOperation"] == "QKD" else 1
+    p[id] = serviceTarget["priority"]
+    s[id] = serviceTarget["nodeId"]
+    m[id] = 0 if serviceTarget["requestedOperation"] == "QKD" else 1
 
 T_min = 6  # Minimum time between consecutive contacts
 # F_max = 20  # Maximum number of contacts per orbit
@@ -64,7 +61,7 @@ for i in V:
 
 # Objective function
 model.setObjective(
-    quicksum(x[i, j] * (1 + bi[i] * pj[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
+    quicksum(x[i, j] * (1 + b[i] * p[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
     "maximize"
 )
 
@@ -73,9 +70,9 @@ print("Start defining constraints")
 # Non-overlapping satellite passes
 for i in V:
     for j in V:
-        if ti[i] < ti[j]:
+        if t[i] < t[j]:
             model.addCons(
-                ti[i] + di[i] + T_min <= ti[j] + (2 - quicksum(x[i, k] for k in S) - quicksum(x[j, k] for k in S)) * 99999999
+                t[i] + d[i] + T_min <= t[j] + (2 - quicksum(x[i, k] for k in S) - quicksum(x[j, k] for k in S)) * 99999999
             )
 
 # Maximum number of contacts per orbit
@@ -94,12 +91,12 @@ for i in V:
 # The node in the service target and satellite pass must match
 for i in V:
     for j in S:
-        model.addCons(x[i, j] * (ni[i] - sj[j]) == 0)
+        model.addCons(x[i, j] * (n[i] - s[j]) == 0)
 
 # The operation mode must match
-for i in V:
+"""for i in V:
     for j in S:
-        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j]) == 0)
+        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j]) == 0)"""
 
 # Each service target can be served at most once
 for j in S:
@@ -121,9 +118,9 @@ for i in V:
     for j in S:
         if model.getVal(x[i, j]) > 0.5:
             contact = {}
-            contact["satellitePass"] = satellitePasses[i]
-            contact["serviceTarget"] = serviceTargets[j]
+            contact["satellitePass"] = satellite_passes[i]
+            contact["serviceTarget"] = service_targets[j]
             contacts.append(contact)
 
 print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-plotOptimizationResult(serviceTargets, satellitePasses, contacts, "scip")
+# plotOptimizationResult(service_targets, satellite_passes, contacts, "scip")
