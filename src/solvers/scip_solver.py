@@ -62,7 +62,6 @@ for i in V:
 # Objective function
 model.setObjective(
     quicksum(x[i, j] * (1 + b[i] * p[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
-    "maximize"
 )
 
 print("Start defining constraints")

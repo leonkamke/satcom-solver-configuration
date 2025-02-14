@@ -318,10 +318,10 @@ def generate_problem_instance(coverage_start, coverage_end, ground_terminals, st
     }
 
 
-coverage_start = np.datetime64('2024-02-12T00:00:00')
-coverage_end = np.datetime64('2024-02-13T00:00:00')
+coverage_start = np.datetime64('2024-07-12T00:00:00')
+coverage_end = np.datetime64('2024-07-12T06:00:00')
 step_duration = 10
 min_elevation_angle = 20
 
 problem_instances = [generate_problem_instance(coverage_start, coverage_end, europe_ground_terminals, step_duration, min_elevation_angle)]
-save_problem_instances_to_json(problem_instances, problem_instances_path)
+save_problem_instances_to_json(problem_instances, './src/input/data/problem_instance_3days.json')

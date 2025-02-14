@@ -36,23 +36,33 @@ tle_lines = [
     "2 35683  97.8105 189.5655 0001400  83.0116 277.1253 14.74670943834658",
 ]
 
+# Store weather data to reduce amount of api requests
+request_answer_dict = dict()
+
 # Function for getting weather data for a specific day and position
 def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
-    # Base URL for the Open-Meteo API
-    url = "https://archive-api.open-meteo.com/v1/era5"
-    params = {
-        "latitude": latitude,
-        "longitude": longitude,
-        "start_date": date,
-        "end_date": date,
-        "daily": "sunshine_duration,sunrise,sunset",
-        "timezone": "auto"
-    }
-    
-    # Make the request
-    response = requests.get(url, params=params)
-    if response.status_code != 200:
-        raise Exception(f"Failed to fetch data: {response.status_code}, {response.text}")
+    response = None
+
+    # If data was already fetched return from set
+    if ((latitude, longitude, date) in request_answer_dict):
+        response = request_answer_dict[(latitude, longitude, date)]
+    else:
+        # Base URL for the Open-Meteo API
+        url = "https://archive-api.open-meteo.com/v1/era5"
+        params = {
+            "latitude": latitude,
+            "longitude": longitude,
+            "start_date": date,
+            "end_date": date,
+            "daily": "sunshine_duration,sunrise,sunset",
+            "timezone": "auto"
+        }
+        
+        # Make the request
+        response = requests.get(url, params=params)
+        request_answer_dict[(latitude, longitude, date)] = response
+        if response.status_code != 200:
+            raise Exception(f"Failed to fetch data: {response.status_code}, {response.text}")
     
     # Parse the JSON response
     data = response.json()
@@ -207,6 +217,7 @@ def get_quarc_satellite_passes(ground_terminals, start_time, end_time, step_dura
     # Calculate orbits
     print("Calculating orbits ...")
     df_satellite_passes["Orbit"] = df_satellite_passes.apply(assign_orbit, axis=1)
+    print(df_satellite_passes)
 
     # Convert satellite passes dataframe to list of satellite pass objects
     satellite_passes_dict_list = convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes)
