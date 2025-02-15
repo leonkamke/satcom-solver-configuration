@@ -80,7 +80,10 @@ def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
     daylight_duration_seconds = (sunset_time - sunrise_time).seconds
 
     # Calculate cloud coverage (1 - sunshine_duration / daylight_duration)
-    cloud_coverage = 1 - (sunshine_duration / daylight_duration_seconds)
+    if daylight_duration_seconds == 0:
+        cloud_coverage = 0.5
+    else:  
+        cloud_coverage = 1 - (sunshine_duration / daylight_duration_seconds)
     
     # Convert sunshine duration to hours for easier interpretation
     sunshine_duration_hours = sunshine_duration / 3600

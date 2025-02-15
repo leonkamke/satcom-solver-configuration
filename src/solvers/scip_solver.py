@@ -3,55 +3,63 @@ from pyscipopt import Model, quicksum
 from ..utils import *
 
 # Read problem instance
-problemInstance = readProblemInstance()
-satellite_passes = problemInstance["satellite_passes"]
-service_targets = problemInstance["service_targets"]
+# "./src/input/data/problem_instance_short_quarc.json"
+# "./src/input/data/problem_instance_2days.json"
+problemInstance = read_problem_instance("./src/input/data/problem_instance_world_6h.json")
+satellitePasses = problemInstance["satellite_passes"]
+serviceTargets = problemInstance["service_targets"]
 
 # Set parameters for optimization problem
-V = list(range(len(satellite_passes)))
-S = list(range(len(service_targets)))
+V = list(range(len(satellitePasses)))
+S = list(range(len(serviceTargets)))
 
-d = {}
-t = {}
-b = {}
-n = {}
-f = {}
+di = {}
+ti = {}
+bi = {}
+ni = {}
+fi = {}
+oi = {}
 
-reference_time = datetime.fromisoformat(satellite_passes[0]["startTime"])
-for satellitePass in satellite_passes:
-    id = satellitePass["id"]
+reference_time = datetime.fromisoformat(problemInstance["coverage_start"])
+for idx, satellitePass in enumerate(satellitePasses):
+    # id = satellitePass["id"]
     start_time = datetime.fromisoformat(satellitePass["startTime"])
     end_time = datetime.fromisoformat(satellitePass["endTime"])
 
-    # Calculate relative start time (seconds from reference_time)
+    # Calculate relative start time and end time (seconds from reference_time)
     start_seconds = (start_time - reference_time).total_seconds()
-    t[id] = start_seconds
+    end_seconds =   (end_time - reference_time).total_seconds()
+
+    ti[idx] = start_seconds
 
     # Calculate duration (seconds)
-    duration_seconds = (end_time - start_time).total_seconds()
-    d[id] = duration_seconds
+    duration_seconds = end_seconds - start_seconds
+    di[idx] = duration_seconds
+    bi[idx] = satellitePass["achievableKeyVolume"]
+    oi[idx] = 1 if satellitePass["achievableKeyVolume"] == 0.0 else 0
+    ni[idx] = satellitePass["nodeId"]
+    fi[idx] = satellitePass["orbitId"]
 
-    b[id] = satellitePass["achievableKeyVolume"]
+pj = {}
+sj = {}
+mj = {}
+aj = {}
+for idx, serviceTarget in enumerate(serviceTargets):
+    # id = serviceTarget["id"]
+    pj[idx] = serviceTarget["priority"]
+    sj[idx] = serviceTarget["nodeId"]
+    mj[idx] = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
+    aj[idx] = serviceTarget["applicationId"]
 
-    n[id] = satellitePass["nodeId"]
-
-    f[id] = satellitePass["orbitId"]
-
-p = {}
-s = {}
-m = {}
-for serviceTarget in service_targets:
-    id = serviceTarget["id"]
-    p[id] = serviceTarget["priority"]
-    s[id] = serviceTarget["nodeId"]
-    m[id] = 0 if serviceTarget["requestedOperation"] == "QKD" else 1
-
-T_min = 6  # Minimum time between consecutive contacts
+T_min = 60  # Minimum time between consecutive contacts in seconds
 # F_max = 20  # Maximum number of contacts per orbit
-C_max = 99999999
+# C_max = 99999999
 
 # Create SCIP model
 model = Model("Satellite Optimization")
+
+# Computation time limit in seconds
+# model.setParam("limits/time", 60)
 
 # Decision variables
 x = {}
@@ -61,47 +69,66 @@ for i in V:
 
 # Objective function
 model.setObjective(
-    quicksum(x[i, j] * (1 + b[i] * p[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
+    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for i in V for j in S), # + quicksum(x[i, j] * pj[j] for i in V for j in S),
+    # quicksum(x[i, j] for i in V for j in S),
+    "maximize"
 )
 
-print("Start defining constraints")
 # Constraints
-# Non-overlapping satellite passes
-for i in V:
-    for j in V:
-        if t[i] < t[j]:
-            model.addCons(
-                t[i] + d[i] + T_min <= t[j] + (2 - quicksum(x[i, k] for k in S) - quicksum(x[j, k] for k in S)) * 99999999
-            )
-
-# Maximum number of contacts per orbit
-"""for f in set(fi.values()):
-    model.addCons(
-        quicksum(x[i, j] for i in V for j in S if fi[i] == f) <= F_max
-    )"""
-
-# Maximum number of contacts in total
-model.addCons(quicksum(x[i, j] for j in S for i in V) <= C_max)
+print("Start defining constraints")
 
 # Each satellite pass has at most one service target
 for i in V:
     model.addCons(quicksum(x[i, j] for j in S) <= 1)
 
+# Each service target can be served at most once
+for j in S:
+    model.addCons(quicksum(x[i, j] for i in V) <= 1)
+
+# Non-overlapping satellite passes
+for i1 in V:
+    for i2 in V:
+        if i1 != i2 and ti[i1] <= ti[i2]:
+            model.addCons(
+                (ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - quicksum(x[i1, k] for k in S) - quicksum(x[i2, k] for k in S)) * 99999)
+            )
+
 # The node in the service target and satellite pass must match
 for i in V:
     for j in S:
-        model.addCons(x[i, j] * (n[i] - s[j]) == 0)
+        model.addCons(x[i, j] * (ni[i] - sj[j]) == 0)
 
 # The operation mode must match
-"""for i in V:
+for i in V:
     for j in S:
-        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j]) == 0)"""
+        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
 
-# Each service target can be served at most once
-for j in S:
+# For a given application id first do qkd and afterwards qkd post processing
+for j1 in S:
+    for j2 in S:
+        if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
+            model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
+
+# QKD post-processing and QKD must happen in the same schedule
+for j1 in S:
+    for j2 in S:
+        if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:  # Same application ID, QKD, and QKD post-processing
+            model.addCons(
+                quicksum(x[i, j1] for i in V) == quicksum(x[i, j2] for i in V)
+            )
+
+
+# Maximum number of contacts per orbit
+"""for f in set(fi.values()):
     model.addCons(
-        quicksum(x[i, j] for i in V) <= 1
-    )
+        quicksum(x[i, j] for i in V for j in S if fi[i] == f) <= 2
+    )"""
+
+# Maximum number of contacts in total
+"""
+model.addCons(quicksum(x[i, j] for j in S for i in V) <= C_max)
+"""
+
 
 # Optimize the model
 model.optimize()
@@ -113,13 +140,51 @@ else:
     print("No optimal solution found.")
 
 contacts = []
+selected_passes = []
 for i in V:
     for j in S:
         if model.getVal(x[i, j]) > 0.5:
             contact = {}
-            contact["satellitePass"] = satellite_passes[i]
-            contact["serviceTarget"] = service_targets[j]
+            selected_passes.append(satellitePasses[i])
+            contact["satellitePass"] = satellitePasses[i]
+            contact["serviceTarget"] = serviceTargets[j]
             contacts.append(contact)
 
+def check_overlapping_passes(x):
+    """
+    Checks if there are any overlapping satellite passes in a list of satellite pass dictionaries.
+    
+    Args:
+        satellite_passes (list): A list of dictionaries where each dictionary represents a satellite pass.
+
+    Returns:
+        bool: True if there are overlapping satellite passes, False otherwise.
+    """
+    # Convert start and end times to datetime objects for easier comparison
+    for pass_info in x:
+        pass_info["startTime"] = datetime.fromisoformat(pass_info["startTime"])
+        pass_info["endTime"] = datetime.fromisoformat(pass_info["endTime"])
+    
+    # Sort passes by start time
+    x.sort(key=lambda x: x["startTime"])
+    
+    # Check for overlaps
+    for i in range(len(x) - 1):
+        current_pass = x[i]
+        next_pass = x[i + 1]
+        
+        # If the current pass ends after the next pass starts, there's an overlap
+        if current_pass["endTime"] > next_pass["startTime"]:
+            print(f"Overlap found between pass {current_pass['id']} and pass {next_pass['id']}.")
+            print(current_pass)
+            print(next_pass)
+            print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    
+    # No overlaps found
+    return False
+
+# check_overlapping_passes(selected_passes)
+
+
 print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-# plotOptimizationResult(service_targets, satellite_passes, contacts, "scip")
+plotOptimizationResult(serviceTargets, satellitePasses, contacts, "scip")

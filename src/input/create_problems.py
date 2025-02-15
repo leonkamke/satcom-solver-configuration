@@ -8,61 +8,44 @@ problem_instances_path = './src/input/data/problem_instances.json'
 
 
 class ServiceTarget:
-    def __init__(self, id, priority, nodeId, requestedOperation):
+    def __init__(self, id, applicationId, priority, nodeId, requestedOperation):
         self.id = id
+        self.applicationId = applicationId
         self.priority = priority
         self.nodeId = nodeId
         self.requestedOperation = requestedOperation
 
     def __repr__(self):
-        return (f"ServiceTarget(id={self.id}, nodeId={self.nodeId}, "
+        return (f"ServiceTarget(id={self.id}, applicationId={self.applicationId}, nodeId={self.nodeId}, "
                 f"priority={self.priority}, requestedOperation={self.requestedOperation})")
 
     def to_dict(self):
         return self.__dict__
     
 
-def get_service_targets(number_ground_terminals):
+def get_service_targets(number_ground_terminals, number_application_contexts_per_node):
     service_targets_dict_list = []
     serviceTargetId = 0
+    applicationId = 0
     for id in range(number_ground_terminals):
-        x = random.randint(1, 100)
-        if x <= 80:
+        for _ in range(number_application_contexts_per_node):
             priority = round(random.uniform(0.5, 1), 2)
-            x = random.randint(1, 100)
-            requestedOperation = None
-            if x < 50:
-                requestedOperation = "QKD"
-            else:
-                requestedOperation = "OPTICAL_ONLY"
-            service_targets_dict_list.append(ServiceTarget(serviceTargetId, priority, id, requestedOperation).to_dict())
+
+            requestedOperation = "QKD"
+            service_targets_dict_list.append(ServiceTarget(serviceTargetId, applicationId, priority, id, requestedOperation).to_dict())
             serviceTargetId += 1
-        x = random.randint(1, 100)
-        if x <= 80:
-            priority = round(random.uniform(0.5, 1), 2)
-            x = random.randint(1, 100)
-            requestedOperation = None
-            if x < 50:
-                requestedOperation = "QKD"
-            else:
-                requestedOperation = "OPTICAL_ONLY"
-            service_targets_dict_list.append(ServiceTarget(serviceTargetId, priority, id, requestedOperation).to_dict())
+
+            requestedOperation = "OPTICAL_ONLY"
+            service_targets_dict_list.append(ServiceTarget(serviceTargetId, applicationId, priority, id, requestedOperation).to_dict())
             serviceTargetId += 1
+
+            applicationId += 1
 
     return service_targets_dict_list
 
 def save_problem_instances_to_json(problem_instances, file_name):
     with open(file_name, 'w') as f:
         json.dump(problem_instances, f, indent=4, default=str)
-
-"""# ----- main ------
-parameters = {
-    "number_nodes": 100,
-    "number_orbits": 24,
-    "duration_orbit": 120,  # duration for an orbit in minutes
-    "power_threshold": 200
-}
-save_test_scenarios_to_json(parameters, problem_instances_path, 1)"""
 
 
 # QUARC Ground Terminal locations in UK
@@ -290,19 +273,111 @@ europe_ground_terminals = {
     115: {"lat": 40.6401, "lon": 22.9444, "alt": 6},   # Thessaloniki, Greece
 }
 
+world_ground_terminals = {
+    0: {"lat": 40.7128, "lon": -74.0060, "alt": 0},  # New York, USA
+    1: {"lat": 34.0522, "lon": -118.2437, "alt": 0},  # Los Angeles, USA
+    2: {"lat": 48.8566, "lon": 2.3522, "alt": 0},  # Paris, France
+    3: {"lat": 51.5074, "lon": -0.1278, "alt": 0},  # London, UK
+    4: {"lat": 35.6895, "lon": 139.6917, "alt": 0},  # Tokyo, Japan
+    5: {"lat": -33.8688, "lon": 151.2093, "alt": 0},  # Sydney, Australia
+    6: {"lat": -22.9068, "lon": -43.1729, "alt": 0},  # Rio de Janeiro, Brazil
+    7: {"lat": 55.7558, "lon": 37.6173, "alt": 0},  # Moscow, Russia
+    8: {"lat": 28.6139, "lon": 77.2090, "alt": 0},  # New Delhi, India
+    9: {"lat": -1.2921, "lon": 36.8219, "alt": 0},  # Nairobi, Kenya
+    10: {"lat": -34.6037, "lon": -58.3816, "alt": 0},  # Buenos Aires, Argentina
+    11: {"lat": 19.4326, "lon": -99.1332, "alt": 0},  # Mexico City, Mexico
+    12: {"lat": 37.7749, "lon": -122.4194, "alt": 0},  # San Francisco, USA
+    13: {"lat": 1.3521, "lon": 103.8198, "alt": 0},  # Singapore, Singapore
+    14: {"lat": 31.2304, "lon": 121.4737, "alt": 0},  # Shanghai, China
+    15: {"lat": 41.9028, "lon": 12.4964, "alt": 0},  # Rome, Italy
+    16: {"lat": -26.2041, "lon": 28.0473, "alt": 0},  # Johannesburg, South Africa
+    17: {"lat": 39.9042, "lon": 116.4074, "alt": 0},  # Beijing, China
+    18: {"lat": -12.0464, "lon": -77.0428, "alt": 0},  # Lima, Peru
+    19: {"lat": 43.6511, "lon": -79.3470, "alt": 0},  # Toronto, Canada
+    20: {"lat": 35.6897, "lon": 51.3890, "alt": 0},  # Tehran, Iran
+    21: {"lat": 59.3293, "lon": 18.0686, "alt": 0},  # Stockholm, Sweden
+    22: {"lat": -37.8136, "lon": 144.9631, "alt": 0},  # Melbourne, Australia
+    23: {"lat": -6.2088, "lon": 106.8456, "alt": 0},  # Jakarta, Indonesia
+    24: {"lat": 3.1390, "lon": 101.6869, "alt": 0},  # Kuala Lumpur, Malaysia
+    25: {"lat": -41.2865, "lon": 174.7762, "alt": 0},  # Wellington, New Zealand
+    26: {"lat": 40.4168, "lon": -3.7038, "alt": 0},  # Madrid, Spain
+    27: {"lat": 52.3676, "lon": 4.9041, "alt": 0},  # Amsterdam, Netherlands
+    28: {"lat": -15.7942, "lon": -47.8822, "alt": 0},  # Brasília, Brazil
+    29: {"lat": 30.0444, "lon": 31.2357, "alt": 0},  # Cairo, Egypt
+    30: {"lat": -29.8587, "lon": 31.0218, "alt": 0},  # Durban, South Africa
+    31: {"lat": 34.6937, "lon": 135.5023, "alt": 0},  # Osaka, Japan
+    32: {"lat": -4.4419, "lon": 15.2663, "alt": 0},  # Kinshasa, DR Congo
+    33: {"lat": 60.1699, "lon": 24.9384, "alt": 0},  # Helsinki, Finland
+    34: {"lat": 45.5017, "lon": -73.5673, "alt": 0},  # Montreal, Canada
+    35: {"lat": 25.276987, "lon": 55.296249, "alt": 0},  # Dubai, UAE
+    36: {"lat": -3.3731, "lon": 29.9189, "alt": 0},  # Bujumbura, Burundi
+    37: {"lat": -35.2820, "lon": 149.1287, "alt": 0},  # Canberra, Australia
+    38: {"lat": -23.5505, "lon": -46.6333, "alt": 0},  # São Paulo, Brazil
+    39: {"lat": 56.1304, "lon": -106.3468, "alt": 0},  # Central Canada
+    40: {"lat": 14.5995, "lon": 120.9842, "alt": 0},  # Manila, Philippines
+    41: {"lat": 64.1355, "lon": -21.8954, "alt": 0},  # Reykjavik, Iceland
+    42: {"lat": 13.7563, "lon": 100.5018, "alt": 0},  # Bangkok, Thailand
+    43: {"lat": 50.0755, "lon": 14.4378, "alt": 0},  # Prague, Czech Republic
+    44: {"lat": -24.9916, "lon": 135.2254, "alt": 0},  # Alice Springs, Australia
+    45: {"lat": -62.4663, "lon": -60.8000, "alt": 0},  # Antarctic Research Base
+    46: {"lat": 19.0760, "lon": 72.8777, "alt": 0},  # Mumbai, India
+    47: {"lat": 53.3498, "lon": -6.2603, "alt": 0},  # Dublin, Ireland
+    48: {"lat": -54.8019, "lon": -68.3029, "alt": 0},  # Ushuaia, Argentina
+    49: {"lat": 71.2906, "lon": -156.7886, "alt": 0},  # Utqiaġvik (Barrow), USA
+    50: {"lat": -25.6953, "lon": -54.4367, "alt": 0},  # Iguazu, Brazil
+    51: {"lat": 55.6761, "lon": 12.5683, "alt": 0},  # Copenhagen, Denmark
+    52: {"lat": 54.6872, "lon": 25.2797, "alt": 0},  # Vilnius, Lithuania
+    53: {"lat": 64.1814, "lon": -51.7216, "alt": 0},  # Nuuk, Greenland
+    54: {"lat": 28.7041, "lon": 77.1025, "alt": 0},  # Delhi, India
+    55: {"lat": 27.7172, "lon": 85.3240, "alt": 0},  # Kathmandu, Nepal
+    56: {"lat": 6.5244, "lon": 3.3792, "alt": 0},  # Lagos, Nigeria
+    57: {"lat": 4.0511, "lon": 9.7679, "alt": 0},  # Douala, Cameroon
+    58: {"lat": -53.1638, "lon": -70.9171, "alt": 0},  # Punta Arenas, Chile
+    59: {"lat": 25.0343, "lon": -77.3963, "alt": 0},  # Nassau, Bahamas
+    60: {"lat": -17.8249, "lon": 31.0532, "alt": 0},  # Harare, Zimbabwe
+    61: {"lat": -9.4431, "lon": -40.4305, "alt": 0},  # Bahia, Brazil
+    62: {"lat": 66.8390, "lon": -50.7197, "alt": 0},  # Tasiilaq, Greenland
+    63: {"lat": 10.6400, "lon": -61.5189, "alt": 0},  # Port of Spain, Trinidad
+    64: {"lat": 24.8607, "lon": 67.0011, "alt": 0},  # Karachi, Pakistan
+    65: {"lat": 40.1106, "lon": -88.2073, "alt": 0},  # Champaign, USA
+    66: {"lat": 47.3769, "lon": 8.5417, "alt": 0},  # Zurich, Switzerland
+    67: {"lat": -18.8792, "lon": 47.5079, "alt": 0},  # Antananarivo, Madagascar
+    68: {"lat": 35.6892, "lon": 139.6917, "alt": 0},  # Sapporo, Japan
+    69: {"lat": -8.4095, "lon": 115.1889, "alt": 0},  # Bali, Indonesia
+    70: {"lat": 55.9533, "lon": -3.1883, "alt": 0},  # Edinburgh, Scotland
+    71: {"lat": 21.0285, "lon": 105.8542, "alt": 0},  # Hanoi, Vietnam
+    72: {"lat": 38.7223, "lon": -9.1393, "alt": 0},  # Lisbon, Portugal
+    73: {"lat": 42.3601, "lon": -71.0589, "alt": 0},  # Boston, USA
+    74: {"lat": 35.0116, "lon": 135.7681, "alt": 0},  # Kyoto, Japan
+    75: {"lat": 25.7617, "lon": -80.1918, "alt": 0},  # Miami, USA
+    76: {"lat": 50.8503, "lon": 4.3517, "alt": 0},  # Brussels, Belgium
+    77: {"lat": 59.4370, "lon": 24.7536, "alt": 0},  # Tallinn, Estonia
+    78: {"lat": 41.0082, "lon": 28.9784, "alt": 0},  # Istanbul, Turkey
+    79: {"lat": 34.2257, "lon": -77.9447, "alt": 0},  # Wilmington, USA
+    80: {"lat": 35.1167, "lon": -89.9500, "alt": 0},  # Memphis, USA
+    81: {"lat": 47.4979, "lon": 19.0402, "alt": 0},  # Budapest, Hungary
+    82: {"lat": -3.745, "lon": -38.523, "alt": 0},  # Fortaleza, Brazil
+    83: {"lat": 43.7384, "lon": 7.4246, "alt": 0},  # Monaco
+    84: {"lat": 13.0827, "lon": 80.2707, "alt": 0},  # Chennai, India
+    85: {"lat": 55.8642, "lon": -4.2518, "alt": 0},  # Glasgow, Scotland
+    86: {"lat": -12.4634, "lon": 130.8456, "alt": 0},  # Darwin, Australia
+    87: {"lat": 37.9838, "lon": 23.7275, "alt": 0},  # Athens, Greece
+    88: {"lat": 31.7683, "lon": 35.2137, "alt": 0},  # Jerusalem, Israel
+    89: {"lat": 64.9631, "lon": -19.0208, "alt": 0},  # Thingvellir, Iceland
+    90: {"lat": 38.5744, "lon": -121.4944, "alt": 0},  # Sacramento, USA
+    91: {"lat": 33.7490, "lon": -84.3880, "alt": 0},  # Atlanta, USA
+    92: {"lat": 46.2044, "lon": 6.1432, "alt": 0},  # Geneva, Switzerland
+    93: {"lat": 15.5007, "lon": 32.5599, "alt": 0},  # Khartoum, Sudan
+    94: {"lat": 39.7392, "lon": -104.9903, "alt": 0},  # Denver, USA
+    95: {"lat": 36.1699, "lon": -115.1398, "alt": 0},  # Las Vegas, USA
+}
 
-
-"""test_ground_terminals = {
-    0: {"lat": 61, "lon": -1, "alt": 0},
-    1: {"lat": 60, "lon": -1, "alt": 0},
-}"""
-
-def generate_problem_instance(coverage_start, coverage_end, ground_terminals, step_duration = 10, min_elevation_angle = 20):
+def generate_problem_instance(coverage_start, coverage_end, ground_terminals, step_duration = 10, min_elevation_angle = 20, number_app_contexts_per_node = 10):
     # Calculate satellite passes over ground terminals for QUARC mission
     satellite_passes_dict_list = get_quarc_satellite_passes(ground_terminals, coverage_start, coverage_end, step_duration, min_elevation_angle)
 
     # Calculate service targets
-    service_targets_dict_list = get_service_targets(len(ground_terminals))
+    service_targets_dict_list = get_service_targets(len(ground_terminals), number_app_contexts_per_node)
 
     return {
         "problem_instance_id": str(uuid.uuid4()),
@@ -320,8 +395,9 @@ def generate_problem_instance(coverage_start, coverage_end, ground_terminals, st
 
 coverage_start = np.datetime64('2024-07-12T00:00:00')
 coverage_end = np.datetime64('2024-07-12T06:00:00')
-step_duration = 10
-min_elevation_angle = 20
+step_duration = 5
+min_elevation_angle = 10
+number_app_contexts_per_node = 2
 
-problem_instances = [generate_problem_instance(coverage_start, coverage_end, europe_ground_terminals, step_duration, min_elevation_angle)]
-save_problem_instances_to_json(problem_instances, './src/input/data/problem_instance_3days.json')
+problem_instances = [generate_problem_instance(coverage_start, coverage_end, europe_ground_terminals, step_duration, min_elevation_angle, number_app_contexts_per_node)]
+save_problem_instances_to_json(problem_instances, './src/input/data/problem_instance_europe_6h.json')
