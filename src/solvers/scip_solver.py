@@ -5,7 +5,7 @@ from ..utils import *
 # Read problem instance
 # "./src/input/data/problem_instance_short_quarc.json"
 # "./src/input/data/problem_instance_2days.json"
-problemInstance = read_problem_instance("./src/input/data/problem_instance_world_6h.json")
+problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_1day.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
