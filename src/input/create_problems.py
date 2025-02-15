@@ -154,13 +154,13 @@ europe_ground_terminals = {
     37: {"lat": 50.1109, "lon": 8.6821, "alt": 112},  # Frankfurt, Germany
     38: {"lat": 45.7607, "lon": 4.8357, "alt": 173},  # Lyon, France
     39: {"lat": 44.4949, "lon": 11.3426, "alt": 54},  # Bologna, Italy
-#    40: {"lat": 40.8518, "lon": 14.2681, "alt": 17},  # Naples, Italy
-#    41: {"lat": 43.6047, "lon": 1.4442, "alt": 146},  # Toulouse, France
-#    42: {"lat": 51.2194, "lon": 4.4025, "alt": 8},    # Antwerp, Belgium
-#    43: {"lat": 51.5072, "lon": 0.1276, "alt": 10},   # Brighton, England
-#    44: {"lat": 57.7089, "lon": 11.9746, "alt": 12},  # Gothenburg, Sweden
-#    45: {"lat": 60.3932, "lon": 5.3242, "alt": 20},   # Bergen, Norway
-#    46: {"lat": 59.9139, "lon": 10.7522, "alt": 23},  # Oslo, Norway
+    40: {"lat": 40.8518, "lon": 14.2681, "alt": 17},  # Naples, Italy
+    41: {"lat": 43.6047, "lon": 1.4442, "alt": 146},  # Toulouse, France
+    42: {"lat": 51.2194, "lon": 4.4025, "alt": 8},    # Antwerp, Belgium
+    43: {"lat": 51.5072, "lon": 0.1276, "alt": 10},   # Brighton, England
+    44: {"lat": 57.7089, "lon": 11.9746, "alt": 12},  # Gothenburg, Sweden
+    45: {"lat": 60.3932, "lon": 5.3242, "alt": 20},   # Bergen, Norway
+    46: {"lat": 59.9139, "lon": 10.7522, "alt": 23},  # Oslo, Norway
 #    47: {"lat": 63.4305, "lon": 10.3951, "alt": 10},  # Trondheim, Norway
 #    48: {"lat": 59.8586, "lon": 17.6389, "alt": 15},  # Uppsala, Sweden
 #    49: {"lat": 55.4038, "lon": 10.4024, "alt": 5},   # Odense, Denmark
@@ -394,10 +394,10 @@ def generate_problem_instance(coverage_start, coverage_end, ground_terminals, st
 
 
 coverage_start = np.datetime64('2024-07-12T00:00:00')
-coverage_end = np.datetime64('2024-07-13T00:00:00')
+coverage_end = np.datetime64('2024-07-15T00:00:00')
 step_duration = 5
 min_elevation_angle = 10
-number_app_contexts_per_node = 20
+number_app_contexts_per_node = 50
 
 problem_instances = [generate_problem_instance(coverage_start, coverage_end, europe_ground_terminals, step_duration, min_elevation_angle, number_app_contexts_per_node)]
-save_problem_instances_to_json(problem_instances, './src/input/data/problem_instance_europe_1day.json')
+save_problem_instances_to_json(problem_instances, './src/input/data/problem_instance_europe_3day.json')
