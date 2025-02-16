@@ -25,7 +25,7 @@ public class SolutionConstraintProvider implements ConstraintProvider {
             singleAssignmentPerServiceTarget(constraintFactory),
             validServiceTarget(constraintFactory),
             qkdAndThenPostprocessing(constraintFactory),
-            // alwaysQkdAndPostprocessing(constraintFactory),
+            qkdAndPostprocessing(constraintFactory),
 
             // Soft constraint
             maximizePriorityAndBitRate(constraintFactory)
@@ -92,6 +92,20 @@ public class SolutionConstraintProvider implements ConstraintProvider {
                 }
             })
             .asConstraint("For a given application id, first do QKD and afterwards QKD post-processing");
+    }
+
+    private Constraint qkdAndPostprocessing(ConstraintFactory constraintFactory) {
+        return constraintFactory
+            .forEachUniquePair(Contact.class)
+            .filter((c1, c2) -> c1.getServiceTarget().getApplicationId() == c2.getServiceTarget().getApplicationId() && c1.getServiceTarget().getRequestedOperation().equals("QKD") && c2.getServiceTarget().getRequestedOperation().equals("OPTICAL_ONLY"))
+            .penalize(HardSoftBigDecimalScore.ONE_HARD, (c1, c2) -> {
+                if (c1.getSatellitePass().getStartTime().isBefore(c2.getSatellitePass().getStartTime()) && c1.getSelected() && !c2.getSelected()){
+                    return 1;
+                } else {
+                    return 0;
+                }
+            })
+            .asConstraint("For a given application id, QKD post-processing and QKD must happen in the same schedule");
     }
 
     private Constraint maximizePriorityAndBitRate(ConstraintFactory constraintFactory) {
