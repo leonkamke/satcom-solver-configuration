@@ -107,13 +107,13 @@ for j1 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
             model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
 
-# QKD post-processing and QKD must happen in the same schedule
+"""# QKD post-processing and QKD must happen in the same schedule
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:  # Same application ID, QKD, and QKD post-processing
             model.addCons(
                 quicksum(x[i, j1] for i in V) == quicksum(x[i, j2] for i in V)
-            )
+            )"""
 
 
 # Maximum number of contacts per orbit

@@ -10,6 +10,8 @@
         <constraintProviderClass>com.optimization.solver.model.SolutionConstraintProvider</constraintProviderClass>
     </scoreDirectorFactory>
 
+
+
     <termination>
         <secondsSpentLimit>60</secondsSpentLimit>
     </termination>

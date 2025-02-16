@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@PlanningEntity
+@PlanningEntity(difficultyComparatorClass = ContactDifficultyComparator.class)
 public class Contact {
     
     @PlanningId

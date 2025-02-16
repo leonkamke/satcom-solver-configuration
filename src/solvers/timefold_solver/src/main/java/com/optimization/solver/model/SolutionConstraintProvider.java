@@ -25,7 +25,6 @@ public class SolutionConstraintProvider implements ConstraintProvider {
             singleAssignmentPerServiceTarget(constraintFactory),
             validServiceTarget(constraintFactory),
             qkdAndThenPostprocessing(constraintFactory),
-            qkdAndPostprocessing(constraintFactory),
 
             // Soft constraint
             maximizePriorityAndBitRate(constraintFactory)
@@ -74,8 +73,7 @@ public class SolutionConstraintProvider implements ConstraintProvider {
     private Constraint validServiceTarget(ConstraintFactory constraintFactory) {
         return constraintFactory
             .forEach(Contact.class)
-            .filter(contact -> contact.getSelected())
-            .filter(contact -> Utils.isInvalidServiceTarget(contact.getSatellitePass(), contact.getServiceTarget()))
+            .filter(contact -> contact.getSelected() && Utils.isInvalidServiceTarget(contact.getSatellitePass(), contact.getServiceTarget()))
             .penalize(HardSoftBigDecimalScore.ONE_HARD)
             .asConstraint("Invalid service target");
     }
@@ -83,29 +81,25 @@ public class SolutionConstraintProvider implements ConstraintProvider {
     private Constraint qkdAndThenPostprocessing(ConstraintFactory constraintFactory) {
         return constraintFactory
             .forEachUniquePair(Contact.class)
-            .filter((c1, c2) -> c1.getSelected() && c2.getSelected() && c1.getServiceTarget().getApplicationId() == c2.getServiceTarget().getApplicationId() && c1.getServiceTarget().getRequestedOperation().equals("QKD") && c2.getServiceTarget().getRequestedOperation().equals("OPTICAL_ONLY"))
+            .filter((c1, c2) -> (c1.getSelected() && c2.getSelected()) && c1.getServiceTarget().getApplicationId() == c2.getServiceTarget().getApplicationId())
             .penalize(HardSoftBigDecimalScore.ONE_HARD, (c1, c2) -> {
+                String operation1;
+                String operation2;
                 if (c1.getSatellitePass().getStartTime().isBefore(c2.getSatellitePass().getStartTime())) {
-                    return 0;
+                    operation1 = c1.getServiceTarget().getRequestedOperation();
+                    operation2 = c2.getServiceTarget().getRequestedOperation();
                 } else {
+                    operation1 = c2.getServiceTarget().getRequestedOperation();
+                    operation2 = c1.getServiceTarget().getRequestedOperation();
+                }
+
+                if (!(operation1.equals("QKD") && operation2.equals("OPTICAL_ONLY"))) {
                     return 1;
+                } else {
+                    return 0;
                 }
             })
             .asConstraint("For a given application id, first do QKD and afterwards QKD post-processing");
-    }
-
-    private Constraint qkdAndPostprocessing(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEachUniquePair(Contact.class)
-            .filter((c1, c2) -> c1.getServiceTarget().getApplicationId() == c2.getServiceTarget().getApplicationId() && c1.getServiceTarget().getRequestedOperation().equals("QKD") && c2.getServiceTarget().getRequestedOperation().equals("OPTICAL_ONLY"))
-            .penalize(HardSoftBigDecimalScore.ONE_HARD, (c1, c2) -> {
-                if (c1.getSatellitePass().getStartTime().isBefore(c2.getSatellitePass().getStartTime()) && c1.getSelected() && !c2.getSelected()){
-                    return 1;
-                } else {
-                    return 0;
-                }
-            })
-            .asConstraint("For a given application id, QKD post-processing and QKD must happen in the same schedule");
     }
 
     private Constraint maximizePriorityAndBitRate(ConstraintFactory constraintFactory) {
@@ -124,7 +118,7 @@ public class SolutionConstraintProvider implements ConstraintProvider {
 
     // Checks if two contacts are considered as overlapping
     private boolean isOverlapping(Contact c1, Contact c2, int minimumGap) {
-        Duration gap = Duration.ofMinutes(minimumGap);
+        Duration gap = Duration.ofSeconds(minimumGap);
         // Check if c1 overlaps or is within minimumGap minutes of c2
         return c1.getSatellitePass().getStartTime()
                 .isBefore(c2.getSatellitePass().getEndTime().plus(gap))
