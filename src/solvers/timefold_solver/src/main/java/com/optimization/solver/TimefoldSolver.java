@@ -15,16 +15,20 @@ public class TimefoldSolver {
 
         // Configure timefold solver
         SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("solverConfig.xml");
+        
         Solver<Solution> timefoldSolver = solverFactory.buildSolver();
 
+
         // Run optimization
-        planningSolution = timefoldSolver.solve(planningSolution);
+        System.out.println("Start solving");
+        Solution solution = timefoldSolver.solve(planningSolution);
+        System.out.println("Ended solving");
 
         // Filter not assigned contacts
-        Utils.filterContacts(planningSolution);
+        Utils.filterContacts(solution);
 
         // Dump solution as json
-        Utils.dumpSolution(planningSolution);
+        Utils.dumpSolution(solution);
     }
 
     

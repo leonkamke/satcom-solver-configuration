@@ -18,7 +18,7 @@ public class Contact {
     private SatellitePass satellitePass;
 
     @PlanningVariable(valueRangeProviderRefs = "booleanRange")
-    private Boolean selected;
+    private Boolean selected = false;
 
     public Contact(int id, ServiceTarget serviceTarget, SatellitePass satellitePass) {
         this.id = id;

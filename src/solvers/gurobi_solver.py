@@ -130,4 +130,4 @@ for i in V:
             contacts.append(contact)
 
 print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-plotOptimizationResult(serviceTargets, satellitePasses, contacts, "gurobi")
+plotOptimizationResult(serviceTargets, satellitePasses, contacts, "GUROBI")

@@ -2,7 +2,7 @@ package com.optimization.solver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,8 +32,8 @@ public class Utils {
             JsonNode root = mapper.readTree(jsonFile);
 
             // Create lists to store satellite passes and service targets
-            ArrayList<SatellitePass> satellitePasses = new ArrayList<>();
-            ArrayList<ServiceTarget> serviceTargets = new ArrayList<>();
+            LinkedList<SatellitePass> satellitePasses = new LinkedList<>();
+            LinkedList<ServiceTarget> serviceTargets = new LinkedList<>();
 
             // Iterate through the problem instances
             for (JsonNode instance : root) {
@@ -59,7 +59,7 @@ public class Utils {
             solution.setServiceTargets(serviceTargets);
             solution.setSatellitePasses(satellitePasses);
 
-            ArrayList<Contact> potentialContacts = new ArrayList<>();
+            LinkedList<Contact> potentialContacts = new LinkedList<>();
             int id = 0;
             for (SatellitePass sp : satellitePasses) {
                 for (ServiceTarget st: serviceTargets) {

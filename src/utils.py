@@ -67,7 +67,11 @@ def calculateObjectiveFunction(contacts):
     for contact in contacts:
         satellitePass = contact["satellitePass"]
         serviceTarget = contact["serviceTarget"]
-        result += satellitePass["achievableKeyVolume"] + serviceTarget["priority"]
+
+        priority = serviceTarget["priority"]
+        achievableKeyVolume = satellitePass["achievableKeyVolume"]
+        operationMode = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
+        result += (priority * (1 + achievableKeyVolume * operationMode))
     return result
 
 def read_contacts_from_timefold(file_path):

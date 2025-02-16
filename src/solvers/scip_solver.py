@@ -3,9 +3,7 @@ from pyscipopt import Model, quicksum
 from ..utils import *
 
 # Read problem instance
-# "./src/input/data/problem_instance_short_quarc.json"
-# "./src/input/data/problem_instance_2days.json"
-problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_6h.json")
+problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_1day.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
@@ -152,4 +150,4 @@ for i in V:
 
 
 print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-plotOptimizationResult(serviceTargets, satellitePasses, contacts, "scip")
+plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
