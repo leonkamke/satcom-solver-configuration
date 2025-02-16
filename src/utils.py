@@ -4,6 +4,9 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 
+from src.input.create_problems import ServiceTarget
+from src.input.quarc_data_generation import SatellitePass
+
 SOLUTION_VISUALIZATION_PATH = "./src/output/visualizations/"
 
 def read_problem_instance(instance_path):
@@ -70,3 +73,34 @@ def calculateObjectiveFunction(contacts):
         serviceTarget = contact["serviceTarget"]
         result += satellitePass["achievableKeyVolume"] + serviceTarget["priority"]
     return result
+
+def read_contacts_from_timefold(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    
+    contacts_from_json = data.get("contacts", [])
+    
+    contacts = []
+    for contact in contacts_from_json:
+        service_target = contact.get("serviceTarget", {})
+        satellite_pass = contact.get("satellitePass", {})
+
+        contacts.append({
+            "serviceTarget": {
+                "id": service_target.get("id"),
+                "applicationId": service_target.get("applicationId"),
+                "priority": service_target.get("priority"),
+                "requestedOperation": service_target.get("requestedOperation"),
+                "nodeId": service_target.get("nodeId"),
+            },
+            "satellitePass": {
+                "id": satellite_pass.get("id"),
+                "nodeId": satellite_pass.get("nodeId"),
+                "startTime": datetime(*satellite_pass.get("startTime")).isoformat() if satellite_pass.get("startTime") else None,
+                "endTime": datetime(*satellite_pass.get("endTime")).isoformat() if satellite_pass.get("endTime") else None,
+                "achievableKeyVolume": satellite_pass.get("achievableKeyVolume"),
+                "orbitId": satellite_pass.get("orbitId")
+            },
+        })
+    
+    return contacts

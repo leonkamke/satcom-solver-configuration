@@ -98,18 +98,15 @@ for i in V:
     for j in S:
         model.addConstr(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
 
-# For a given application id, first do QKD and afterwards QKD post-processing
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
+            # For a given application id, first do QKD and afterwards QKD post-processing
             model.addConstr(
                 quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V)
             )
 
-# QKD post-processing and QKD must happen in the same schedule
-for j1 in S:
-    for j2 in S:
-        if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
+            # QKD post-processing and QKD must happen in the same schedule
             model.addConstr(
                 quicksum(x[i, j1] for i in V) == quicksum(x[i, j2] for i in V)
             )
