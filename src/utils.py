@@ -1,11 +1,7 @@
 import json
-import os
 import json
 from datetime import datetime
 import matplotlib.pyplot as plt
-
-from src.input.create_problems import ServiceTarget
-from src.input.quarc_data_generation import SatellitePass
 
 SOLUTION_VISUALIZATION_PATH = "./src/output/visualizations/"
 
