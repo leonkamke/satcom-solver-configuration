@@ -1,0 +1,493 @@
+18:28:50.226 [main] INFO  c.u.c.b.a.l.ComplexLoggingOptions - Logging to: /home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario/log-run16.txt
+18:28:50.305 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Algorithm Execution & Abstraction Toolkit is v2.10.03-master-814 (ebf4c8c913d5) 
+18:28:50.305 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Java Runtime Environment is OpenJDK 64-Bit Server VM (17.0.14) 
+18:28:50.309 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of OS is Linux 6.11.0-17-generic (amd64) 
+18:28:50.309 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Random Forest Library is v1.10.01-master-120 (b68439c2c391) 
+18:28:50.309 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of SMAC is v2.10.03-master-778 (3ee628ef9bf2) 
+18:28:50.310 [main] INFO  c.u.c.b.a.m.j.JCommanderHelper - Call String: smac --scenario-file Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/PbO-CCSAT-Generic_PTN_scenario.txt --seed 16 
+18:28:50.315 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ********** The next bit of output can be ignored, it is merely useful for debugging **********
+18:28:50.317 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ==========Enviroment Variables===========
+BUNDLED_DEBUGPY_PATH=/home/leon/.vscode/extensions/ms-python.debugpy-2025.0.1-linux-x64/bundled/libs/debugpy
+CHROME_DESKTOP=code.desktop
+COLORTERM=truecolor
+CONDA_ALLOW_SOFTLINKS=false
+CONDA_DEFAULT_ENV=masterthesis
+CONDA_EXE=/home/leon/anaconda3/bin/conda
+CONDA_PREFIX=/home/leon/anaconda3/envs/masterthesis
+CONDA_PROMPT_MODIFIER=(masterthesis) 
+CONDA_PYTHON_EXE=/home/leon/anaconda3/bin/python
+CONDA_ROOT=/home/leon/anaconda3
+CONDA_SHLVL=1
+CPATH=/home/leon/anaconda3/envs/masterthesis/include:
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+DEBUGPY_ADAPTER_ENDPOINTS=/home/leon/.vscode/extensions/ms-python.debugpy-2025.0.1-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-5be16b1d4e30d417.txt
+DESKTOP_SESSION=ubuntu
+DISPLAY=:0
+GDK_BACKEND=x11
+GDMSESSION=ubuntu
+GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
+GIO_LAUNCHED_DESKTOP_FILE_PID=2694
+GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+GJS_DEBUG_OUTPUT=stderr
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GNOME_SHELL_SESSION_MODE=ubuntu
+GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+GSETTINGS_SCHEMA_DIR=/home/leon/anaconda3/envs/masterthesis/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+GSM_SKIP_SSH_AGENT_WORKAROUND=true
+GTK_MODULES=gail:atk-bridge
+HOME=/home/leon
+INVOCATION_ID=715b6378904646059ca4052284d8b563
+JOURNAL_STREAM=9:21565
+KMP_DUPLICATE_LIB_OK=True
+KMP_INIT_AT_FORK=FALSE
+LANG=en_US.UTF-8
+LDPATH=/home/leon/anaconda3/envs/masterthesis/lib
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LESSOPEN=| /usr/bin/lesspipe %s
+LOGNAME=leon
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+MANAGERPID=1445
+MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure
+MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA=
+OLDPWD=/home/leon/code/satellite-operations-planning
+ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
+PATH=/home/leon/anaconda3/envs/masterthesis/bin:/home/leon/anaconda3/condabin:/home/leon/anaconda3/envs/masterthesis/bin:/home/leon/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PWD=/home/leon/code/satellite-operations-planning/sparkle_example
+PYDEVD_DISABLE_FILE_VALIDATION=1
+QT_ACCESSIBILITY=1
+QT_IM_MODULE=ibus
+R_LIBS_USER=/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/irace-v3.5
+SESSION_MANAGER=local/leon-ubuntu:@/tmp/.ICE-unix/1767,unix/leon-ubuntu:/tmp/.ICE-unix/1767
+SHELL=/bin/bash
+SHLVL=1
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+SYSTEMD_EXEC_PID=1812
+TERM=xterm-256color
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.97.2
+USER=leon
+USERNAME=leon
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
+VSCODE_GIT_IPC_HANDLE=/run/user/1000/vscode-git-c94c8af7d9.sock
+WINDOWPATH=2
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_CURRENT_DESKTOP=Unity
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+XDG_MENU_PREFIX=gnome-
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SESSION_CLASS=user
+XDG_SESSION_DESKTOP=ubuntu
+XDG_SESSION_TYPE=x11
+XML_CATALOG_FILES=file:///home/leon/anaconda3/envs/masterthesis/etc/xml/catalog file:///etc/xml/catalog
+XMODIFIERS=@im=ibus
+_CE_CONDA=
+_CE_M=
+
+18:28:50.327 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - Hostname:leon-ubuntu
+18:28:50.328 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ==========System Properties==============
+ERRLOG=/home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario/log-err16.txt
+NUMRUN=16
+OUTPUTDIR=/home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario
+ROOT-LEVEL=INFO
+RUNLOG=/home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario/log-run16.txt
+STDOUT-LEVEL=INFO
+WARNLOG=/home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario/log-warn16.txt
+file.encoding=UTF-8
+file.separator=/
+java.class.path=/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/conf/:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/patches/:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/aeatk.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/aeatk-src.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-collections-3.2.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-collections-3.2.1-sources.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-io-2.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-math-2.2.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-math3-3.3.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/DomainInter.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/exp4j-0.3.10.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/exp4j-0.4.3.BETA-3.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/fastrf.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/fastrf-src.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/guava-14.0.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-annotations-2.3.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-core-2.3.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-databind-2.3.1.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/Jama-1.0.2.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcip-annotations.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcip-annotations-src.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcommander.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jmatharray.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-access-1.1.2.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-classic-1.1.2.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-core-1.1.2.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/numerics4j-1.3.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/opencsv-2.3.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/slf4j-api-1.7.5.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/smac.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/smac-src.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/spi-0.2.4.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/*.jar:/home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/patches/
+java.class.version=61.0
+java.home=/usr/lib/jvm/java-17-openjdk-amd64
+java.io.tmpdir=/tmp
+java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+java.runtime.name=OpenJDK Runtime Environment
+java.runtime.version=17.0.14+7-Ubuntu-124.04
+java.specification.maintenance.version=1
+java.specification.name=Java Platform API Specification
+java.specification.vendor=Oracle Corporation
+java.specification.version=17
+java.vendor=Ubuntu
+java.vendor.url=https://ubuntu.com/
+java.vendor.url.bug=https://bugs.launchpad.net/ubuntu/+source/openjdk-17
+java.version=17.0.14
+java.version.date=2025-01-21
+java.vm.compressedOopsMode=32-bit
+java.vm.info=mixed mode, sharing
+java.vm.name=OpenJDK 64-Bit Server VM
+java.vm.specification.name=Java Virtual Machine Specification
+java.vm.specification.vendor=Oracle Corporation
+java.vm.specification.version=17
+java.vm.vendor=Ubuntu
+java.vm.version=17.0.14+7-Ubuntu-124.04
+jdk.debug=release
+line.separator=
+
+logback.configurationFile=ca/ubc/cs/beta/aeatk/logging/complex-logback.xml
+native.encoding=UTF-8
+os.arch=amd64
+os.name=Linux
+os.version=6.11.0-17-generic
+path.separator=:
+sun.arch.data.model=64
+sun.boot.library.path=/usr/lib/jvm/java-17-openjdk-amd64/lib
+sun.cpu.endian=little
+sun.io.unicode.encoding=UnicodeLittle
+sun.java.command=ca.ubc.cs.beta.aeatk.ant.execscript.Launcher ca.ubc.cs.beta.smac.executors.SMACExecutor --scenario-file Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/PbO-CCSAT-Generic_PTN_scenario.txt --seed 16
+sun.java.launcher=SUN_STANDARD
+sun.jnu.encoding=UTF-8
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+user.country=US
+user.dir=/home/leon/code/satellite-operations-planning/sparkle_example
+user.home=/home/leon
+user.language=en
+user.name=leon
+user.timezone=Europe/Berlin
+
+18:28:50.339 [main] INFO  c.u.c.b.a.m.j.JCommanderHelper - ==========Configuration Options==========
+[SMACOptions]
+ adaptiveCapping = true
+ alwaysRunInitialConfiguration = false
+ capAddSlack = 1.0
+ capSlack = 1.3
+classicInitModeOpts = [ClassicInitializationProcedureOptions]
+		 initialIncumbentRuns = 1
+
+dciModeOpts = [DoublingCappingInitializationProcedureOptions]
+		 numberOfChallengers = 2
+		 numberOfRunsPerChallenger = 2
+
+ucip = [UnbiasChallengerInitializationProcedureOptions]
+		 numberOfChallengers = 2
+		 numberOfRunsPerChallenger = 2
+		 cpulimit = 0
+
+ deterministicInstanceOrdering = false
+ doValidation = false
+ execMode = SMAC
+ experimentDir = /home/leon/code/satellite-operations-planning/sparkle_example/
+ expFunc = null
+help = [HelpOptions]
+		 showHiddenParameters = false
+		 showHelp = false
+		 helpLevel = BASIC
+		 showVersion = false
+		 helpDefaults = /home/leon/.aeatk/help.opt
+
+ initialChallengeRuns = 1
+ initialIncumbent = DEFAULT
+ initializationMode = CLASSIC
+ intensificationPercentage = 0.5
+ initialChallengers = []
+ initialChallengersIntensificationTime = 2147483647
+ iterativeCappingBreakOnFirstCompletion = false
+ iterativeCappingK = 1
+logOptions = [ComplexLoggingOptions]
+		 consoleLogLevel = INFO
+		 logLevel = INFO
+
+ maxIncumbentRuns = 2000
+mbOptions = [ModelBuildingOptions]
+		 maskCensoredDataAsKappaMax = false
+		 maskInactiveConditionalParametersAsDefaultValue = true
+		 maskCensoredDataAsUncensored = false
+		 imputationIterations = 2
+
+ modelHashCodeFile = null
+ numberOfChallengers = 10
+ numberOfRandomConfigsInEI = 10000
+ numberOfRandomConfigsUsedForLocalSearch = 0
+ numPCA = 7
+ optionFile = null
+ optionFile2 = null
+randomForestOptions = [RandomForestOptions]
+		 brokenVarianceCalculation = false
+		 freeMemoryPercentageToSubsample = 0.25
+		 fullTreeBootstrap = false
+		 ignoreConditionality = false
+		 imputeMean = false
+		 logModel = true
+		 minVariance = 1.0E-14
+		 numTrees = 10
+		 penalizeImputedValues = false
+		 preprocessMarginal = true
+		 ratioFeatures = 0.8333333333333334
+		 shuffleImputedValues = false
+		 splitMin = 10
+		 storeDataInLeaves = false
+		 subsamplePercentage = 0.9
+		 subsampleValuesWhenLowMemory = false
+
+runGroupOptions = [RunGroupOptions]
+		 runGroupName = %SCENARIO_NAME
+		 runGroupExit = false
+		 replacementChar = %
+
+scenarioConfig = [ScenarioOptions]
+		 _runObj = RUNTIME
+		 intraInstanceObj = null
+		 interInstanceObj = MEAN
+		limitOptions = [TerminationCriteriaOptions]
+				 tunerTimeout = 2147483647
+				 numIterations = 2147483647
+				 runtimeLimit = 600
+				 totalNumRunsLimit = 100
+				 countSMACTimeAsTunerTime = true
+				 challengeIncumbentAttempts = 1000
+				 fileToWatch = null
+
+		instanceOptions = [ProblemInstanceOptions]
+				 instanceFile = Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/PTN.txt
+				 instanceFeatureFile = null
+				 testInstanceFile = Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/PTN.txt
+				 checkInstanceFilesExist = false
+				 useInstances = true
+				 instanceSuffix = null
+				 testInstanceSuffix = null
+				 ignoreFeatures = false
+
+		 scenarioFile = /home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/PbO-CCSAT-Generic_PTN_scenario.txt
+		 outputDirectory = Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration
+		 invalidScenarioReason = null
+		algoExecOptions = [AlgorithmExecutionOptions]
+				 algoExec = /home/leon/anaconda3/envs/masterthesis/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/PbO-CCSAT-Generic Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/tmp PAR10
+				 algoExecDir = /home/leon/code/satellite-operations-planning/sparkle_example
+				 deterministic = false
+				 cutoffTime = 60.0
+				 cutoffLength = 1.7976931348623157E308
+				 additionalContext = {}
+				taeOpts = [TargetAlgorithmEvaluatorOptions]
+						 targetAlgorithmEvaluator = CLI
+						 abortOnCrash = false
+						 abortOnFirstRunCrash = true
+						 retryCount = 0
+						 cacheRuns = false
+						 cacheDebug = false
+						 useDynamicCappingExclusively = false
+						 reportStrictlyIncreasingRuntimes = false
+						 boundRuns = false
+						 maxConcurrentAlgoExecs = 1
+						 exitOnFailure = false
+						 runHashCodeFile = null
+						 leakMemory = false
+						 leakMemoryAmount = 1024
+						 verifySAT = null
+						 checkSATConsistency = true
+						 checkSATConsistencyException = true
+						 callObserverBeforeCompletion = true
+						prePostOptions = [PrePostCommandOptions]
+								 preCommand = null
+								 postCommand = null
+								 exceptionOnError = false
+								 logOutput = true
+								 directory = /home/leon/code/satellite-operations-planning/sparkle_example/.
+
+						 checkResultOrderConsistent = false
+						 skipOutstandingEvaluationsTAE = false
+						 logRequestResponses = false
+						 logRequestResponsesRCOnly = false
+						 trackRunsScheduled = false
+						 trackRunsScheduledResolution = 1.0
+						 uncleanShutdownCheck = true
+						 killCaptimeExceedingRun = true
+						 killCaptimeExceedingRunFactor = 10.0
+						 checkRunConfigsUnique = true
+						 checkRunConfigsUniqueException = true
+						 observeWalltimeIfNoRuntime = true
+						 observeWalltimeScale = 0.95
+						 observeWalltimeDelay = 5.0
+						 synchronousObserver = true
+						 taeDefaults = /home/leon/.aeatk/tae.opt
+						ttaedo = [TransformTargetAlgorithmEvaluatorDecoratorOptions]
+								 transform = false
+								 transformValidValuesOnly = true
+								 SAT_runtime_transform = R
+								 SAT_quality_transform = Q
+								 UNSAT_runtime_transform = R
+								 UNSAT_quality_transform = Q
+								 TIMEOUT_runtime_transform = R
+								 TIMEOUT_quality_transform = Q
+								 other_runtime_transform = R
+								 other_quality_transform = Q
+
+						tForkOptions = [ForkingTargetAlgorithmEvaluatorDecoratorOptions]
+								 forkToTAE = null
+								fPolicyOptions = [ForkingTargetAlgorithmEvaluatorDecoratorPolicyOptions]
+										 fPolicy = null
+										 duplicateOnSlaveQuickTimeout = 5
+
+
+						 fileToWatch = null
+						 warnIfNoResponseFromTAE = 120
+						 taeStopProcessingOnShutdown = true
+						 filecache = false
+						 fileCacheSource = /home/leon/code/satellite-operations-planning/sparkle_example/./runcache
+						 fileCacheOutput = /home/leon/code/satellite-operations-planning/sparkle_example/./runcache
+						 fileCacheCrashOnMiss = false
+						 transformCrashedQuality = true
+						 transformCrashedQualityValue = 1.0E9
+						 filterZeroCutoffRuns = true
+
+				paramFileDelegate = [ParamConfigurationSpaceOptions]
+						 paramFile = Solvers/PbO-CCSAT-Generic/PbO-CCSAT-params_test.pcs
+						 searchSubspace = null
+						 searchSubspaceFile = null
+						 continuousNeighbours = 4
+
+
+
+seedOptions = [SeedOptions]
+		 seedOffset = 0
+		 numRun = 16
+		 initialSeedMap = {}
+
+ smacDefaults = /home/leon/.aeatk/smac.opt
+stateOpts = [StateFactoryOptions]
+		 stateSerializer = LEGACY
+		 statedeSerializer = LEGACY
+		 restoreStateFrom = null
+		 restoreIteration = null
+		 restoreScenario = null
+		 cleanOldStatesOnSuccess = true
+		 saveContextWithState = true
+
+trackingOptions = [ParamConfigurationOriginTrackingOptions]
+		 configTracking = false
+
+validationOptions = [ValidationOptions]
+		 maxTimestamp = -1.0
+		 minTimestamp = 0.0
+		 multFactor = 2.0
+		 numberOfTestInstances = 2147483647
+		 numberOfTestSeedsPerInstance = 1000
+		 numberOfValidationRuns = 1
+		 outputFileSuffix = 
+		 saveStateFile = false
+		 useWallClockTime = true
+		 validateAll = false
+		 validateOnlyIfTunerTimeReached = 0.0
+		 validateOnlyIfWallTimeReached = 0.0
+		 validateOnlyLastIncumbent = true
+		 validationHeaders = true
+		 validationRoundingMode = UP
+
+warmStartOptions = [WarmStartOptions]
+		 warmStartStateFrom = null
+		 restoreIteration = 2147483647
+
+ validationSeed = 0
+ saveRunsEveryIteration = false
+ stateQuickSaves = true
+ shutdownTAEWhenDone = true
+ validationCores = null
+ shareModelMode = false
+ shareRunDataFrequency = 300
+ shareModeModeTAE = true
+ writeRunData = true
+ defaultHandler = USE_ALL
+ sharedModeModeAssymetricMode = false
+
+[AnalyticTargetAlgorithmEvaluatorOptions]
+ simulateDelay = false
+ cores = 0
+ observerFrequency = 100
+ func = CAMELBACK
+ scaleDelay = 1.0
+
+[BlackHoleTargetAlgorithmEvaluatorOptions]
+ warnings = true
+
+[CommandLineTargetAlgorithmEvaluatorOptions]
+ observerFrequency = 500
+ concurrentExecution = true
+ cores = 1
+ logAllCallStrings = false
+ logAllResultLines = false
+ logAllCallsAndResultLines = false
+ logAllProcessOutput = false
+ listenForUpdates = true
+ paramArgumentsContainQuotes = false
+ pgEnvKillCommand = null
+ pgNiceKillCommand = bash -c "kill -s TERM -%pid"
+ pgForceKillCommand = bash -c "kill -s KILL -%pid"
+ procNiceKillCommand = kill -s TERM %pid
+ procForceKillCommand = kill -s KILL %pid
+ smacDefaults = /home/leon/.aeatk/cli-tae.opt
+
+[ConstantTargetAlgorithmEvaluatorOptions]
+ runResult = SAT
+ runtime = 1.0
+ quality = 0.0
+ runlength = 0.0
+ additionalRunData = 
+
+[IPCTargetAlgorithmEvaluatorOptions]
+ persistent = false
+ ipcMechanism = UDP
+ encodingMechanism = CALL_STRING
+ remoteHost = 127.0.0.1
+ remotePort = 5050
+ udpPacketSize = 4096
+ localPort = 0
+ execScript = null
+ execScriptOutput = false
+ poolConnections = false
+ ipcDefaults = /home/leon/.aeatk/ipc-tae.opt
+ asyncThreads = 13
+
+[PreloadedResponseTargetAlgorithmEvaluatorOptions]
+ preloadedResponses = 
+ runLength = -1.0
+ quality = 0.0
+ additionalRunData = 
+
+[RandomResponseTargetAlgorithmEvaluatorOptions]
+ simulateDelay = false
+ additionalRunData = 
+ cores = 0
+ maxResponse = 10.0
+ minResponse = 0.0
+ observerFrequency = 500
+ trendCoefficient = 0.0
+ seed = 1739813327220
+ persistent = false
+ scaleDelay = 1.0
+
+
+18:28:51.764 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - SMAC started at: Feb 17, 2025, 6:28:51 PM. Minimizing penalized average runtime (PAR10).
+18:28:52.467 [main] ERROR c.u.c.b.smac.executors.SMACExecutor - Message: Unexpected exception occurred while trying to run algorithm
+18:28:52.468 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - Maybe try running in DEBUG mode if you are missing information
+18:28:52.468 [main] ERROR c.u.c.b.smac.executors.SMACExecutor - Exception:java.lang.IllegalStateException
+18:28:52.473 [main] ERROR c.u.c.b.smac.executors.SMACExecutor - StackTrace:java.lang.IllegalStateException: Unexpected exception occurred while trying to run algorithm
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.algorithmrunner.ConcurrentAlgorithmRunner.run(ConcurrentAlgorithmRunner.java:270)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.CommandLineTargetAlgorithmEvaluator$1.run(CommandLineTargetAlgorithmEvaluator.java:130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.util.concurrent.ExecutionException: java.lang.reflect.InaccessibleObjectException: Unable to make field private final int java.lang.ProcessImpl.pid accessible: module java.base does not "opens java.lang" to unnamed module @34521b60
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.algorithmrunner.ConcurrentAlgorithmRunner.run(ConcurrentAlgorithmRunner.java:263)
+	... 4 more
+Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make field private final int java.lang.ProcessImpl.pid accessible: module java.base does not "opens java.lang" to unnamed module @34521b60
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:354)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:297)
+	at java.base/java.lang.reflect.Field.checkCanSetAccessible(Field.java:178)
+	at java.base/java.lang.reflect.Field.setAccessible(Field.java:172)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.CommandLineAlgorithmRun.getPID(CommandLineAlgorithmRun.java:1073)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.CommandLineAlgorithmRun.runProcess(CommandLineAlgorithmRun.java:824)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.CommandLineAlgorithmRun.call(CommandLineAlgorithmRun.java:415)
+	at ca.ubc.cs.beta.aeatk.targetalgorithmevaluator.base.cli.CommandLineAlgorithmRun.call(CommandLineAlgorithmRun.java:60)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	... 3 more
+
+18:28:52.474 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - Exiting SMAC with failure. Log: /home/leon/code/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/PbO-CCSAT-Generic_PTN/outdir_train_configuration/PbO-CCSAT-Generic_PTN_scenario/log-run16.txt
+18:28:52.480 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - For a list of available commands use:  --help
+18:28:52.481 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - The Quickstart guide at available at: http://www.cs.ubc.ca/labs/beta/Projects/SMAC/ or alternatively (doc/quickstart.html) gives simple examples for getting up and running.
+18:28:52.481 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - The FAQ (doc/faq.pdf) contains commonly asked questions regarding troubleshooting, and usage.
+18:28:52.481 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - The Manual (doc/manual.pdf) contains detailed information on file format semantics.
+18:28:52.481 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - If you are stuck, please ask a question in the SMAC forum: https://groups.google.com/forum/#!forum/smac-forum
