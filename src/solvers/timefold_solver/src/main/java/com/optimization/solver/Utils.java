@@ -94,14 +94,14 @@ public class Utils {
     // Write solution into a json file (will be processed by python super process)
     @SuppressWarnings("CallToPrintStackTrace")
     public static void dumpSolution(Solution planningSolution) {
-        String dumpPath = "/home/leon/code/satellite-operations-planning/src/output/optimization/timefold/";
+        String dumpPath = "./src/output/tmp/";
         ObjectMapper objectMapper = new ObjectMapper();
         // Register JavaTimeModule to handle LocalDateTime
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         try {
             // Serialize to JSON
-            objectMapper.writeValue(new File(dumpPath + "timefold_solution.json"), planningSolution);
+            objectMapper.writeValue(new File(dumpPath + "timefold_solution_tmp.json"), planningSolution);
         } catch (IOException e) {
             e.printStackTrace();
         }

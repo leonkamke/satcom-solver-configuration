@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-SOLUTION_VISUALIZATION_PATH = "./src/output/visualizations/"
+SOLUTION_VISUALIZATION_PATH = "./src/output/visualization/"
 
 def read_problem_instance(instance_path):
     with open(instance_path, 'r') as file:

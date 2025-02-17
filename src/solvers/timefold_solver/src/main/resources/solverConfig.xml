@@ -13,6 +13,6 @@
 
 
     <termination>
-        <secondsSpentLimit>60</secondsSpentLimit>
+        <secondsSpentLimit>20</secondsSpentLimit>
     </termination>
 </solver>
