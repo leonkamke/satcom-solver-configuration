@@ -161,9 +161,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Own added ignores
+# Additional ignores
 /src/output/visualizations/*
 smac3_output
 sparkle_test
 todo.txt
 sparkle_example
+.vscode
