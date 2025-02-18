@@ -10,7 +10,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 module load Python/3.10.4
 
-source venv/bin/activate
+# source venv/bin/activate
 
 # Apply changes to the current session
 source ~/.bashrc
+
+conda activate master-thesis

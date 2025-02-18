@@ -1,0 +1,18 @@
+<solver>
+    <solutionClass>com.optimization.solver.model.Solution</solutionClass>
+    <entityClass>com.optimization.solver.model.Contact</entityClass>
+
+    <valueRangeProvider id="booleanRange" type="fromSolutionProperty">
+        <solutionProperty>booleanValues</solutionProperty>
+    </valueRangeProvider>
+
+    <scoreDirectorFactory>
+        <constraintProviderClass>com.optimization.solver.model.SolutionConstraintProvider</constraintProviderClass>
+    </scoreDirectorFactory>
+
+
+
+    <termination>
+        <secondsSpentLimit>20</secondsSpentLimit>
+    </termination>
+</solver>
