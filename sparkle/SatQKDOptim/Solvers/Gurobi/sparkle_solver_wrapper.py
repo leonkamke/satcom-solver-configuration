@@ -5,7 +5,7 @@ from pathlib import Path
 from sparkle.types import SolverStatus
 from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
 from datetime import datetime
-from pyscipopt import Model, quicksum
+from gurobipy import Model, GRB, quicksum
 from .utils import *
 
 # Convert the arguments to a dictionary
@@ -22,7 +22,7 @@ del args["cutoff_time"]
 del args["seed"]
 
 # Prepare the command to execute the solver
-solver_name = "SCIP"
+solver_name = "Gurobi"
 if solver_dir != Path("."):
     solver_exec = f"{solver_dir / solver_name}"
 else:
@@ -31,7 +31,7 @@ solver_cmd = [solver_exec,
               "-inst", str(instance_path),
               "-seed", str(seed)]
 
-# Read SCIP parameter from call
+# Read Gurobi parameter from call
 params = []
 for key in args:
     if args[key] is not None:
@@ -81,58 +81,60 @@ for idx, serviceTarget in enumerate(serviceTargets):
     aj[idx] = serviceTarget["applicationId"]
 
 # Minimum time between consecutive contacts in seconds
-T_min = 60
+T_min = 60 
 
-model = Model("SCIP Solver")
+# Create Gurobi model
+model = Model("Gurobi Solver")
 
 # Decision variables
-x = {}
-for i in V:
-    for j in S:
-        x[i, j] = model.addVar(vtype="B", name=f"x_{i}_{j}")
+x = model.addVars(V, S, vtype=GRB.BINARY, name="x")
 
 # Objective function
 model.setObjective(
     quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for i in V for j in S),
-    "maximize"
+    GRB.MAXIMIZE
 )
 
 # Each satellite pass has at most one service target
 for i in V:
-    model.addCons(quicksum(x[i, j] for j in S) <= 1)
+    model.addConstr(quicksum(x[i, j] for j in S) <= 1)
 
 # Each service target can be served at most once
 for j in S:
-    model.addCons(quicksum(x[i, j] for i in V) <= 1)
+    model.addConstr(quicksum(x[i, j] for i in V) <= 1)
 
 # Non-overlapping satellite passes
 for i1 in V:
     for i2 in V:
         if i1 != i2 and ti[i1] <= ti[i2]:
-            model.addCons(
-                (ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - quicksum(x[i1, k] for k in S) - quicksum(x[i2, k] for k in S)) * 99999)
+            model.addConstr(
+                (ti[i1] + di[i1] + T_min) <= (
+                    ti[i2] + (2 - quicksum(x[i1, k] for k in S) - quicksum(x[i2, k] for k in S)) * 99999
+                )
             )
 
 # The node in the service target and satellite pass must match
 for i in V:
     for j in S:
-        model.addCons(x[i, j] * (ni[i] - sj[j]) == 0)
+        model.addConstr(x[i, j] * (ni[i] - sj[j]) == 0)
 
 # The operation mode must match
 for i in V:
     for j in S:
-        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
+        model.addConstr(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
 
-# For a given application id first do qkd and afterwards qkd post processing
+# For a given application id, first do QKD and afterwards QKD post-processing
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
-            model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
+            model.addConstr(
+                quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V)
+            )
 
 # Set the parameters dependent on params dict
 model.setParam("limits/time", 60)
 
-# Run the SCIP solver
+# Run the Gurobi solver
 schedule_quality = None
 runtime = None
 try:
@@ -151,6 +153,7 @@ try:
     # Compute objectives
     schedule_quality = round(calculateObjectiveFunction(contacts))
     runtime = None # TODO: Set runtime of the solver
+
 
 except Exception as ex:
     print(f"Solver call failed with exception:\n{ex}")
