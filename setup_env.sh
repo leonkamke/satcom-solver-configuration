@@ -8,7 +8,7 @@ export PATH=$M2_HOME/bin:$PATH
 export JAVA_HOME=$HOME/java/openlogic-openjdk-17.0.14+7-linux-x64
 export PATH=$JAVA_HOME/bin:$PATH
 
-module load Python/3.10.4
+# module load Python/3.10.4
 
 # source venv/bin/activate
 
