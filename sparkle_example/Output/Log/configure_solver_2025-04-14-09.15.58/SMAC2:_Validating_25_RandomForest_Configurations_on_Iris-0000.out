@@ -1,0 +1,23 @@
+   Static hostname: localhost.localdomain
+Transient hostname: r23m0142.hpc.itc.rwth-aachen.de
+         Icon name: computer-server
+           Chassis: server
+        Machine ID: 187e09abc0ef4b7aa02c7a74e20cd01c
+           Boot ID: 0213afc6f1fe4dd898b9e8e6c1f293f1
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.36.1.el8_10.x86_64
+      Architecture: x86-64
+          Job name: SMAC2:_Validating_25_RandomForest_Configurations_on_Iris.sh
+            Job ID: 56117771
+     Task array ID: 0
+ Working directory: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+           Command: python3 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/solver/solver_cli.py --solver Solvers/RandomForest --instance Instances/Iris/Iris.csv --run-index 2 --performance-dataframe Output/Performance_Data/performance_data.csv --cutoff-time 60 --log-dir Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/validation   
+        Start time: 2025-04-14 09:27:17.433820081+02:00
+----- srun start -----
+Running Solver and read/writing results with Output/Performance_Data/performance_data.csv
+Running Solver RandomForest on instance Iris.csv with seed 787595022..
+Appending value objective values: PAR10: 1.14522, accuracy:max: 1.0, cpu_time:metric: 1.14522, memory:metric: 523.81640625, status:metric: SUCCESS, wall_time:metric: 2.21957
+For index: Instance Instances/Iris/Iris.csv, Run 2
+----- srun end -----
+End time: 2025-04-14 09:27:57.500008430+02:00

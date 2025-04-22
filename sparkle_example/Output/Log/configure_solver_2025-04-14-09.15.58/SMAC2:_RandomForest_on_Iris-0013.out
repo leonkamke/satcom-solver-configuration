@@ -1,0 +1,19 @@
+   Static hostname: localhost.localdomain
+Transient hostname: r23m0170.hpc.itc.rwth-aachen.de
+         Icon name: computer-server
+           Chassis: server
+        Machine ID: e24ace6f76e24e7299b4874aaa492f0f
+           Boot ID: ed0db1e7b1884d478de6e8374c447fc6
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.36.1.el8_10.x86_64
+      Architecture: x86-64
+          Job name: SMAC2:_RandomForest_on_Iris.sh
+            Job ID: 56117689
+     Task array ID: 13
+ Working directory: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+           Command: python3 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/configurator/configurator_cli.py SMAC2 /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/results/RandomForest_Iris_seed_15_smac.txt Output/Performance_Data/performance_data.csv Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt 15 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac --scenario-file Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt --seed 15 
+        Start time: 2025-04-14 09:16:12.346628387+02:00
+----- srun start -----
+----- srun end -----
+End time: 2025-04-14 09:26:35.369778300+02:00

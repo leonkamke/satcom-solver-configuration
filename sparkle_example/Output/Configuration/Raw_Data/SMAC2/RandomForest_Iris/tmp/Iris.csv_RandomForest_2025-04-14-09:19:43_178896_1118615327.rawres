@@ -1,0 +1,2 @@
+0.65/1.01	The 'max_leaf_nodes' parameter of RandomForestClassifier must be an int in the range [2, inf) or None. Got 1 instead.
+0.65/1.01	{<sparkle.types.objective.SparkleObjective object at 0x153b1e63fb80>: 0, 'status': 'CRASHED'}

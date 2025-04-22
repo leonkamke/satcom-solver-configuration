@@ -1,0 +1,11 @@
+0.84/1.22	Traceback (most recent call last):
+0.84/1.22	  File "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/sparkle_solver_wrapper.py", line 290, in <module>
+0.84/1.22	    config = Configuration(rf.configspace, config)
+0.84/1.22	  File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/ConfigSpace/configuration.py", line 126, in __init__
+0.84/1.22	    self.check_valid_configuration()
+0.84/1.22	  File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/ConfigSpace/configuration.py", line 160, in check_valid_configuration
+0.84/1.22	    check_configuration(
+0.84/1.22	  File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/ConfigSpace/util.py", line 608, in check_configuration
+0.84/1.22	    raise InactiveHyperparameterSetError(hp, hp.to_value(vector[idx]))
+0.84/1.22	ConfigSpace.exceptions.InactiveHyperparameterSetError: Hyperparameter is inactive but has a value set as sqrt.
+0.84/1.22	max_features_special, Type: Categorical, Choices: {sqrt, log2, None}, Default: sqrt

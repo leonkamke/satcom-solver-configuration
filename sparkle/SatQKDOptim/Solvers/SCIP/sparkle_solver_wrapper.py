@@ -1,12 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 import sys
+import re
+import json
 from pathlib import Path
-from sparkle.types import SolverStatus
 from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
 from datetime import datetime
 from pyscipopt import Model, quicksum
-from .utils import *
+
+# Helper function
+def read_problem_instance(instance_path):
+    with open(instance_path, 'r') as file:
+        data = json.load(file)
+        return data[0]
+    
+# Helper function
+def calculateObjectiveFunction(contacts):
+    result = 0
+    for contact in contacts:
+        satellitePass = contact["satellitePass"]
+        serviceTarget = contact["serviceTarget"]
+
+        priority = serviceTarget["priority"]
+        achievableKeyVolume = satellitePass["achievableKeyVolume"]
+        operationMode = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
+        result += (priority * (1 + achievableKeyVolume * operationMode))
+    return result
+    
 
 # Convert the arguments to a dictionary
 args = parse_solver_wrapper_args(sys.argv[1:])
@@ -20,22 +40,9 @@ del args["solver_dir"]
 del args["instance"]
 del args["cutoff_time"]
 del args["seed"]
+del args["objectives"]
 
-# Prepare the command to execute the solver
-solver_name = "SCIP"
-if solver_dir != Path("."):
-    solver_exec = f"{solver_dir / solver_name}"
-else:
-    f"./{solver_name}"
-solver_cmd = [solver_exec,
-              "-inst", str(instance_path),
-              "-seed", str(seed)]
-
-# Read SCIP parameter from call
-params = []
-for key in args:
-    if args[key] is not None:
-        params.extend(["-" + str(key), str(args[key])])
+config = args
 
 # Read the problem instance
 problemInstance = read_problem_instance(instance_path)
@@ -85,6 +92,24 @@ T_min = 60
 
 model = Model("SCIP Solver")
 
+# Turn off all output
+model.setParam('display/verblevel', 0)   # Suppress display output
+
+# Computation time limit in seconds
+# model.setParam("limits/time", 45)
+
+# Set parameters for model
+for k, v in config.items():
+    if v == "TRUE":
+        config[k] = True
+    elif v == "FALSE":
+        config[k] = False
+    elif re.fullmatch(r"-?\d+", v):
+        config[k] = int(v)
+    elif re.fullmatch(r"-?[\d\.]+", v):
+        config[k] = float(v)
+    model.setParam(k.replace("_", "/"), config[k])
+
 # Decision variables
 x = {}
 for i in V:
@@ -129,16 +154,16 @@ for j1 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
             model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
 
-# Set the parameters dependent on params dict
-model.setParam("limits/time", 60)
 
 # Run the SCIP solver
-schedule_quality = None
-runtime = None
+max_runtime = 9999
+schedule_quality = 0.0
+runtime = max_runtime
+
 try:
     # Optimize the model
     model.optimize()
-
+    
     contacts = []
     for i in V:
         for j in S:
@@ -150,24 +175,18 @@ try:
                 
     # Compute objectives
     schedule_quality = round(calculateObjectiveFunction(contacts))
-    runtime = None # TODO: Set runtime of the solver
+    runtime = model.getSolvingTime()
 
-except Exception as ex:
-    print(f"Solver call failed with exception:\n{ex}")
+    result = {"status": "SUCCESS",               
+            "schedule_quality": schedule_quality,
+            "runtime": runtime,                   
+            "solver_call": None}
 
-# Optional: Print original output so the solution can be verified by SATVerifier
-print("Performance of the solution is: " + str(schedule_quality))
-
-status = SolverStatus.CRASHED
-if schedule_quality and runtime:
-    status = SolverStatus.SUCCESS
-elif runtime >= max_runtime_par:
-    status = SolverStatus.TIMEOUT
+    print(result)
     
-
-outdir = {"status": status.value,               
-          "schedule_quality": schedule_quality,
-          "runtime": runtime,                   
-          "solver_call": solver_cmd + params}
-
-print(outdir)
+except Exception as ex:
+    result = {"status": "TIMEOUT",               
+            "schedule_quality": 0.0,
+            "runtime": max_runtime,                   
+            "solver_call": None}
+    print(result)

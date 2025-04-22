@@ -1,0 +1,10 @@
+	 Timestamp							  Path							 Description
+2025-04-22 16:04:54,615 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/SMAC2:_SCIP_on_Europe_3h_year.json
+2025-04-22 16:04:54,692 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/SMAC2:_SCIP_on_Europe_3h_year.json
+2025-04-22 16:04:54,693 [RunRunner] :INFO     Submitted a run to Slurm (job 56317591)
+2025-04-22 16:04:54,693 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/SMAC2:_Validating_5_SCIP_Configurations_on_Europe_3h_year.json
+2025-04-22 16:04:54,766 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/SMAC2:_Validating_5_SCIP_Configurations_on_Europe_3h_year.json
+2025-04-22 16:04:54,768 [RunRunner] :INFO     Submitted a run to Slurm (job 56317592)
+2025-04-22 16:04:54,768 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/Default_Configuration:_SCIP_Validation_on_Europe_3h_year.json
+2025-04-22 16:04:54,840 [RunRunner] :INFO     Saving run description to file Output/Log/configure_solver_2025-04-22-16.04.53/Default_Configuration:_SCIP_Validation_on_Europe_3h_year.json
+2025-04-22 16:04:54,841 [RunRunner] :INFO     Submitted a run to Slurm (job 56317593)

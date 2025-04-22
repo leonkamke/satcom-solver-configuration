@@ -1,0 +1,19 @@
+   Static hostname: localhost.localdomain
+Transient hostname: r23m0198.hpc.itc.rwth-aachen.de
+         Icon name: computer-server
+           Chassis: server
+        Machine ID: 98590dce40334370984c7558f3f27417
+           Boot ID: 7f39c8d37be7408bb4d247bf71b38547
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.36.1.el8_10.x86_64
+      Architecture: x86-64
+          Job name: SMAC2:_SCIP_on_Europe_3h_year.sh
+            Job ID: 56317591
+     Task array ID: 4
+ Working directory: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle
+           Command: python3 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/configurator/configurator_cli.py SMAC2 /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle/Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/results/SCIP_Europe_3h_year_seed_6_smac.txt Output/Performance_Data/performance_data.csv Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/SCIP_Europe_3h_year_scenario.txt 6 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac --scenario-file Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/SCIP_Europe_3h_year_scenario.txt --seed 6 
+        Start time: 2025-04-22 16:05:24.253557009+02:00
+----- srun start -----
+----- srun end -----
+End time: 2025-04-22 16:30:44.177727864+02:00

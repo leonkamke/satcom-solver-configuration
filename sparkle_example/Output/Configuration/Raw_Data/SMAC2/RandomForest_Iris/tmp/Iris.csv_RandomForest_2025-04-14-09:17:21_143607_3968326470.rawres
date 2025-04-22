@@ -1,0 +1,7 @@
+0.71/0.94	Traceback (most recent call last):
+0.71/0.94	  File "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/sparkle_solver_wrapper.py", line 290, in <module>
+0.71/0.94	    config = Configuration(rf.configspace, config)
+0.71/0.94	  File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/ConfigSpace/configuration.py", line 117, in __init__
+0.71/0.95	    raise IllegalValueError(hp, value)
+0.71/0.95	ConfigSpace.exceptions.IllegalValueError: Value 9.309777788134577E-4: (<class 'str'>) is not allowed for hyperparameter with name 'min_weight_fraction_leaf'
+0.71/0.95	min_weight_fraction_leaf, Type: UniformFloat, Range: [0.0, 0.5], Default: 0.0

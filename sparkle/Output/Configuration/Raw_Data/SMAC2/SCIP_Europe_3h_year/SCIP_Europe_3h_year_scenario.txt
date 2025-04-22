@@ -1,0 +1,12 @@
+algo = /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/SCIP Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/tmp runtime 
+deterministic = 0
+run_obj = QUALITY
+cutoffTime = 60
+paramfile = Solvers/SCIP/configspace.pcs
+outdir = Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/outdir_train_configuration
+instance_file = Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/Europe_3h_year.txt
+test_instance_file = Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/Europe_3h_year.txt
+cutoff_length = max
+wallclock-limit = 1500
+runcount-limit = 100
+validation = false

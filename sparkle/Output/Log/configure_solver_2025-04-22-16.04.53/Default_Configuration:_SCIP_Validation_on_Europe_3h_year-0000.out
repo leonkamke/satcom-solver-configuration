@@ -1,0 +1,24 @@
+   Static hostname: localhost.localdomain
+Transient hostname: r23m0198.hpc.itc.rwth-aachen.de
+         Icon name: computer-server
+           Chassis: server
+        Machine ID: 98590dce40334370984c7558f3f27417
+           Boot ID: 7f39c8d37be7408bb4d247bf71b38547
+  Operating System: Rocky Linux 8.10 (Green Obsidian)
+       CPE OS Name: cpe:/o:rocky:rocky:8:GA
+            Kernel: Linux 4.18.0-553.36.1.el8_10.x86_64
+      Architecture: x86-64
+          Job name: Default_Configuration:_SCIP_Validation_on_Europe_3h_year.sh
+            Job ID: 56317613
+     Task array ID: 0
+ Working directory: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle
+           Command: python3 /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/solver/solver_cli.py --solver Solvers/SCIP --instance Instances/Europe_3h_year/problem_instance_europe_apr_3h.json --run-index 1 --performance-dataframe Output/Performance_Data/performance_data.csv --cutoff-time 60 --log-dir Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_year/validation   
+        Start time: 2025-04-22 16:05:24.253210647+02:00
+----- srun start -----
+Running Solver and read/writing results with Output/Performance_Data/performance_data.csv
+Failed to read configuration from dataframe: nan
+Running Solver SCIP on instance problem_instance_europe_apr_3h.json with seed 3297133580..
+Appending value objective values: cpu_time:metric: 22.6861, memory:metric: 2256.20703125, runtime: 11.693585, status:metric: SUCCESS, wall_time:metric: 25.4593
+For index: Instance Instances/Europe_3h_year/problem_instance_europe_apr_3h.json, Run 1
+----- srun end -----
+End time: 2025-04-22 16:06:08.241311012+02:00

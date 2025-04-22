@@ -3,8 +3,6 @@ from gurobipy import Model, GRB, quicksum
 from ..utils import *
 
 # Read problem instance
-# "./src/input/data/problem_instance_short_quarc.json"
-# "./src/input/data/problem_instance_2days.json"
 problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_6h.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
@@ -98,36 +96,35 @@ for i in V:
     for j in S:
         model.addConstr(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
 
+# For a given application id, first do QKD and afterwards QKD post-processing
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
-            # For a given application id, first do QKD and afterwards QKD post-processing
             model.addConstr(
                 quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V)
             )
 
+            """ 
             # QKD post-processing and QKD must happen in the same schedule
             model.addConstr(
                 quicksum(x[i, j1] for i in V) == quicksum(x[i, j2] for i in V)
             )
+            """
 
 # Optimize the model
-model.optimize()
+try:
+    model.optimize()
+    
+    contacts = []
+    for i in V:
+        for j in S:
+            if x[i, j].x > 0.5:
+                contact = {}
+                contact["satellitePass"] = satellitePasses[i]
+                contact["serviceTarget"] = serviceTargets[j]
+                contacts.append(contact)
 
-# Display the results
-if model.status == GRB.OPTIMAL:
-    print("Optimal solution found!")
-else:
-    print("No optimal solution found.")
-
-contacts = []
-for i in V:
-    for j in S:
-        if x[i, j].x > 0.5:
-            contact = {}
-            contact["satellitePass"] = satellitePasses[i]
-            contact["serviceTarget"] = serviceTargets[j]
-            contacts.append(contact)
-
-print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-plotOptimizationResult(serviceTargets, satellitePasses, contacts, "GUROBI")
+    print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
+    plotOptimizationResult(serviceTargets, satellitePasses, contacts, "GUROBI")
+except Exception as ex:
+    print(f"Exception: {ex}")

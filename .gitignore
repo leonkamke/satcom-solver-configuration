@@ -166,5 +166,5 @@ cython_debug/
 smac3_output
 sparkle_test
 todo.txt
-sparkle_example
 .vscode
+sparkle_explenation.ini

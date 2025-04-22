@@ -1,0 +1,12 @@
+algo = /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max 
+deterministic = 0
+run_obj = QUALITY
+cutoffTime = 60
+paramfile = Solvers/RandomForest/configspace.pcs
+outdir = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration
+instance_file = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/Iris.txt
+test_instance_file = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/Iris.txt
+cutoff_length = max
+wallclock-limit = 600
+runcount-limit = 100
+validation = false

@@ -1,0 +1,2844 @@
+[ {
+  "@pi-id" : 2,
+  "pi-name" : "Instances/Iris/Iris.csv",
+  "pi-instance-specific-info" : "0",
+  "pi-features" : { },
+  "pi-instance-id(deprecated)" : 1
+} ] {
+  "r-rc" : {
+    "@rc-id" : 2,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2,
+      "algo-exec" : "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max",
+      "algo-exec-dir" : "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example",
+      "algo-pcs" : {
+        "@pcs-id" : 2,
+        "pcs-filename" : "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/configspace.pcs",
+        "pcs-text" : "bootstrap categorical {True, False} [True]\ncriterion categorical {gini, entropy, log_loss} [gini]\nmax_depth_type categorical {None, int} [None]\nmax_features_type categorical {special, float} [special]\nmax_leaf_nodes_type categorical {None, int} [None]\nmin_impurity_decrease real [0.0, 0.5] [0.0]\nmin_samples_leaf integer [1, 100] [1]\nmin_samples_split integer [1, 100] [2]\nmin_weight_fraction_leaf real [0.0, 0.5] [0.0]\nn_estimators integer [1, 500] [100]\nmax_depth integer [1, 100] [10]\nmax_features_float real [0.0, 1.0] [0.5]\nmax_features_special categorical {sqrt, log2, None} [sqrt]\nmax_leaf_nodes integer [1, 1000] [100]\nmax_samples_type categorical {None, float} [None]\noob_score categorical {True, False} [True]\nmax_samples real [0.05, 0.95] [0.8]\n\nmax_depth | max_depth_type in {int}\nmax_features_float | max_features_type in {float}\nmax_features_special | max_features_type in {special}\nmax_leaf_nodes | max_leaf_nodes_type in {int}\nmax_samples_type | bootstrap in {True}\noob_score | bootstrap in {True}\nmax_samples | max_samples_type in {float}\n",
+        "pcs-subspace" : { }
+      },
+      "algo-cutoff" : 60.0,
+      "algo-deterministic" : false,
+      "algo-tae-context" : { }
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14876964
+    },
+    "rc-pc" : {
+      "@pc-id" : 2,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "10",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.5",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "100",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.0",
+        "min_samples_leaf" : "1",
+        "min_samples_split" : "2",
+        "min_weight_fraction_leaf" : "0.0",
+        "n_estimators" : "100",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : true
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.04623,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 14876964,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 9.387
+} {
+  "r-rc" : {
+    "@rc-id" : 3,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 10359651
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.987632,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.824
+} {
+  "r-rc" : {
+    "@rc-id" : 4,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 4,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "34",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.7978117302191793",
+        "max_features_special" : "None",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "692",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.48996578038588956",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.3212500959052755",
+        "min_samples_leaf" : "57",
+        "min_samples_split" : "14",
+        "min_weight_fraction_leaf" : "0.16688695190649444",
+        "n_estimators" : "256",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.299
+} {
+  "r-rc" : {
+    "@rc-id" : 5,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 3591085
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.958793,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.271
+} {
+  "r-rc" : {
+    "@rc-id" : 6,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2
+    },
+    "rc-pc" : {
+      "@pc-id" : 6,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "gini",
+        "max_depth" : "50",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.7254409025383862",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "451",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.4748590878767929",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.20520655414734357",
+        "min_samples_leaf" : "70",
+        "min_samples_split" : "35",
+        "min_weight_fraction_leaf" : "0.02778279387616639",
+        "n_estimators" : "14",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 14876964,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.31
+} {
+  "r-rc" : {
+    "@rc-id" : 7,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 7,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 10526906
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.944768,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 10526906,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.301
+} {
+  "r-rc" : {
+    "@rc-id" : 8,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5
+    },
+    "rc-pc" : {
+      "@pc-id" : 8,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "44",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.0023931965373141795",
+        "max_features_special" : "None",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "111",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8194115045035898",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.3168059251562741",
+        "min_samples_leaf" : "26",
+        "min_samples_split" : "32",
+        "min_weight_fraction_leaf" : "0.40294709060533884",
+        "n_estimators" : "221",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.3
+} {
+  "r-rc" : {
+    "@rc-id" : 9,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 9,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 3578384
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.938782,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 3578384,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.282
+} {
+  "r-rc" : {
+    "@rc-id" : 10,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5
+    },
+    "rc-pc" : {
+      "@pc-id" : 10,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "gini",
+        "max_depth" : "22",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.4657430223927187",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "685",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.4128897077177575",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.19913064425945665",
+        "min_samples_leaf" : "45",
+        "min_samples_split" : "90",
+        "min_weight_fraction_leaf" : "0.34219925881870134",
+        "n_estimators" : "391",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.318
+} {
+  "r-rc" : {
+    "@rc-id" : 11,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 8010157
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.939228,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.411
+} {
+  "r-rc" : {
+    "@rc-id" : 12,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5
+    },
+    "rc-pc" : {
+      "@pc-id" : 12,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "1",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.04675588275122433",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "896",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.6774229075940991",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.3621500841142844",
+        "min_samples_leaf" : "46",
+        "min_samples_split" : "6",
+        "min_weight_fraction_leaf" : "0.03335877666967968",
+        "n_estimators" : "411",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.18401,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.3,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.48
+} {
+  "r-rc" : {
+    "@rc-id" : 13,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 13,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 11243037
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.932904,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 11243037,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.286
+} {
+  "r-rc" : {
+    "@rc-id" : 14,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 7
+    },
+    "rc-pc" : {
+      "@pc-id" : 14,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "49",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.7395952062587359",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "523",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.5762692658434085",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.2384132618691897",
+        "min_samples_leaf" : "84",
+        "min_samples_split" : "85",
+        "min_weight_fraction_leaf" : "0.12721720425557626",
+        "n_estimators" : "196",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 10526906,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.27
+} {
+  "r-rc" : {
+    "@rc-id" : 15,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 15,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 9975400
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.94831,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 9975400,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.459
+} {
+  "r-rc" : {
+    "@rc-id" : 16,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 16,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "entropy",
+        "max_depth" : "83",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.9198590892659572",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "324",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.13120244550846932",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.30742694173689467",
+        "min_samples_leaf" : "20",
+        "min_samples_split" : "9",
+        "min_weight_fraction_leaf" : "0.37855297288491563",
+        "n_estimators" : "256",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.266
+} {
+  "r-rc" : {
+    "@rc-id" : 17,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 17,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 15893975
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.947233,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 15893975,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.285
+} {
+  "r-rc" : {
+    "@rc-id" : 18,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5
+    },
+    "rc-pc" : {
+      "@pc-id" : 18,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "50",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.17035424981909297",
+        "max_features_special" : "None",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "621",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.4721884991809237",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.2983977442563906",
+        "min_samples_leaf" : "23",
+        "min_samples_split" : "63",
+        "min_weight_fraction_leaf" : "0.15662263715540908",
+        "n_estimators" : "314",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.285
+} {
+  "r-rc" : {
+    "@rc-id" : 19,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 19,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14117462
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.953989,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 14117462,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.45
+} {
+  "r-rc" : {
+    "@rc-id" : 20,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 20,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "75",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.19316042124109722",
+        "max_features_special" : "None",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "148",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.31935489776760434",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.042311461914062654",
+        "min_samples_leaf" : "2",
+        "min_samples_split" : "7",
+        "min_weight_fraction_leaf" : "0.1963842855585155",
+        "n_estimators" : "400",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.313
+} {
+  "r-rc" : {
+    "@rc-id" : 21,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 21,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14318474
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.94751,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 14318474,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.299
+} {
+  "r-rc" : {
+    "@rc-id" : 22,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 22,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "log_loss",
+        "max_depth" : "88",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.16737883956806732",
+        "max_features_special" : "log2",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "871",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.6771863730476186",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.09339485232839434",
+        "min_samples_leaf" : "92",
+        "min_samples_split" : "83",
+        "min_weight_fraction_leaf" : "0.17745829533089352",
+        "n_estimators" : "273",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.256
+} {
+  "r-rc" : {
+    "@rc-id" : 23,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 23,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 4717621
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.948267,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 4717621,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.31
+} {
+  "r-rc" : {
+    "@rc-id" : 24,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 15
+    },
+    "rc-pc" : {
+      "@pc-id" : 24,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "96",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.08402833016907063",
+        "max_features_special" : "log2",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "46",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.3869524619375219",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.30260897529665015",
+        "min_samples_leaf" : "7",
+        "min_samples_split" : "2",
+        "min_weight_fraction_leaf" : "0.18009336465462605",
+        "n_estimators" : "283",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 9975400,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.317
+} {
+  "r-rc" : {
+    "@rc-id" : 25,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 25,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 11856952
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.950065,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 11856952,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.276
+} {
+  "r-rc" : {
+    "@rc-id" : 26,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 26,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "4",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.24313804525524674",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "201",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.17964279189140364",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.07577871131006814",
+        "min_samples_leaf" : "44",
+        "min_samples_split" : "17",
+        "min_weight_fraction_leaf" : "0.09933778014179862",
+        "n_estimators" : "335",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.11209,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.26666666666666666,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.362
+} {
+  "r-rc" : {
+    "@rc-id" : 27,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 27,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 6329346
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.936817,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 6329346,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.275
+} {
+  "r-rc" : {
+    "@rc-id" : 28,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 19
+    },
+    "rc-pc" : {
+      "@pc-id" : 28,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "log_loss",
+        "max_depth" : "18",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.4647723922640692",
+        "max_features_special" : "None",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "239",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.7910559158450065",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.0020583979150753384",
+        "min_samples_leaf" : "9",
+        "min_samples_split" : "27",
+        "min_weight_fraction_leaf" : "0.005302783954505841",
+        "n_estimators" : "91",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 14117462,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.272
+} {
+  "r-rc" : {
+    "@rc-id" : 29,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 29,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 13884251
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.955011,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 13884251,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.25
+} {
+  "r-rc" : {
+    "@rc-id" : 30,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 7
+    },
+    "rc-pc" : {
+      "@pc-id" : 30,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "34",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.7936195937323626",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "614",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.543713069584517",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.36327552307372063",
+        "min_samples_leaf" : "9",
+        "min_samples_split" : "47",
+        "min_weight_fraction_leaf" : "0.009397925728520884",
+        "n_estimators" : "176",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.01429,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 10526906,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.278
+} {
+  "r-rc" : {
+    "@rc-id" : 31,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 13
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.02384,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 11243037,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.358
+} {
+  "r-rc" : {
+    "@rc-id" : 32,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 25
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.00999,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 11856952,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.374
+} {
+  "r-rc" : {
+    "@rc-id" : 33,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 9
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.999725,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 3578384,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.273
+} {
+  "r-rc" : {
+    "@rc-id" : 34,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.01147,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.411
+} {
+  "r-rc" : {
+    "@rc-id" : 35,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.00814,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.266
+} {
+  "r-rc" : {
+    "@rc-id" : 36,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 27
+    },
+    "rc-pc" : {
+      "@pc-id" : 30
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.006,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8666666666666667,
+  "r-result-seed" : 6329346,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.277
+} {
+  "r-rc" : {
+    "@rc-id" : 37,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 37,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 1185214
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.93404,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 1185214,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.282
+} {
+  "r-rc" : {
+    "@rc-id" : 38,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 23
+    },
+    "rc-pc" : {
+      "@pc-id" : 38,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "log_loss",
+        "max_depth" : "61",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.6203296542546519",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "469",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.1279643649561389",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.49816487317213964",
+        "min_samples_leaf" : "28",
+        "min_samples_split" : "31",
+        "min_weight_fraction_leaf" : "0.021726560552206342",
+        "n_estimators" : "88",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.922605,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 4717621,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.161
+} {
+  "r-rc" : {
+    "@rc-id" : 39,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 39,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14055908
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.953545,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 14055908,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.275
+} {
+  "r-rc" : {
+    "@rc-id" : 40,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 13
+    },
+    "rc-pc" : {
+      "@pc-id" : 40,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "70",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.8650438029733787",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "756",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.19952619310350173",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.008928860963060059",
+        "min_samples_leaf" : "48",
+        "min_samples_split" : "44",
+        "min_weight_fraction_leaf" : "0.26704123911469574",
+        "n_estimators" : "225",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.03891,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.26666666666666666,
+  "r-result-seed" : 11243037,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.369
+} {
+  "r-rc" : {
+    "@rc-id" : 41,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 41,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 10210849
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.943471,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 10210849,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.288
+} {
+  "r-rc" : {
+    "@rc-id" : 42,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 29
+    },
+    "rc-pc" : {
+      "@pc-id" : 42,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "11",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.8007342160287547",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "870",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8188409602953922",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.3558759485882686",
+        "min_samples_leaf" : "7",
+        "min_samples_split" : "11",
+        "min_weight_fraction_leaf" : "0.22570716015610104",
+        "n_estimators" : "7",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.843187,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.6,
+  "r-result-seed" : 13884251,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.126
+} {
+  "r-rc" : {
+    "@rc-id" : 43,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 43,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 2000025
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.939152,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 2000025,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.257
+} {
+  "r-rc" : {
+    "@rc-id" : 44,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 21
+    },
+    "rc-pc" : {
+      "@pc-id" : 44,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "gini",
+        "max_depth" : "61",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.45309842849291604",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "276",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.25736485698269557",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.09027438551391115",
+        "min_samples_leaf" : "11",
+        "min_samples_split" : "19",
+        "min_weight_fraction_leaf" : "0.2385751737238721",
+        "n_estimators" : "372",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 14318474,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.275
+} {
+  "r-rc" : {
+    "@rc-id" : 45,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 45,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 1109381
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.933235,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8666666666666667,
+  "r-result-seed" : 1109381,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.269
+} {
+  "r-rc" : {
+    "@rc-id" : 46,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 9
+    },
+    "rc-pc" : {
+      "@pc-id" : 46,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "7",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.8065363287383335",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "769",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.8542991283090676",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.031033452231060354",
+        "min_samples_leaf" : "14",
+        "min_samples_split" : "4",
+        "min_weight_fraction_leaf" : "0.022066538307797756",
+        "n_estimators" : "473",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.22603,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 3578384,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.555
+} {
+  "r-rc" : {
+    "@rc-id" : 47,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 43
+    },
+    "rc-pc" : {
+      "@pc-id" : 46
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.21736,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 2000025,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.462
+} {
+  "r-rc" : {
+    "@rc-id" : 48,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 27
+    },
+    "rc-pc" : {
+      "@pc-id" : 46
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.23784,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8666666666666667,
+  "r-result-seed" : 6329346,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.553
+} {
+  "r-rc" : {
+    "@rc-id" : 49,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 49,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 16548624
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.938409,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 16548624,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.262
+} {
+  "r-rc" : {
+    "@rc-id" : 50,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 50,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "19",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.6677654817645745",
+        "max_features_special" : "log2",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "661",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.845588929572101",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.1811688805828956",
+        "min_samples_leaf" : "40",
+        "min_samples_split" : "1",
+        "min_weight_fraction_leaf" : "0.4687798351698432",
+        "n_estimators" : "152",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.249
+} {
+  "r-rc" : {
+    "@rc-id" : 51,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 51,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 321067
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.94924,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 321067,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.274
+} {
+  "r-rc" : {
+    "@rc-id" : 52,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 5
+    },
+    "rc-pc" : {
+      "@pc-id" : 52,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "log_loss",
+        "max_depth" : "4",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.5529111021503521",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "767",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.2739422816140726",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.42554843702939094",
+        "min_samples_leaf" : "71",
+        "min_samples_split" : "92",
+        "min_weight_fraction_leaf" : "0.47165642922870904",
+        "n_estimators" : "285",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.07397,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.3,
+  "r-result-seed" : 3591085,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.363
+} {
+  "r-rc" : {
+    "@rc-id" : 53,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 53,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 7393081
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.934417,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 7393081,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.27
+} {
+  "r-rc" : {
+    "@rc-id" : 54,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 13
+    },
+    "rc-pc" : {
+      "@pc-id" : 54,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "38",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.3614626462266002",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "65",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.5230870717123572",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.17092389843358768",
+        "min_samples_leaf" : "68",
+        "min_samples_split" : "31",
+        "min_weight_fraction_leaf" : "0.3995597548942948",
+        "n_estimators" : "202",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.998099,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.26666666666666666,
+  "r-result-seed" : 11243037,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.265
+} {
+  "r-rc" : {
+    "@rc-id" : 55,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 55,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 15449747
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.94314,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 15449747,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.246
+} {
+  "r-rc" : {
+    "@rc-id" : 56,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 45
+    },
+    "rc-pc" : {
+      "@pc-id" : 56,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "10",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.5",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "100",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.0",
+        "min_samples_leaf" : "1",
+        "min_samples_split" : "2",
+        "min_weight_fraction_leaf" : "0.0",
+        "n_estimators" : "34",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.906534,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8666666666666667,
+  "r-result-seed" : 1109381,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 8.195
+} {
+  "r-rc" : {
+    "@rc-id" : 57,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 57,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 5019144
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.933639,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9333333333333333,
+  "r-result-seed" : 5019144,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.275
+} {
+  "r-rc" : {
+    "@rc-id" : 58,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 58,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "entropy",
+        "max_depth" : "6",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.7773311567984698",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "440",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8226677913062119",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.13098352966225663",
+        "min_samples_leaf" : "19",
+        "min_samples_split" : "63",
+        "min_weight_fraction_leaf" : "0.23611328813064503",
+        "n_estimators" : "16",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 10359651,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.265
+} {
+  "r-rc" : {
+    "@rc-id" : 59,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 59,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 3499227
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.914932,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 3499227,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.144
+} {
+  "r-rc" : {
+    "@rc-id" : 60,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 21
+    },
+    "rc-pc" : {
+      "@pc-id" : 60,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "55",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.3817913113297591",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "19",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.7041142704111584",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.4510897037570267",
+        "min_samples_leaf" : "85",
+        "min_samples_split" : "19",
+        "min_weight_fraction_leaf" : "0.0029302068729327724",
+        "n_estimators" : "256",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.03049,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.16666666666666666,
+  "r-result-seed" : 14318474,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.264
+} {
+  "r-rc" : {
+    "@rc-id" : 61,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 61,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 3338284
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.916434,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 3338284,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.155
+} {
+  "r-rc" : {
+    "@rc-id" : 62,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 61
+    },
+    "rc-pc" : {
+      "@pc-id" : 62,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "gini",
+        "max_depth" : "28",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.52342716961041",
+        "max_features_special" : "log2",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "259",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.49640612701708126",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.2948334575136716",
+        "min_samples_leaf" : "75",
+        "min_samples_split" : "6",
+        "min_weight_fraction_leaf" : "0.05778316075250339",
+        "n_estimators" : "11",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 3338284,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.233
+} {
+  "r-rc" : {
+    "@rc-id" : 63,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 63,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 2321792
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.918155,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 2321792,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.139
+} {
+  "r-rc" : {
+    "@rc-id" : 64,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 37
+    },
+    "rc-pc" : {
+      "@pc-id" : 64,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "log_loss",
+        "max_depth" : "32",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.7963891999808131",
+        "max_features_special" : "sqrt",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "193",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.6631815058665491",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.12982424814762572",
+        "min_samples_leaf" : "12",
+        "min_samples_split" : "62",
+        "min_weight_fraction_leaf" : "0.06300381911007058",
+        "n_estimators" : "117",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.923749,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8333333333333334,
+  "r-result-seed" : 1185214,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.123
+} {
+  "r-rc" : {
+    "@rc-id" : 65,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 65,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 7173172
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.931788,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 7173172,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.26
+} {
+  "r-rc" : {
+    "@rc-id" : 66,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 61
+    },
+    "rc-pc" : {
+      "@pc-id" : 66,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "log_loss",
+        "max_depth" : "76",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.0046060807493853995",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "271",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.33865374488990996",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.33707069927230116",
+        "min_samples_leaf" : "93",
+        "min_samples_split" : "47",
+        "min_weight_fraction_leaf" : "0.2334640069962059",
+        "n_estimators" : "144",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 3338284,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.262
+} {
+  "r-rc" : {
+    "@rc-id" : 67,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 67,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 8064760
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.91418,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 8064760,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.149
+} {
+  "r-rc" : {
+    "@rc-id" : 68,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 59
+    },
+    "rc-pc" : {
+      "@pc-id" : 68,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "53",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.002363163120860712",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "476",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.41700984733431673",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.23726323485799",
+        "min_samples_leaf" : "10",
+        "min_samples_split" : "48",
+        "min_weight_fraction_leaf" : "0.029374176449982747",
+        "n_estimators" : "235",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.02712,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.16666666666666666,
+  "r-result-seed" : 3499227,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.251
+} {
+  "r-rc" : {
+    "@rc-id" : 69,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 69,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 7608961
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.914896,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 7608961,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.164
+} {
+  "r-rc" : {
+    "@rc-id" : 70,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 70,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "False",
+        "criterion" : "entropy",
+        "max_depth" : "43",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.1642091679907457",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "546",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.5172868565101295",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.21932028548023175",
+        "min_samples_leaf" : "92",
+        "min_samples_split" : "42",
+        "min_weight_fraction_leaf" : "0.15166057936700922",
+        "n_estimators" : "419",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.258
+} {
+  "r-rc" : {
+    "@rc-id" : 71,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 71,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14094840
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.908173,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 14094840,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.147
+} {
+  "r-rc" : {
+    "@rc-id" : 72,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 43
+    },
+    "rc-pc" : {
+      "@pc-id" : 72,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "58",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.591297433003534",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "998",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.4428657531437396",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.4465009132907434",
+        "min_samples_leaf" : "92",
+        "min_samples_split" : "48",
+        "min_weight_fraction_leaf" : "0.002437788706316557",
+        "n_estimators" : "182",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.971877,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.3,
+  "r-result-seed" : 2000025,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.262
+} {
+  "r-rc" : {
+    "@rc-id" : 73,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 73,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 3931760
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.913515,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 3931760,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.169
+} {
+  "r-rc" : {
+    "@rc-id" : 74,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 23
+    },
+    "rc-pc" : {
+      "@pc-id" : 74,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "gini",
+        "max_depth" : "57",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.7778944557524989",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "955",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.8509288689914603",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.20991740296730177",
+        "min_samples_leaf" : "58",
+        "min_samples_split" : "100",
+        "min_weight_fraction_leaf" : "0.42136240682720255",
+        "n_estimators" : "60",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.878709,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.23333333333333334,
+  "r-result-seed" : 4717621,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.129
+} {
+  "r-rc" : {
+    "@rc-id" : 75,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 75,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 13153821
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.916301,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9666666666666667,
+  "r-result-seed" : 13153821,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.683
+} {
+  "r-rc" : {
+    "@rc-id" : 76,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 19
+    },
+    "rc-pc" : {
+      "@pc-id" : 76,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "48",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.049689721520969066",
+        "max_features_special" : "None",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "500",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.758734310909079",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.39970164933720587",
+        "min_samples_leaf" : "29",
+        "min_samples_split" : "35",
+        "min_weight_fraction_leaf" : "0.012073998604267444",
+        "n_estimators" : "10",
+        "oob_score" : "False"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.821716,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 14117462,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.124
+} {
+  "r-rc" : {
+    "@rc-id" : 77,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 11
+    },
+    "rc-pc" : {
+      "@pc-id" : 76
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.818478,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.9,
+  "r-result-seed" : 8010157,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.103
+} {
+  "r-rc" : {
+    "@rc-id" : 78,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 17
+    },
+    "rc-pc" : {
+      "@pc-id" : 76
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.839395,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.8,
+  "r-result-seed" : 15893975,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.109
+} {
+  "r-rc" : {
+    "@rc-id" : 79,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 79,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 11321291
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.913091,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 11321291,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.159
+} {
+  "r-rc" : {
+    "@rc-id" : 80,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 49
+    },
+    "rc-pc" : {
+      "@pc-id" : 80,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "81",
+        "max_depth_type" : "None",
+        "max_features_float" : "0.9676591395485087",
+        "max_features_special" : "log2",
+        "max_features_type" : "float",
+        "max_leaf_nodes" : "489",
+        "max_leaf_nodes_type" : "int",
+        "max_samples" : "0.77800634411961",
+        "max_samples_type" : "None",
+        "min_impurity_decrease" : "0.12147028721835629",
+        "min_samples_leaf" : "46",
+        "min_samples_split" : "31",
+        "min_weight_fraction_leaf" : "0.10691489965386164",
+        "n_estimators" : "361",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth_type", "max_features_float", "max_features_type", "max_leaf_nodes", "max_leaf_nodes_type", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "CRASHED",
+  "r-runtime" : 0.0,
+  "r-run-length" : 0.0,
+  "r-quality" : 1.0E9,
+  "r-result-seed" : 16548624,
+  "r-addl-run-data" : "ERROR: Wrapper did not output anything that matched the expected output (\"Result of algorithm run:...\"). Please try executing the wrapper directly",
+  "r-wallclock-time" : 7.264
+} {
+  "r-rc" : {
+    "@rc-id" : 81,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 81,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 14048522
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 0.914994,
+  "r-run-length" : 0.0,
+  "r-quality" : -1.0,
+  "r-result-seed" : 14048522,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.902
+} {
+  "r-rc" : {
+    "@rc-id" : 82,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 15
+    },
+    "rc-pc" : {
+      "@pc-id" : 82,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "bootstrap" : "True",
+        "criterion" : "entropy",
+        "max_depth" : "66",
+        "max_depth_type" : "int",
+        "max_features_float" : "0.6440806918697497",
+        "max_features_special" : "log2",
+        "max_features_type" : "special",
+        "max_leaf_nodes" : "377",
+        "max_leaf_nodes_type" : "None",
+        "max_samples" : "0.4990908067051825",
+        "max_samples_type" : "float",
+        "min_impurity_decrease" : "0.32385111079807616",
+        "min_samples_leaf" : "33",
+        "min_samples_split" : "66",
+        "min_weight_fraction_leaf" : "0.10454866568211507",
+        "n_estimators" : "366",
+        "oob_score" : "True"
+      },
+      "pc-active-parameters" : [ "bootstrap", "criterion", "max_depth", "max_depth_type", "max_features_special", "max_features_type", "max_leaf_nodes_type", "max_samples", "max_samples_type", "min_impurity_decrease", "min_samples_leaf", "min_samples_split", "min_weight_fraction_leaf", "n_estimators", "oob_score" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 1.12531,
+  "r-run-length" : 0.0,
+  "r-quality" : -0.26666666666666666,
+  "r-result-seed" : 9975400,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 7.363
+}

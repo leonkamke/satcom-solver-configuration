@@ -1,0 +1,950 @@
+08:16:32.616 [main] INFO  c.u.c.b.a.l.ComplexLoggingOptions - Logging to: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario/log-run14.txt
+08:16:32.624 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Algorithm Execution & Abstraction Toolkit is v2.10.03-master-814 (ebf4c8c913d5) 
+08:16:32.624 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Java Runtime Environment is OpenJDK 64-Bit Server VM (1.8.0_442) 
+08:16:32.624 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of OS is Linux 4.18.0-553.36.1.el8_10.x86_64 (amd64) 
+08:16:32.624 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of Random Forest Library is v1.10.01-master-120 (b68439c2c391) 
+08:16:32.624 [main] INFO  c.u.c.b.a.m.version.VersionTracker - Version of SMAC is v2.10.03-master-778 (3ee628ef9bf2) 
+08:16:32.624 [main] INFO  c.u.c.b.a.m.j.JCommanderHelper - Call String: smac --scenario-file Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt --seed 14 
+08:16:32.625 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ********** The next bit of output can be ignored, it is merely useful for debugging **********
+08:16:32.625 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ==========Enviroment Variables===========
+APPTAINER_CACHEDIR=/work/vx475510/.apptainer/cache
+BASH_ENV=/usr/local_host/etc/bashenv
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+}
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "$-" in 
+ *v*x*)
+ __lmod_sh_dbg='vx'
+ ;;
+ *v*)
+ __lmod_sh_dbg='v'
+ ;;
+ *x*)
+ __lmod_sh_dbg='x'
+ ;;
+ esac;
+ fi;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ set +$__lmod_sh_dbg;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ fi;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ __lmod_my_status=$?;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ echo "Shell debugging restarted" 1>&2;
+ set -$__lmod_sh_dbg;
+ fi;
+ unset __lmod_sh_dbg;
+ return $__lmod_my_status
+}
+BEEOND=/mnt/beegfs
+CC=icc
+CFXHOSTS=r23m0170*1
+CLASSPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/latest/lib/mpi.jar
+CMAKE_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64
+CMAKE_PREFIX_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/IntelDPCPP:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0
+CMPLR_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest
+CONDA_DEFAULT_ENV=sparkle
+CONDA_EXE=/rwthfs/rz/cluster/home/vx475510/miniforge3/bin/conda
+CONDA_PREFIX=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle
+CONDA_PROMPT_MODIFIER=(sparkle) 
+CONDA_PYTHON_EXE=/rwthfs/rz/cluster/home/vx475510/miniforge3/bin/python
+CONDA_ROOT=/home/vx475510/miniforge3
+CONDA_SHLVL=1
+CPATH=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include/fftw:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/dev-utilities/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/include
+CXX=icpc
+DAPL_CM_ROUTE_TIMEOUT_MS=20000
+DAT_OVERRIDE=/usr/local_host/etc/dat.conf
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/50387/bus
+DELIM_LINE=------------------------------------------------------------------------------
+DIAGUTIL_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/sys_check/sys_check.sh:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/sys_check/debugger_sys_check.py
+EBDEVELBINUTILS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/easybuild/Compiler-GCCcore-11.3.0-binutils-2.38-easybuild-devel
+EBDEVELGCCCORE=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/easybuild/Core-GCCcore-.11.3.0-easybuild-devel
+EBDEVELIMKL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/easybuild/Core-imkl-2022.1.0-easybuild-devel
+EBDEVELIMKLMINFFTW=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/easybuild/MPI-intel-2022.1.0-impi-2021.6.0-imkl-FFTW-2022.1.0-easybuild-devel
+EBDEVELIMPI=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/easybuild/Compiler-intel-2022.1.0-impi-2021.6.0-easybuild-devel
+EBDEVELINTEL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel/2022a/easybuild/Core-intel-2022a-easybuild-devel
+EBDEVELINTELMINCOMPILERS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/easybuild/Core-intel-compilers-2022.1.0-easybuild-devel
+EBDEVELNUMACTL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/easybuild/Compiler-GCCcore-11.3.0-numactl-2.0.16-easybuild-devel
+EBDEVELUCX=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/easybuild/Compiler-GCCcore-11.3.0-UCX-1.17.0-easybuild-devel
+EBDEVELZLIB=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/easybuild/Compiler-GCCcore-11.3.0-zlib-1.2.13-easybuild-devel
+EBROOTBINUTILS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0
+EBROOTGCCCORE=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0
+EBROOTIMKL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0
+EBROOTIMKLMINFFTW=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a
+EBROOTIMPI=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0
+EBROOTINTEL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel/2022a
+EBROOTINTELMINCOMPILERS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0
+EBROOTNUMACTL=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0
+EBROOTUCX=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0
+EBROOTZLIB=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0
+EBVERSIONBINUTILS=2.38
+EBVERSIONGCCCORE=11.3.0
+EBVERSIONIMKL=2022.1.0
+EBVERSIONIMKLMINFFTW=2022.1.0
+EBVERSIONIMPI=2021.6.0
+EBVERSIONINTEL=2022a
+EBVERSIONINTELMINCOMPILERS=2022.1.0
+EBVERSIONNUMACTL=2.0.16
+EBVERSIONUCX=1.17.0
+EBVERSIONZLIB=1.2.13
+ENV=/usr/local_host/etc/kshenv
+ENVIRONMENT=BATCH
+F77=ifort -f77rtl -fpconstant -intconstant
+FC=ifort
+FI_PROVIDER_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib/prov:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/libfabric/lib/prov
+FLAGS_ARCH64=-m64
+FLAGS_AUTOPAR=-parallel
+FLAGS_DEBUG=-g
+FLAGS_FAST=-O3 -ip -xSSE4.2 -axCORE-AVX2,AVX -fp-model fast=2
+FLAGS_FAST_NO_FPOPT=-O3 -ip -xSSE4.2 -axCORE-AVX2,AVX -fp-model precise
+FLAGS_FREE=-free -fpp
+FLAGS_GCCcore_ARCH64=-m64
+FLAGS_GCCcore_DEBUG=-g
+FLAGS_GCCcore_FAST=-O3 -ffast-math -mtune=native
+FLAGS_GCCcore_FAST_NO_FPOPT=-O3 -mtune=native
+FLAGS_GCCcore_FREE=-ffree-form
+FLAGS_GCCcore_OFFLOAD_OPENACC=-fopenacc
+FLAGS_GCCcore_OFFLOAD_OPENMP=-fopenmp
+FLAGS_GCCcore_OPENMP=-fopenmp
+FLAGS_GCCcore_PIC=-fPIC -shared
+FLAGS_GCCcore_RPATH=-Wl,-rpath=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64
+FLAGS_GCCcore_RUNTIME_LINKER=-Wl,-rpath=
+FLAGS_MPI_BATCH=
+FLAGS_OPENMP=-qopenmp
+FLAGS_PIC=-fPIC -shared
+FLAGS_RPATH=-Wl,-rpath=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin
+FLAGS_RUNTIME_LINKER=-Wl,-rpath=
+FLAGS_intel_compilers_ARCH64=-m64
+FLAGS_intel_compilers_AUTOPAR=-parallel
+FLAGS_intel_compilers_DEBUG=-g
+FLAGS_intel_compilers_FAST=-O3 -ip -xSSE4.2 -axCORE-AVX2,AVX -fp-model fast=2
+FLAGS_intel_compilers_FAST_NO_FPOPT=-O3 -ip -xSSE4.2 -axCORE-AVX2,AVX -fp-model precise
+FLAGS_intel_compilers_FREE=-free -fpp
+FLAGS_intel_compilers_OPENMP=-qopenmp
+FLAGS_intel_compilers_PIC=-fPIC -shared
+FLAGS_intel_compilers_RPATH=-Wl,-rpath=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin
+FLAGS_intel_compilers_RUNTIME_LINKER=-Wl,-rpath=
+FLEXIBLAS_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64/flexiblas
+FPGA_VARS_DIR=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/lib/oclfpga
+GCCcore_CC=gcc
+GCCcore_CPP=cpp
+GCCcore_CXX=g++
+GCCcore_F77=gfortran -fno-sign-zero
+GCCcore_FC=gfortran
+GCCcore_OBJC=gcc
+GCCcore_OBJCXX=g++
+GCCcore_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0
+GDB_INFO=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/documentation/info
+HOME=/home/vx475510
+HOME_SNAPSHOT=/home/vx475510/.snapshots
+HOSTNAME=r23m0170
+HPCWORK=/hpcwork/vx475510
+INFOPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/gdb/intel64/lib
+INTELARCH=64
+INTELFPGAOCLSDKROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/lib/oclfpga
+INTEL_PYTHONHOME=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/dep
+I_MPI_FABRICS=shm:ofi
+I_MPI_JOB_SIGNAL_PROPAGATION=on
+I_MPI_OFI_PROVIDER=mlx
+I_MPI_PMI_LIBRARY=/opt/slurm/current/lib/libpmi2.so
+I_MPI_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0
+JAVA_TOOL_OPTIONS=-Xmx2048m
+KMP_DUPLICATE_LIB_OK=True
+KMP_INIT_AT_FORK=FALSE
+LANG=en_US.UTF-8
+LASTCOMPILER=intel_compilers
+LASTMPI=impi
+LDPATH=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib
+LD_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib/release:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/lib/intel64/gcc4.8:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib/x64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/native/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/
+LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib/release:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/lib/release:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/libfabric/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest/lib/intel64/gcc4.8:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/lib/intel64/gcc4.8:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib/x64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/lib
+LMOD_AVAIL_STYLE=system:<grouped>
+LMOD_CMD=/opt/lmod/8.7.37/libexec/lmod
+LMOD_DIR=/opt/lmod/8.7.37/libexec
+LMOD_FAMILY_MPI=impi
+LMOD_FAMILY_MPI_VERSION=2021.6.0
+LMOD_PACKAGE_PATH=/opt/lmod/config
+LMOD_PKG=/opt/lmod/8.7.37
+LMOD_ROOT=/opt/lmod
+LMOD_SETTARG_FULL_SUPPORT=no
+LMOD_SYSTEM_DEFAULT_MODULES=NHRDEFAULT/2022a
+LMOD_VERSION=8.7.37
+LMOD_sys=Linux
+LOADEDMODULES=GCCcore/.11.3.0:binutils/2.38:intel-compilers/2022.1.0:impi/2021.6.0:zlib/1.2.13:numactl/2.0.16:UCX/1.17.0:imkl/2022.1.0:imkl-FFTW/2022.1.0:intel/2022a
+LOGINPID=52840
+LOGNAME=vx475510
+MANPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/share/man:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/share/man:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/man:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/documentation/en/man/common:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/share/man:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/share/man:/usr/local_host/man:/usr/local_rwth/man:/usr/man:/usr/share/man:/usr/local/man:/usr/local/share/man:/opt/slurm/current/share/man
+MKLROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0
+MKL_EXAMPLES=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/examples
+MODULEPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/MPI/intel/2022.1.0/impi/2021.6.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/intel/2022.1.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Containers:/work/vx475510/.local/easybuild/modules/all/MPI/intel/2022.1.0/impi/2021.6.0:/work/vx475510/.local/easybuild/modules/all/Compiler/intel/2022.1.0:/work/vx475510/.local/easybuild/modules/all/Compiler/GCCcore/11.3.0:/work/vx475510/.local/easybuild/modules/all/Core:/work/vx475510/.local/easybuild/modules/all/Containers
+MODULEPATH_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all
+MODULESHOME=/opt/lmod/8.7.37
+MPICC=mpiicc
+MPICXX=mpiicpc
+MPIEXEC=/usr/local_host/bin/srun
+MPIF77=mpiifort -f77rtl -fpconstant -intconstant
+MPIFC=mpiifort
+MPI_BINDIR=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/latest/bin
+MPI_INCLUDE=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/latest/include
+MPI_LIBDIR=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/latest/lib
+MPI_NAME=intelmpi
+NHR_SCRATCH=/hpcwork/vx475510
+NLSPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin/locale/%l_%t/%N
+NODENAME=unknown
+OCL_ICD_FILENAMES=libintelocl_emu.so:libalteracl.so:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/lib/x64/libintelocl.so
+OLDPWD=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+ONEAPI_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0
+PATH=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/bin:/home/vx475510/miniforge3/bin:/rwthfs/rz/cluster/home/vx475510/miniforge3/condabin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/bin/intel64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/bin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/bin:/usr/local_host/bin:/usr/local_host/sbin:/usr/local_rwth/bin:/usr/local_rwth/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/singularity/bin:/usr/local/bin:/usr/local/sbin:/opt/slurm/current/sbin:/opt/slurm/current/bin
+PKG_CONFIG_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/pkgconfig:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib/pkgconfig:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib/pkgconfig:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib/pkgconfig
+PMI_FD=13
+PMI_JOBID=56117688.0
+PMI_RANK=0
+PMI_SIZE=1
+PSRC=/rwthfs/rz/SW/HPC/examples
+PUREOPTIONS= -cache-dir=/work/vx475510
+PWD=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+RWTH_HPC_FAMILY_MPI=impi
+RWTH_HPC_FAMILY_MPI_VERSION=2021.6.0
+R_CLGEN=23
+R_CPUGROUPS=sapphire_rapids
+R_DELIMITER=------------------------------------------------------------------------------
+R_GROUPS=lmod,claix23
+R_HOSTNAME=r23m0170.hpc.itc.rwth-aachen.de
+R_HWARCH=intel_64
+R_HWTYPE=i386
+R_HW_HOSTNAME=r23m0170.hpc.itc.rwth-aachen.de
+R_HW_NPROC=96
+R_HW_REALMEM=262144
+R_IB=claix23
+R_INITENVDIR=/usr/local_host/etc
+R_LIBS_USER=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/irace-v4.2.0
+R_LOGFILEDIR=/usr/local_host/logfiles
+R_LOGINHOST=r23m0170.hpc.itc.rwth-aachen.de
+R_LOGINMODE=BATCH
+R_LOGINNAME=vx475510
+R_LOGINPID=52840
+R_LOGINTAG=52840@r23m0170.hpc.itc.rwth-aachen.de
+R_LOGINTAG_UID=r23m0170_50387
+R_LOGNAME=vx475510
+R_MPI_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/latest
+R_NAME=r23m0170
+R_OPA=
+R_OSDIST=ROCKY
+R_OSDISTMAJVERS=8
+R_OSDISTVERS=8.10
+R_OSNAME=LINUX
+R_OSTYPE=LINUX
+R_OSVERSION=4.18
+R_REMOTEHOST=unknown
+R_SERVICE=batch
+R_SERVICES=batch
+R_SHLVL=1
+R_SLURM_CLUSTER=rcc
+R_SLURM_HOSTLISTFILE=/w0/tmp/slurm_vx475510.56117688/.hostfile
+R_SLURM_ROLES=compute
+R_SVC_LDAP_MASTER=ldap01.hpc.itc.rwth-aachen.de
+R_WLM_ABAQUSHOSTLIST=[['r23m0170.hpc.itc.rwth-aachen.de', 1]]
+R_WLM_CFXHOSTLIST=r23m0170*1
+R_WLM_HOSTLISTFILE=/w0/tmp/slurm_vx475510.56117688/.hostfile
+R_WLM_JOB_ID=SLURM_56117673_12
+R_WLM_TYPE=slurm
+R_yARCH=x86_64/intel/sapphirerapids
+SALLOC_CONSTRAINT=Rocky8
+SBATCH_CONSTRAINT=Rocky8
+SHELL=/usr/local_rwth/bin/zsh
+SHLVL=2
+SLURMD_NODENAME=r23m0170
+SLURM_ARRAY_JOB_ID=56117673
+SLURM_ARRAY_TASK_COUNT=25
+SLURM_ARRAY_TASK_ID=12
+SLURM_ARRAY_TASK_MAX=24
+SLURM_ARRAY_TASK_MIN=0
+SLURM_ARRAY_TASK_STEP=1
+SLURM_CLUSTER_NAME=rcc
+SLURM_CONF=/etc/slurm/slurm.conf
+SLURM_CONSTRAINT=Rocky8
+SLURM_CPUS_ON_NODE=1
+SLURM_CPU_BIND=quiet,mask_cpu:0x000000040000000000000000
+SLURM_CPU_BIND_LIST=0x000000040000000000000000
+SLURM_CPU_BIND_TYPE=mask_cpu:
+SLURM_CPU_BIND_VERBOSE=quiet
+SLURM_DISTRIBUTION=cyclic
+SLURM_EXPORT_ENV=NONE
+SLURM_GET_USER_ENV=1
+SLURM_GTIDS=0
+SLURM_JOBID=56117688
+SLURM_JOB_ACCOUNT=default
+SLURM_JOB_CPUS_PER_NODE=1
+SLURM_JOB_CPUS_PER_NODE_PACK_GROUP_0=1
+SLURM_JOB_DEPENDENCY=
+SLURM_JOB_GID=50387
+SLURM_JOB_ID=56117688
+SLURM_JOB_NAME=SMAC2:_RandomForest_on_Iris.sh
+SLURM_JOB_NODELIST=r23m0170
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=c23ms
+SLURM_JOB_QOS=normal
+SLURM_JOB_UID=50387
+SLURM_JOB_USER=vx475510
+SLURM_LAUNCH_NODE_IPADDR=134.61.45.3
+SLURM_LOCALID=0
+SLURM_MEM_PER_CPU=2541
+SLURM_MPI_TYPE=pmi2
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=r23m0170
+SLURM_NODE_ALIASES=(null)
+SLURM_NPROCS=1
+SLURM_NTASKS=1
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_SCRIPT_CONTEXT=prolog_task
+SLURM_SRUN_COMM_HOST=134.61.45.3
+SLURM_SRUN_COMM_PORT=36007
+SLURM_STEPID=0
+SLURM_STEP_ID=0
+SLURM_STEP_LAUNCHER_PORT=36007
+SLURM_STEP_NODELIST=r23m0170
+SLURM_STEP_NUM_NODES=1
+SLURM_STEP_NUM_TASKS=1
+SLURM_STEP_TASKS_PER_NODE=1
+SLURM_SUBMIT_DIR=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+SLURM_SUBMIT_HOST=login23-1.hpc.itc.rwth-aachen.de
+SLURM_TASKS_PER_NODE=1
+SLURM_TASK_PID=53468
+SLURM_TOPOLOGY_ADDR=spines1234.ibsw07.r23m0170
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.node
+SLURM_UMASK=0007
+SLURM_WORKING_CLUSTER=rcc:wlm23-1:6750:9728:109
+SRUN_DEBUG=3
+TBBROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest
+TEMP=/w0/tmp/slurm_vx475510.56117688
+TMP=/w0/tmp/slurm_vx475510.56117688
+TMPDIR=/w0/tmp/slurm_vx475510.56117688
+TMPSESS=/w0/tmp/slurm_vx475510.56117688
+TZ=:/etc/localtime
+USER=vx475510
+WORK=/work/vx475510
+WORK_SNAPSHOT=/work/vx475510/.snapshots
+XDG_DATA_DIRS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/share:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/share:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/share:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/share:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/share:/usr/local/share:/usr/share
+XDG_RUNTIME_DIR=/run/user/50387
+XDG_SESSION_ID=c291124
+_CE_CONDA=
+_CE_M=
+_LMFILES_=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core/GCCcore/.11.3.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0/binutils/2.38.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core/intel-compilers/2022.1.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/intel/2022.1.0/impi/2021.6.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0/zlib/1.2.13.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0/numactl/2.0.16.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0/UCX/1.17.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core/imkl/2022.1.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/MPI/intel/2022.1.0/impi/2021.6.0/imkl-FFTW/2022.1.0.lua:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core/intel/2022a.lua
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0gewptcGkgPSAiaW1waSIsCn0sCm1UID0gewpHQ0Njb3JlID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db3JlL0dDQ2NvcmUvLjExLjMuMC5sdWEiLApmdWxsTmFtZSA9ICJHQ0Njb3JlLy4xMS4zLjAiLApsb2FkT3JkZXIgPSAxLApwcm9wVCA9IHsKdHlwZV8gPSB7CmNvbXBpbGVyID0gMSwKfSwKfSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJHQ0Nj
+_ModuleTable002_=b3JlLy4xMS4zLjAiLAp3ViA9ICJzMDAwMDAwMDAuMDAwMDAwMDExLjAwMDAwMDAwMy4qemZpbmFsIiwKfSwKVUNYID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db21waWxlci9HQ0Njb3JlLzExLjMuMC9VQ1gvMS4xNy4wLmx1YSIsCmZ1bGxOYW1lID0gIlVDWC8xLjE3LjAiLApsb2FkT3JkZXIgPSA3LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMiwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIlVDWC8xLjE3LjAiLAp3ViA9ICIwMDAwMDAwMDEuMDAwMDAwMDE3Lip6ZmluYWwiLAp9LApiaW51dGlscyA9IHsKZm4gPSAiL2N2bWZzL3NvZnR3YXJlLmhw
+_ModuleTable003_=Yy5yd3RoLmRlL0xpbnV4L1JIOC94ODZfNjQvaW50ZWwvc2FwcGhpcmVyYXBpZHMvbW9kdWxlcy9hbGwvQ29tcGlsZXIvR0NDY29yZS8xMS4zLjAvYmludXRpbHMvMi4zOC5sdWEiLApmdWxsTmFtZSA9ICJiaW51dGlscy8yLjM4IiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJiaW51dGlscy8yLjM4IiwKd1YgPSAiMDAwMDAwMDAyLjAwMDAwMDAzOC4qemZpbmFsIiwKfSwKaW1rbCA9IHsKZm4gPSAiL2N2bWZzL3NvZnR3YXJlLmhwYy5yd3RoLmRlL0xpbnV4L1JIOC94ODZfNjQvaW50ZWwvc2FwcGhpcmVyYXBpZHMvbW9kdWxlcy9hbGwvQ29yZS9pbWtsLzIwMjIuMS4wLmx1YSIsCmZ1bGxO
+_ModuleTable004_=YW1lID0gImlta2wvMjAyMi4xLjAiLApsb2FkT3JkZXIgPSA4LApwcm9wVCA9IHsKdHlwZV8gPSB7Cm1hdGggPSAxLAp9LAp9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImlta2wvMjAyMi4xLjAiLAp3ViA9ICJzMDAwMDIwMjIuMDAwMDAwMDAxLip6ZmluYWwiLAp9LApbImlta2wtRkZUVyJdID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9NUEkvaW50ZWwvMjAyMi4xLjAvaW1waS8yMDIxLjYuMC9pbWtsLUZGVFcvMjAyMi4xLjAubHVhIiwKZnVsbE5hbWUgPSAiaW1rbC1GRlRXLzIwMjIuMS4wIiwKbG9hZE9yZGVyID0gOSwK
+_ModuleTable005_=cHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJpbWtsLUZGVFcvMjAyMi4xLjAiLAp3ViA9ICIwMDAwMDIwMjIuMDAwMDAwMDAxLip6ZmluYWwiLAp9LAppbXBpID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db21waWxlci9pbnRlbC8yMDIyLjEuMC9pbXBpLzIwMjEuNi4wLmx1YSIsCmZ1bGxOYW1lID0gImltcGkvMjAyMS42LjAiLApsb2FkT3JkZXIgPSA0LApwcm9wVCA9IHsKdHlwZV8gPSB7Cm1waSA9IDEsCn0sCn0sCnN0YWNrRGVwdGggPSAxLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiaW1w
+_ModuleTable006_=aS8yMDIxLjYuMCIsCndWID0gInMwMDAwMjAyMS4wMDAwMDAwMDYuKnpmaW5hbCIsCn0sCmludGVsID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db3JlL2ludGVsLzIwMjJhLmx1YSIsCmZ1bGxOYW1lID0gImludGVsLzIwMjJhIiwKbG9hZE9yZGVyID0gMTAsCm9yaWdVc2VyTmFtZSA9ICJOSFJERUZBVUxULzIwMjJhIiwKcHJvcFQgPSB7CnR5cGVfID0gewp0b29sY2hhaW4gPSAxLAp9LAp9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImludGVsLzIwMjJhIiwKd1YgPSAiczAwMDAyMDIyLiphLip6ZmluYWwiLAp9LApbImlu
+_ModuleTable007_=dGVsLWNvbXBpbGVycyJdID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db3JlL2ludGVsLWNvbXBpbGVycy8yMDIyLjEuMC5sdWEiLApmdWxsTmFtZSA9ICJpbnRlbC1jb21waWxlcnMvMjAyMi4xLjAiLApsb2FkT3JkZXIgPSAzLApwcm9wVCA9IHsKdHlwZV8gPSB7CmNvbXBpbGVyID0gMSwKfSwKfSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJpbnRlbC1jb21waWxlcnMvMjAyMi4xLjAiLAp3ViA9ICJzMDAwMDIwMjIuMDAwMDAwMDAxLip6ZmluYWwiLAp9LApudW1hY3RsID0gewpmbiA9ICIvY3ZtZnMvc29mdHdhcmUuaHBj
+_ModuleTable008_=LnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db21waWxlci9HQ0Njb3JlLzExLjMuMC9udW1hY3RsLzIuMC4xNi5sdWEiLApmdWxsTmFtZSA9ICJudW1hY3RsLzIuMC4xNiIsCmxvYWRPcmRlciA9IDYsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAzLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAibnVtYWN0bC8yLjAuMTYiLAp3ViA9ICIwMDAwMDAwMDIuMDAwMDAwMDAwLjAwMDAwMDAxNi4qemZpbmFsIiwKfSwKemxpYiA9IHsKZm4gPSAiL2N2bWZzL3NvZnR3YXJlLmhwYy5yd3RoLmRlL0xpbnV4L1JIOC94ODZfNjQvaW50ZWwvc2FwcGhpcmVyYXBpZHMvbW9kdWxlcy9hbGwvQ29tcGlsZXIvR0NDY29yZS8x
+_ModuleTable009_=MS4zLjAvemxpYi8xLjIuMTMubHVhIiwKZnVsbE5hbWUgPSAiemxpYi8xLjIuMTMiLApsb2FkT3JkZXIgPSA1LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMywKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gInpsaWIvMS4yLjEzIiwKd1YgPSAiMDAwMDAwMDAxLjAwMDAwMDAwMi4wMDAwMDAwMTMuKnpmaW5hbCIsCn0sCn0sCm1wYXRoQSA9IHsKCiIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9NUEkvaW50ZWwvMjAyMi4xLjAvaW1waS8yMDIxLjYuMCIKLCAiL2N2bWZzL3NvZnR3YXJlLmhwYy5yd3RoLmRlL0xpbnV4L1JIOC94ODZfNjQvaW50ZWwvc2FwcGhpcmVyYXBpZHMv
+_ModuleTable010_=bW9kdWxlcy9hbGwvQ29tcGlsZXIvaW50ZWwvMjAyMi4xLjAiCiwgIi9jdm1mcy9zb2Z0d2FyZS5ocGMucnd0aC5kZS9MaW51eC9SSDgveDg2XzY0L2ludGVsL3NhcHBoaXJlcmFwaWRzL21vZHVsZXMvYWxsL0NvbXBpbGVyL0dDQ2NvcmUvMTEuMy4wIgosICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db3JlIgosICIvY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9tb2R1bGVzL2FsbC9Db250YWluZXJzIgosICIvd29yay92eDQ3NTUxMC8ubG9jYWwvZWFzeWJ1aWxkL21vZHVsZXMvYWxsL01QSS9pbnRlbC8yMDIy
+_ModuleTable011_=LjEuMC9pbXBpLzIwMjEuNi4wIgosICIvd29yay92eDQ3NTUxMC8ubG9jYWwvZWFzeWJ1aWxkL21vZHVsZXMvYWxsL0NvbXBpbGVyL2ludGVsLzIwMjIuMS4wIgosICIvd29yay92eDQ3NTUxMC8ubG9jYWwvZWFzeWJ1aWxkL21vZHVsZXMvYWxsL0NvbXBpbGVyL0dDQ2NvcmUvMTEuMy4wIgosICIvd29yay92eDQ3NTUxMC8ubG9jYWwvZWFzeWJ1aWxkL21vZHVsZXMvYWxsL0NvcmUiLCAiL3dvcmsvdng0NzU1MTAvLmxvY2FsL2Vhc3lidWlsZC9tb2R1bGVzL2FsbC9Db250YWluZXJzIiwKfSwKc3lzdGVtQmFzZU1QQVRIID0gIi9jdm1mcy9zb2Z0d2FyZS5ocGMucnd0aC5kZS9MaW51eC9SSDgveDg2XzY0L2ludGVsL3NhcHBoaXJlcmFwaWRzL21vZHVsZXMvYWxsL0NvcmU6L2N2
+_ModuleTable012_=bWZzL3NvZnR3YXJlLmhwYy5yd3RoLmRlL0xpbnV4L1JIOC94ODZfNjQvaW50ZWwvc2FwcGhpcmVyYXBpZHMvbW9kdWxlcy9hbGwvQ29udGFpbmVycyIsCn0K
+_ModuleTable_Sz_=12
+__CONDA_SHLVL_0_CPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include/fftw:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/dev-utilities/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/include:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/include
+__Init_Default_Modules=1
+__LMOD_REF_COUNT_CMAKE_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64:1
+__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/IntelDPCPP:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0:1
+__LMOD_REF_COUNT_CPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include/fftw:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/dev-utilities/latest/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/include:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/include:1
+__LMOD_REF_COUNT_DIAGUTIL_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/sys_check/sys_check.sh:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/sys_check/debugger_sys_check.py:1
+__LMOD_REF_COUNT_FI_PROVIDER_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib/prov:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/libfabric/lib/prov:1
+__LMOD_REF_COUNT_FLEXIBLAS_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64/flexiblas:1
+__LMOD_REF_COUNT_INFOPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/debugger/latest/gdb/intel64/lib:1
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib/release:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/lib/intel64/gcc4.8:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib/x64:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64:1
+__LMOD_REF_COUNT_LIBRARY_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib/release:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/lib/release:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/mpi/latest/libfabric/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/latest/lib/intel64/gcc4.8:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/lib/intel64/gcc4.8:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib/x64:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/lib:1
+__LMOD_REF_COUNT_MANPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/share/man:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/share/man:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/man:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/documentation/en/man/common:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/share/man:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/share/man:1;/usr/local_host/man:1;/usr/local_rwth/man:1;/usr/man:1;/usr/share/man:1;/usr/local/man:1;/usr/local/share/man:1;/opt/slurm/current/share/man:1
+__LMOD_REF_COUNT_MODULEPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/MPI/intel/2022.1.0/impi/2021.6.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/intel/2022.1.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Compiler/GCCcore/11.3.0:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Core:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/modules/all/Containers:1;/work/vx475510/.local/easybuild/modules/all/MPI/intel/2022.1.0/impi/2021.6.0:1;/work/vx475510/.local/easybuild/modules/all/Compiler/intel/2022.1.0:1;/work/vx475510/.local/easybuild/modules/all/Compiler/GCCcore/11.3.0:1;/work/vx475510/.local/easybuild/modules/all/Core:1;/work/vx475510/.local/easybuild/modules/all/Containers:1
+__LMOD_REF_COUNT_NLSPATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/latest/linux/compiler/lib/intel64_lin/locale/%l_%t/%N:1
+__LMOD_REF_COUNT_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/bin/intel64:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/bin:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/bin:1;/usr/local_host/bin:1;/usr/local_host/sbin:1;/usr/local_rwth/bin:1;/usr/local_rwth/sbin:1;/usr/bin:1;/usr/sbin:1;/bin:1;/sbin:1;/opt/singularity/bin:1;/usr/local/bin:1;/usr/local/sbin:1;/opt/slurm/current/sbin:1;/opt/slurm/current/bin:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/pkgconfig:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib/pkgconfig:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib/pkgconfig:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib/pkgconfig:1
+__LMOD_REF_COUNT_XDG_DATA_DIRS=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/share:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/share:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/share:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/share:1;/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/share:1;/usr/local/share:1;/usr/share:1
+__LMOD_STACK_CC=aWNj:Z2Nj
+__LMOD_STACK_CPP=false:Y3Bw
+__LMOD_STACK_CXX=aWNwYw==:Zysr
+__LMOD_STACK_F77=aWZvcnQgLWY3N3J0bCAtZnBjb25zdGFudCAtaW50Y29uc3RhbnQ=:Z2ZvcnRyYW4gLWZuby1zaWduLXplcm8=
+__LMOD_STACK_FC=aWZvcnQ=:Z2ZvcnRyYW4=
+__LMOD_STACK_FLAGS_ARCH64=LW02NA==:LW02NA==
+__LMOD_STACK_FLAGS_AUTOPAR=LXBhcmFsbGVs:false
+__LMOD_STACK_FLAGS_DEBUG=LWc=:LWc=
+__LMOD_STACK_FLAGS_FAST=LU8zIC1pcCAteFNTRTQuMiAtYXhDT1JFLUFWWDIsQVZYIC1mcC1tb2RlbCBmYXN0PTI=:LU8zIC1mZmFzdC1tYXRoIC1tdHVuZT1uYXRpdmU=
+__LMOD_STACK_FLAGS_FAST_NO_FPOPT=LU8zIC1pcCAteFNTRTQuMiAtYXhDT1JFLUFWWDIsQVZYIC1mcC1tb2RlbCBwcmVjaXNl:LU8zIC1tdHVuZT1uYXRpdmU=
+__LMOD_STACK_FLAGS_FREE=LWZyZWUgLWZwcA==:LWZmcmVlLWZvcm0=
+__LMOD_STACK_FLAGS_LINKER=false
+__LMOD_STACK_FLAGS_LPATH=false
+__LMOD_STACK_FLAGS_MATH_INCLUDE=false
+__LMOD_STACK_FLAGS_MATH_LINKER=false
+__LMOD_STACK_FLAGS_MATH_RPATH=false
+__LMOD_STACK_FLAGS_OFFLOAD_OPENACC=false:LWZvcGVuYWNj
+__LMOD_STACK_FLAGS_OFFLOAD_OPENMP=false:LWZvcGVubXA=
+__LMOD_STACK_FLAGS_OPENMP=LXFvcGVubXA=:LWZvcGVubXA=
+__LMOD_STACK_FLAGS_PIC=LWZQSUMgLXNoYXJlZA==:LWZQSUMgLXNoYXJlZA==
+__LMOD_STACK_FLAGS_RPATH=LVdsLC1ycGF0aD0vY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9zb2Z0d2FyZS9pbnRlbC1jb21waWxlcnMvMjAyMi4xLjAvY29tcGlsZXIvbGF0ZXN0L2xpbnV4L2NvbXBpbGVyL2xpYi9pbnRlbDY0X2xpbg==:LVdsLC1ycGF0aD0vY3ZtZnMvc29mdHdhcmUuaHBjLnJ3dGguZGUvTGludXgvUkg4L3g4Nl82NC9pbnRlbC9zYXBwaGlyZXJhcGlkcy9zb2Z0d2FyZS9HQ0Njb3JlLzExLjMuMC9saWI2NA==
+__LMOD_STACK_FLAGS_RUNTIME_LINKER=LVdsLC1ycGF0aD0=:LVdsLC1ycGF0aD0=
+__LMOD_STACK_LASTCOMPILER=aW50ZWxfY29tcGlsZXJz:R0NDY29yZQ==
+__LMOD_STACK_LASTMPI=aW1waQ==
+__LMOD_STACK_MPICC=bXBpaWNj
+__LMOD_STACK_MPICXX=bXBpaWNwYw==
+__LMOD_STACK_MPIF77=bXBpaWZvcnQgLWY3N3J0bCAtZnBjb25zdGFudCAtaW50Y29uc3RhbnQ=
+__LMOD_STACK_MPIFC=bXBpaWZvcnQ=
+__LMOD_STACK_OBJC=false:Z2Nj
+__LMOD_STACK_OBJCXX=false:Zysr
+intel_compilers_CC=icc
+intel_compilers_CXX=icpc
+intel_compilers_F77=ifort -f77rtl -fpconstant -intconstant
+intel_compilers_FC=ifort
+intel_compilers_ROOT=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0
+
+08:16:32.632 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - Hostname:r23m0170.hpc.itc.rwth-aachen.de
+08:16:32.632 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - ==========System Properties==============
+ERRLOG=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario/log-err14.txt
+NUMRUN=14
+OUTPUTDIR=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario
+ROOT-LEVEL=INFO
+RUNLOG=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario/log-run14.txt
+STDOUT-LEVEL=INFO
+WARNLOG=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario/log-warn14.txt
+awt.toolkit=sun.awt.X11.XToolkit
+file.encoding=UTF-8
+file.encoding.pkg=sun.io
+file.separator=/
+java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
+java.awt.printerjob=sun.print.PSPrinterJob
+java.class.path=/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/conf/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/patches/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/aeatk.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/aeatk-src.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-collections-3.2.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-collections-3.2.1-sources.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-io-2.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-math-2.2.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/commons-math3-3.3.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/DomainInter.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/exp4j-0.3.10.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/exp4j-0.4.3.BETA-3.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/fastrf.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/fastrf-src.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/guava-14.0.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-annotations-2.3.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-core-2.3.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jackson-databind-2.3.1.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/Jama-1.0.2.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcip-annotations.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcip-annotations-src.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jcommander.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/jmatharray.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-access-1.1.2.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-classic-1.1.2.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/logback-core-1.1.2.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/numerics4j-1.3.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/opencsv-2.3.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/slf4j-api-1.7.5.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/smac.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/smac-src.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/spi-0.2.4.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/*.jar:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/patches/
+java.class.version=52.0
+java.endorsed.dirs=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/endorsed
+java.ext.dirs=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/ext:/usr/java/packages/lib/ext
+java.home=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre
+java.io.tmpdir=/tmp
+java.library.path=/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl-FFTW/2022.1.0-iimpi-2022a/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/mkl/2022.1.0/lib/intel64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/imkl/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/UCX/1.17.0-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/numactl/2.0.16-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/zlib/1.2.13-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/libfabric/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib/release:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/impi/2021.6.0-intel-compilers-2022.1.0/mpi/2021.6.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/tbb/2021.6.0/lib/intel64/gcc4.8:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib/x64:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/intel-compilers/2022.1.0/compiler/2022.1.0/linux/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/binutils/2.38-GCCcore-11.3.0/lib:/cvmfs/software.hpc.rwth.de/Linux/RH8/x86_64/intel/sapphirerapids/software/GCCcore/11.3.0/lib64:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/native/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/lib/:/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+java.runtime.name=OpenJDK Runtime Environment
+java.runtime.version=1.8.0_442-b06
+java.specification.maintenance.version=6
+java.specification.name=Java Platform API Specification
+java.specification.vendor=Oracle Corporation
+java.specification.version=1.8
+java.vendor=Red Hat, Inc.
+java.vendor.url=https://www.redhat.com/
+java.vendor.url.bug=https://access.redhat.com/support/cases/
+java.version=1.8.0_442
+java.vm.info=mixed mode
+java.vm.name=OpenJDK 64-Bit Server VM
+java.vm.specification.name=Java Virtual Machine Specification
+java.vm.specification.vendor=Oracle Corporation
+java.vm.specification.version=1.8
+java.vm.vendor=Red Hat, Inc.
+java.vm.version=25.442-b06
+line.separator=
+
+logback.configurationFile=ca/ubc/cs/beta/aeatk/logging/complex-logback.xml
+os.arch=amd64
+os.name=Linux
+os.version=4.18.0-553.36.1.el8_10.x86_64
+path.separator=:
+sun.arch.data.model=64
+sun.boot.class.path=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/jfr.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/classes
+sun.boot.library.path=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.442.b06-2.el8.x86_64/jre/lib/amd64
+sun.cpu.endian=little
+sun.cpu.isalist=
+sun.io.unicode.encoding=UnicodeLittle
+sun.java.command=ca.ubc.cs.beta.aeatk.ant.execscript.Launcher ca.ubc.cs.beta.smac.executors.SMACExecutor --scenario-file Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt --seed 14
+sun.java.launcher=SUN_STANDARD
+sun.jnu.encoding=UTF-8
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+sun.os.patch.level=unknown
+user.country=US
+user.dir=/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+user.home=/home/vx475510
+user.language=en
+user.name=vx475510
+user.timezone=GMT+01:00
+
+08:16:32.633 [main] INFO  c.u.c.b.a.m.j.JCommanderHelper - ==========Configuration Options==========
+[SMACOptions]
+ adaptiveCapping = false
+ alwaysRunInitialConfiguration = false
+ capAddSlack = 1.0
+ capSlack = 1.3
+classicInitModeOpts = [ClassicInitializationProcedureOptions]
+		 initialIncumbentRuns = 1
+
+dciModeOpts = [DoublingCappingInitializationProcedureOptions]
+		 numberOfChallengers = 2
+		 numberOfRunsPerChallenger = 2
+
+ucip = [UnbiasChallengerInitializationProcedureOptions]
+		 numberOfChallengers = 2
+		 numberOfRunsPerChallenger = 2
+		 cpulimit = 0
+
+ deterministicInstanceOrdering = false
+ doValidation = false
+ execMode = SMAC
+ experimentDir = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/
+ expFunc = null
+help = [HelpOptions]
+		 showHiddenParameters = false
+		 showHelp = false
+		 helpLevel = BASIC
+		 showVersion = false
+		 helpDefaults = /home/vx475510/.aeatk/help.opt
+
+ initialChallengeRuns = 1
+ initialIncumbent = DEFAULT
+ initializationMode = CLASSIC
+ intensificationPercentage = 0.5
+ initialChallengers = []
+ initialChallengersIntensificationTime = 2147483647
+ iterativeCappingBreakOnFirstCompletion = false
+ iterativeCappingK = 1
+logOptions = [ComplexLoggingOptions]
+		 consoleLogLevel = INFO
+		 logLevel = INFO
+
+ maxIncumbentRuns = 2000
+mbOptions = [ModelBuildingOptions]
+		 maskCensoredDataAsKappaMax = false
+		 maskInactiveConditionalParametersAsDefaultValue = true
+		 maskCensoredDataAsUncensored = false
+		 imputationIterations = 2
+
+ modelHashCodeFile = null
+ numberOfChallengers = 10
+ numberOfRandomConfigsInEI = 10000
+ numberOfRandomConfigsUsedForLocalSearch = 0
+ numPCA = 7
+ optionFile = null
+ optionFile2 = null
+randomForestOptions = [RandomForestOptions]
+		 brokenVarianceCalculation = false
+		 freeMemoryPercentageToSubsample = 0.25
+		 fullTreeBootstrap = false
+		 ignoreConditionality = false
+		 imputeMean = false
+		 logModel = false
+		 minVariance = 1.0E-14
+		 numTrees = 10
+		 penalizeImputedValues = false
+		 preprocessMarginal = true
+		 ratioFeatures = 0.8333333333333334
+		 shuffleImputedValues = false
+		 splitMin = 10
+		 storeDataInLeaves = false
+		 subsamplePercentage = 0.9
+		 subsampleValuesWhenLowMemory = false
+
+runGroupOptions = [RunGroupOptions]
+		 runGroupName = %SCENARIO_NAME
+		 runGroupExit = false
+		 replacementChar = %
+
+scenarioConfig = [ScenarioOptions]
+		 _runObj = QUALITY
+		 intraInstanceObj = null
+		 interInstanceObj = MEAN
+		limitOptions = [TerminationCriteriaOptions]
+				 tunerTimeout = 2147483647
+				 numIterations = 2147483647
+				 runtimeLimit = 600
+				 totalNumRunsLimit = 100
+				 countSMACTimeAsTunerTime = true
+				 challengeIncumbentAttempts = 1000
+				 fileToWatch = null
+
+		instanceOptions = [ProblemInstanceOptions]
+				 instanceFile = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/Iris.txt
+				 instanceFeatureFile = null
+				 testInstanceFile = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/Iris.txt
+				 checkInstanceFilesExist = false
+				 useInstances = true
+				 instanceSuffix = null
+				 testInstanceSuffix = null
+				 ignoreFeatures = false
+
+		 scenarioFile = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt
+		 outputDirectory = Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration
+		 invalidScenarioReason = null
+		algoExecOptions = [AlgorithmExecutionOptions]
+				 algoExec = /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max
+				 algoExecDir = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example
+				 deterministic = false
+				 cutoffTime = 60.0
+				 cutoffLength = 1.7976931348623157E308
+				 additionalContext = {}
+				taeOpts = [TargetAlgorithmEvaluatorOptions]
+						 targetAlgorithmEvaluator = CLI
+						 abortOnCrash = false
+						 abortOnFirstRunCrash = true
+						 retryCount = 0
+						 cacheRuns = false
+						 cacheDebug = false
+						 useDynamicCappingExclusively = false
+						 reportStrictlyIncreasingRuntimes = false
+						 boundRuns = false
+						 maxConcurrentAlgoExecs = 1
+						 exitOnFailure = false
+						 runHashCodeFile = null
+						 leakMemory = false
+						 leakMemoryAmount = 1024
+						 verifySAT = null
+						 checkSATConsistency = true
+						 checkSATConsistencyException = true
+						 callObserverBeforeCompletion = true
+						prePostOptions = [PrePostCommandOptions]
+								 preCommand = null
+								 postCommand = null
+								 exceptionOnError = false
+								 logOutput = true
+								 directory = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/.
+
+						 checkResultOrderConsistent = false
+						 skipOutstandingEvaluationsTAE = false
+						 logRequestResponses = false
+						 logRequestResponsesRCOnly = false
+						 trackRunsScheduled = false
+						 trackRunsScheduledResolution = 1.0
+						 uncleanShutdownCheck = true
+						 killCaptimeExceedingRun = true
+						 killCaptimeExceedingRunFactor = 10.0
+						 checkRunConfigsUnique = true
+						 checkRunConfigsUniqueException = true
+						 observeWalltimeIfNoRuntime = true
+						 observeWalltimeScale = 0.95
+						 observeWalltimeDelay = 5.0
+						 synchronousObserver = true
+						 taeDefaults = /home/vx475510/.aeatk/tae.opt
+						ttaedo = [TransformTargetAlgorithmEvaluatorDecoratorOptions]
+								 transform = false
+								 transformValidValuesOnly = true
+								 SAT_runtime_transform = R
+								 SAT_quality_transform = Q
+								 UNSAT_runtime_transform = R
+								 UNSAT_quality_transform = Q
+								 TIMEOUT_runtime_transform = R
+								 TIMEOUT_quality_transform = Q
+								 other_runtime_transform = R
+								 other_quality_transform = Q
+
+						tForkOptions = [ForkingTargetAlgorithmEvaluatorDecoratorOptions]
+								 forkToTAE = null
+								fPolicyOptions = [ForkingTargetAlgorithmEvaluatorDecoratorPolicyOptions]
+										 fPolicy = null
+										 duplicateOnSlaveQuickTimeout = 5
+
+
+						 fileToWatch = null
+						 warnIfNoResponseFromTAE = 120
+						 taeStopProcessingOnShutdown = true
+						 filecache = false
+						 fileCacheSource = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/./runcache
+						 fileCacheOutput = /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/./runcache
+						 fileCacheCrashOnMiss = false
+						 transformCrashedQuality = true
+						 transformCrashedQualityValue = 1.0E9
+						 filterZeroCutoffRuns = true
+
+				paramFileDelegate = [ParamConfigurationSpaceOptions]
+						 paramFile = Solvers/RandomForest/configspace.pcs
+						 searchSubspace = null
+						 searchSubspaceFile = null
+						 continuousNeighbours = 4
+
+
+
+seedOptions = [SeedOptions]
+		 seedOffset = 0
+		 numRun = 14
+		 initialSeedMap = {}
+
+ smacDefaults = /home/vx475510/.aeatk/smac.opt
+stateOpts = [StateFactoryOptions]
+		 stateSerializer = LEGACY
+		 statedeSerializer = LEGACY
+		 restoreStateFrom = null
+		 restoreIteration = null
+		 restoreScenario = null
+		 cleanOldStatesOnSuccess = true
+		 saveContextWithState = true
+
+trackingOptions = [ParamConfigurationOriginTrackingOptions]
+		 configTracking = false
+
+validationOptions = [ValidationOptions]
+		 maxTimestamp = -1.0
+		 minTimestamp = 0.0
+		 multFactor = 2.0
+		 numberOfTestInstances = 2147483647
+		 numberOfTestSeedsPerInstance = 1000
+		 numberOfValidationRuns = 1
+		 outputFileSuffix = 
+		 saveStateFile = false
+		 useWallClockTime = true
+		 validateAll = false
+		 validateOnlyIfTunerTimeReached = 0.0
+		 validateOnlyIfWallTimeReached = 0.0
+		 validateOnlyLastIncumbent = true
+		 validationHeaders = true
+		 validationRoundingMode = UP
+
+warmStartOptions = [WarmStartOptions]
+		 warmStartStateFrom = null
+		 restoreIteration = 2147483647
+
+ validationSeed = 0
+ saveRunsEveryIteration = false
+ stateQuickSaves = true
+ shutdownTAEWhenDone = true
+ validationCores = null
+ shareModelMode = false
+ shareRunDataFrequency = 300
+ shareModeModeTAE = true
+ writeRunData = true
+ defaultHandler = USE_ALL
+ sharedModeModeAssymetricMode = false
+
+[AnalyticTargetAlgorithmEvaluatorOptions]
+ simulateDelay = false
+ cores = 0
+ observerFrequency = 100
+ func = CAMELBACK
+ scaleDelay = 1.0
+
+[BlackHoleTargetAlgorithmEvaluatorOptions]
+ warnings = true
+
+[CommandLineTargetAlgorithmEvaluatorOptions]
+ observerFrequency = 500
+ concurrentExecution = true
+ cores = 1
+ logAllCallStrings = false
+ logAllResultLines = false
+ logAllCallsAndResultLines = false
+ logAllProcessOutput = false
+ listenForUpdates = true
+ paramArgumentsContainQuotes = false
+ pgEnvKillCommand = null
+ pgNiceKillCommand = bash -c "kill -s TERM -%pid"
+ pgForceKillCommand = bash -c "kill -s KILL -%pid"
+ procNiceKillCommand = kill -s TERM %pid
+ procForceKillCommand = kill -s KILL %pid
+ smacDefaults = /home/vx475510/.aeatk/cli-tae.opt
+
+[ConstantTargetAlgorithmEvaluatorOptions]
+ runResult = SAT
+ runtime = 1.0
+ quality = 0.0
+ runlength = 0.0
+ additionalRunData = 
+
+[IPCTargetAlgorithmEvaluatorOptions]
+ persistent = false
+ ipcMechanism = UDP
+ encodingMechanism = CALL_STRING
+ remoteHost = 127.0.0.1
+ remotePort = 5050
+ udpPacketSize = 4096
+ localPort = 0
+ execScript = null
+ execScriptOutput = false
+ poolConnections = false
+ ipcDefaults = /home/vx475510/.aeatk/ipc-tae.opt
+ asyncThreads = 2
+
+[PreloadedResponseTargetAlgorithmEvaluatorOptions]
+ preloadedResponses = 
+ runLength = -1.0
+ quality = 0.0
+ additionalRunData = 
+
+[RandomResponseTargetAlgorithmEvaluatorOptions]
+ simulateDelay = false
+ additionalRunData = 
+ cores = 0
+ maxResponse = 10.0
+ minResponse = 0.0
+ observerFrequency = 500
+ trendCoefficient = 0.0
+ seed = 1744614992059
+ persistent = false
+ scaleDelay = 1.0
+
+
+08:16:32.946 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - SMAC started at: Apr 14, 2025 8:16:32 AM. Minimizing mean quality.
+08:16:43.457 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - First incumbent: config 1 (internal ID: 0x000B), with mean quality: -1.0; estimate based on 1 runs.
+08:16:43.458 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Sample call for new incumbent config 1 (internal ID: 0x000B): 
+cd /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example; /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702708 -bootstrap 'True' -criterion 'gini' -max_depth_type 'None' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -max_samples_type 'None' -min_impurity_decrease '0.0' -min_samples_leaf '1' -min_samples_split '2' -min_weight_fraction_leaf '0.0' -n_estimators '100' -oob_score 'True'  
+08:16:59.220 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:16:52_54771_1095955740.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:16:52_54771_1095955740.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:16:52_54771_1095955740.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth": "93", "max_depth_type": "int", "max_features_float": "0.38804584534471276", "max_features_type": "float", "max_leaf_nodes": "511", "max_leaf_nodes_type": "int", "min_impurity_decrease": "0.4163999543913039", "min_samples_leaf": "20", "min_samples_split": "49", "min_weight_fraction_leaf": "0.04068257893278898", "n_estimators": "361", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "595167", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:16:59.221 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:16:59.221 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:16:59.221 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:16:59.221 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:16:59.221 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:16:59.343 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 595167 -bootstrap 'False' -criterion 'log_loss' -max_depth '93' -max_depth_type 'int' -max_features_float '0.38804584534471276' -max_features_type 'float' -max_leaf_nodes '511' -max_leaf_nodes_type 'int' -min_impurity_decrease '0.4163999543913039' -min_samples_leaf '20' -min_samples_split '49' -min_weight_fraction_leaf '0.04068257893278898' -n_estimators '361'  
+08:16:59.351 [main] WARN  c.u.c.b.a.t.d.s.CrashedSolutionQualityTransformingTargetAlgorithmEvaluatorDecorator - Detected CRASHED run. The Solution Quality of CRASHED runs will be transformed to the MAX(quality, 1.0E9), to disable this use --transform-crashed-quality false to change the value use --transform-crashed-quality-value
+08:17:13.730 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:07_55572_673090885.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:07_55572_673090885.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:07_55572_673090885.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "True", "criterion": "entropy", "max_depth_type": "None", "max_features_float": "0.6715473115033171", "max_features_type": "float", "max_leaf_nodes": "824", "max_leaf_nodes_type": "int", "max_samples_type": "None", "min_impurity_decrease": "0.0740537713374203", "min_samples_leaf": "32", "min_samples_split": "30", "min_weight_fraction_leaf": "0.07042025824240783", "n_estimators": "278", "oob_score": "False", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2702708", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:17:13.743 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:17:13.743 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:17:13.743 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:17:13.743 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:17:13.743 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:17:13.820 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702708 -bootstrap 'True' -criterion 'entropy' -max_depth_type 'None' -max_features_float '0.6715473115033171' -max_features_type 'float' -max_leaf_nodes '824' -max_leaf_nodes_type 'int' -max_samples_type 'None' -min_impurity_decrease '0.0740537713374203' -min_samples_leaf '32' -min_samples_split '30' -min_weight_fraction_leaf '0.07042025824240783' -n_estimators '278' -oob_score 'False'  
+08:17:28.853 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:22_56145_1364611091.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:22_56145_1364611091.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:22_56145_1364611091.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "gini", "max_depth": "48", "max_depth_type": "int", "max_features_special": "sqrt", "max_features_type": "special", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.13324386392490534", "min_samples_leaf": "37", "min_samples_split": "97", "min_weight_fraction_leaf": "0.46460990411369013", "n_estimators": "453", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "4156112", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:17:28.853 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:17:28.853 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:17:28.853 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:17:28.854 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:17:28.854 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:17:28.993 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 4156112 -bootstrap 'False' -criterion 'gini' -max_depth '48' -max_depth_type 'int' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.13324386392490534' -min_samples_leaf '37' -min_samples_split '97' -min_weight_fraction_leaf '0.46460990411369013' -n_estimators '453'  
+08:17:57.393 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:51_57279_2021290140.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:51_57279_2021290140.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:17:51_57279_2021290140.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "True", "criterion": "log_loss", "max_depth": "11", "max_depth_type": "int", "max_features_float": "0.9221887246754885", "max_features_type": "float", "max_leaf_nodes": "191", "max_leaf_nodes_type": "int", "max_samples_type": "None", "min_impurity_decrease": "0.4689569534931672", "min_samples_leaf": "13", "min_samples_split": "99", "min_weight_fraction_leaf": "0.09327714398919962", "n_estimators": "139", "oob_score": "False", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2702708", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:17:57.393 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:17:57.393 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:17:57.393 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:17:57.394 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:17:57.394 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:17:57.531 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702708 -bootstrap 'True' -criterion 'log_loss' -max_depth '11' -max_depth_type 'int' -max_features_float '0.9221887246754885' -max_features_type 'float' -max_leaf_nodes '191' -max_leaf_nodes_type 'int' -max_samples_type 'None' -min_impurity_decrease '0.4689569534931672' -min_samples_leaf '13' -min_samples_split '99' -min_weight_fraction_leaf '0.09327714398919962' -n_estimators '139' -oob_score 'False'  
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:05_58051_1392892429.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:05_58051_1392892429.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:05_58051_1392892429.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth_type": "None", "max_features_float": "0.5117889236330008", "max_features_type": "float", "max_leaf_nodes": "430", "max_leaf_nodes_type": "int", "min_impurity_decrease": "0.22316560053664053", "min_samples_leaf": "58", "min_samples_split": "84", "min_weight_fraction_leaf": "0.4217470851434753", "n_estimators": "462", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "4156112", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:18:11.516 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:18:11.630 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 4156112 -bootstrap 'False' -criterion 'log_loss' -max_depth_type 'None' -max_features_float '0.5117889236330008' -max_features_type 'float' -max_leaf_nodes '430' -max_leaf_nodes_type 'int' -min_impurity_decrease '0.22316560053664053' -min_samples_leaf '58' -min_samples_split '84' -min_weight_fraction_leaf '0.4217470851434753' -n_estimators '462'  
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:19_58637_2434156501.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:19_58637_2434156501.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:18:19_58637_2434156501.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "entropy", "max_depth_type": "None", "max_features_float": "0.14189451020214972", "max_features_type": "float", "max_leaf_nodes": "402", "max_leaf_nodes_type": "int", "min_impurity_decrease": "0.1644219116523808", "min_samples_leaf": "83", "min_samples_split": "26", "min_weight_fraction_leaf": "0.09570816012927941", "n_estimators": "110", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2702708", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:18:25.798 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:18:25.913 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702708 -bootstrap 'False' -criterion 'entropy' -max_depth_type 'None' -max_features_float '0.14189451020214972' -max_features_type 'float' -max_leaf_nodes '402' -max_leaf_nodes_type 'int' -min_impurity_decrease '0.1644219116523808' -min_samples_leaf '83' -min_samples_split '26' -min_weight_fraction_leaf '0.09570816012927941' -n_estimators '110'  
+08:18:48.047 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Updated estimated mean quality of the same incumbent: -0.96; estimate now based on 10 runs.
+08:20:00.894 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Incumbent changed to: config 10 (internal ID: 0x1D8A0), with mean quality: -0.9633333333333334; estimate based on 10 runs.
+08:20:00.895 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Sample call for new incumbent config 10 (internal ID: 0x1D8A0): 
+cd /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example; /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702413 -bootstrap 'True' -criterion 'gini' -max_depth_type 'None' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -max_samples_type 'None' -min_impurity_decrease '0.0' -min_samples_leaf '1' -min_samples_split '2' -min_weight_fraction_leaf '0.028876910152885734' -n_estimators '124' -oob_score 'True'  
+08:20:46.255 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:39_64548_996072453.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:39_64548_996072453.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:39_64548_996072453.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "True", "criterion": "log_loss", "max_depth": "65", "max_depth_type": "int", "max_features_float": "0.3153736587268202", "max_features_type": "float", "max_leaf_nodes_type": "None", "max_samples": "0.5902784061475052", "max_samples_type": "float", "min_impurity_decrease": "0.1565553800709722", "min_samples_leaf": "67", "min_samples_split": "33", "min_weight_fraction_leaf": "0.3958026006619849", "n_estimators": "210", "oob_score": "False", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "6549613", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:20:46.255 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:20:46.255 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:20:46.255 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:20:46.256 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:20:46.256 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:20:46.392 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 6549613 -bootstrap 'True' -criterion 'log_loss' -max_depth '65' -max_depth_type 'int' -max_features_float '0.3153736587268202' -max_features_type 'float' -max_leaf_nodes_type 'None' -max_samples '0.5902784061475052' -max_samples_type 'float' -min_impurity_decrease '0.1565553800709722' -min_samples_leaf '67' -min_samples_split '33' -min_weight_fraction_leaf '0.3958026006619849' -n_estimators '210' -oob_score 'False'  
+08:21:01.174 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:54_65080_2583367396.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:54_65080_2583367396.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:20:54_65080_2583367396.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "gini", "max_depth_type": "None", "max_features_special": "sqrt", "max_features_type": "special", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.0", "min_samples_leaf": "1", "min_samples_split": "2", "min_weight_fraction_leaf": "0.028876910152885734", "n_estimators": "124", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2248090", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:21:01.174 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:21:01.174 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:21:01.174 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:21:01.174 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:21:01.175 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:21:01.289 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2248090 -bootstrap 'False' -criterion 'gini' -max_depth_type 'None' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.0' -min_samples_leaf '1' -min_samples_split '2' -min_weight_fraction_leaf '0.028876910152885734' -n_estimators '124'  
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:08_68134_2189916845.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:08_68134_2189916845.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:08_68134_2189916845.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "True", "criterion": "gini", "max_depth": "48", "max_depth_type": "int", "max_features_special": "log2", "max_features_type": "special", "max_leaf_nodes_type": "None", "max_samples": "0.23566868052407253", "max_samples_type": "float", "min_impurity_decrease": "0.3577131859774267", "min_samples_leaf": "17", "min_samples_split": "1", "min_weight_fraction_leaf": "0.2794518438143652", "n_estimators": "149", "oob_score": "False", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "6549613", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:22:14.301 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:22:14.417 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 6549613 -bootstrap 'True' -criterion 'gini' -max_depth '48' -max_depth_type 'int' -max_features_special 'log2' -max_features_type 'special' -max_leaf_nodes_type 'None' -max_samples '0.23566868052407253' -max_samples_type 'float' -min_impurity_decrease '0.3577131859774267' -min_samples_leaf '17' -min_samples_split '1' -min_weight_fraction_leaf '0.2794518438143652' -n_estimators '149' -oob_score 'False'  
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:22_68613_3657514258.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:22_68613_3657514258.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:22_68613_3657514258.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth": "57", "max_depth_type": "int", "max_features_float": "0.1652313685527591", "max_features_type": "float", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.02741987533297563", "min_samples_leaf": "68", "min_samples_split": "100", "min_weight_fraction_leaf": "0.08494276288491248", "n_estimators": "102", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2248090", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:22:28.446 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:22:28.555 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2248090 -bootstrap 'False' -criterion 'log_loss' -max_depth '57' -max_depth_type 'int' -max_features_float '0.1652313685527591' -max_features_type 'float' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.02741987533297563' -min_samples_leaf '68' -min_samples_split '100' -min_weight_fraction_leaf '0.08494276288491248' -n_estimators '102'  
+08:22:35.827 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Updated estimated mean quality of the same incumbent: -0.96; estimate now based on 20 runs.
+08:22:56.857 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:50_69764_4040963495.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:50_69764_4040963495.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:22:50_69764_4040963495.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "entropy", "max_depth": "26", "max_depth_type": "int", "max_features_float": "0.9656065052027588", "max_features_type": "float", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.016883219698400342", "min_samples_leaf": "41", "min_samples_split": "96", "min_weight_fraction_leaf": "0.3023486687891005", "n_estimators": "330", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "595167", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:22:56.857 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:22:56.857 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:22:56.857 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:22:56.908 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:22:56.908 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:22:56.999 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 595167 -bootstrap 'False' -criterion 'entropy' -max_depth '26' -max_depth_type 'int' -max_features_float '0.9656065052027588' -max_features_type 'float' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.016883219698400342' -min_samples_leaf '41' -min_samples_split '96' -min_weight_fraction_leaf '0.3023486687891005' -n_estimators '330'  
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:19_70981_469616035.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:19_70981_469616035.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:19_70981_469616035.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth": "74", "max_depth_type": "int", "max_features_float": "0.2752084340873575", "max_features_type": "float", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.4002452648836159", "min_samples_leaf": "56", "min_samples_split": "64", "min_weight_fraction_leaf": "0.3749204798087932", "n_estimators": "52", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "4214666", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:23:25.307 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:23:25.438 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 4214666 -bootstrap 'False' -criterion 'log_loss' -max_depth '74' -max_depth_type 'int' -max_features_float '0.2752084340873575' -max_features_type 'float' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.4002452648836159' -min_samples_leaf '56' -min_samples_split '64' -min_weight_fraction_leaf '0.3749204798087932' -n_estimators '52'  
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:47_72051_1476493464.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:47_72051_1476493464.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:23:47_72051_1476493464.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth_type": "None", "max_features_special": "None", "max_features_type": "special", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.24019887227109699", "min_samples_leaf": "38", "min_samples_split": "97", "min_weight_fraction_leaf": "0.27046278083534986", "n_estimators": "74", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "2636873", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:23:53.936 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:23:54.036 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2636873 -bootstrap 'False' -criterion 'log_loss' -max_depth_type 'None' -max_features_special 'None' -max_features_type 'special' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.24019887227109699' -min_samples_leaf '38' -min_samples_split '97' -min_weight_fraction_leaf '0.27046278083534986' -n_estimators '74'  
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:24:45_75321_546819841.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:24:45_75321_546819841.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:24:45_75321_546819841.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "entropy", "max_depth_type": "None", "max_features_float": "0.1501954045874725", "max_features_type": "float", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.10168974887856647", "min_samples_leaf": "7", "min_samples_split": "67", "min_weight_fraction_leaf": "0.0923388891872543", "n_estimators": "113", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "16739440", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:24:51.941 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:24:52.057 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 16739440 -bootstrap 'False' -criterion 'entropy' -max_depth_type 'None' -max_features_float '0.1501954045874725' -max_features_type 'float' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.10168974887856647' -min_samples_leaf '7' -min_samples_split '67' -min_weight_fraction_leaf '0.0923388891872543' -n_estimators '113'  
+08:24:59.251 [main] INFO  c.u.c.b.s.c.SequentialModelBasedAlgorithmConfiguration - Updated estimated mean quality of the same incumbent: -0.9644444444444444; estimate now based on 30 runs.
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:14_76681_3256585835.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:14_76681_3256585835.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:14_76681_3256585835.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth_type": "None", "max_features_float": "0.7427375170150676", "max_features_type": "float", "max_leaf_nodes_type": "None", "min_impurity_decrease": "0.2653846055699382", "min_samples_leaf": "69", "min_samples_split": "88", "min_weight_fraction_leaf": "0.059850788080274", "n_estimators": "156", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "16483827", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:25:20.237 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:25:20.311 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 16483827 -bootstrap 'False' -criterion 'log_loss' -max_depth_type 'None' -max_features_float '0.7427375170150676' -max_features_type 'float' -max_leaf_nodes_type 'None' -min_impurity_decrease '0.2653846055699382' -min_samples_leaf '69' -min_samples_split '88' -min_weight_fraction_leaf '0.059850788080274' -n_estimators '156'  
+08:25:34.986 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:28_77028_3963664421.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:28_77028_3963664421.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:28_77028_3963664421.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "True", "criterion": "gini", "max_depth": "27", "max_depth_type": "int", "max_features_special": "log2", "max_features_type": "special", "max_leaf_nodes": "622", "max_leaf_nodes_type": "int", "max_samples_type": "None", "min_impurity_decrease": "0.012943377392873379", "min_samples_leaf": "23", "min_samples_split": "1", "min_weight_fraction_leaf": "0.32657236335043066", "n_estimators": "321", "oob_score": "True", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "4214666", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:25:34.986 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:25:34.986 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:25:34.987 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:25:34.987 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:25:34.987 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:25:35.097 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 4214666 -bootstrap 'True' -criterion 'gini' -max_depth '27' -max_depth_type 'int' -max_features_special 'log2' -max_features_type 'special' -max_leaf_nodes '622' -max_leaf_nodes_type 'int' -max_samples_type 'None' -min_impurity_decrease '0.012943377392873379' -min_samples_leaf '23' -min_samples_split '1' -min_weight_fraction_leaf '0.32657236335043066' -n_estimators '321' -oob_score 'True'  
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:42_77354_3152198545.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:42_77354_3152198545.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:25:42_77354_3152198545.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth": "97", "max_depth_type": "int", "max_features_float": "0.9692407683701977", "max_features_type": "float", "max_leaf_nodes": "874", "max_leaf_nodes_type": "int", "min_impurity_decrease": "0.10627053239212292", "min_samples_leaf": "67", "min_samples_split": "2", "min_weight_fraction_leaf": "0.3905661472004537", "n_estimators": "267", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "8729816", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:25:48.689 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:25:48.800 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 8729816 -bootstrap 'False' -criterion 'log_loss' -max_depth '97' -max_depth_type 'int' -max_features_float '0.9692407683701977' -max_features_type 'float' -max_leaf_nodes '874' -max_leaf_nodes_type 'int' -min_impurity_decrease '0.10627053239212292' -min_samples_leaf '67' -min_samples_split '2' -min_weight_fraction_leaf '0.3905661472004537' -n_estimators '267'  
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/tools/runsolver.py:184: RuntimeWarning: Solver output decoding failed from RunSolver configuration: '/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/runsolver --timestamp --use-pty --cpu-limit 60.0 -w Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:26:11_78148_117298392.log -v Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:26:11_78148_117298392.val -o Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp/Iris.csv_RandomForest_2025-04-14-09:26:11_78148_117298392.rawres Solvers/RandomForest/sparkle_solver_wrapper.py '{"bootstrap": "False", "criterion": "log_loss", "max_depth": "34", "max_depth_type": "int", "max_features_float": "0.12506573477524885", "max_features_type": "float", "max_leaf_nodes": "629", "max_leaf_nodes_type": "int", "min_impurity_decrease": "0.44393318888577565", "min_samples_leaf": "96", "min_samples_split": "58", "min_weight_fraction_leaf": "0.09874390426189067", "n_estimators": "472", "solver_dir": "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest", "instance": "Instances/Iris/Iris.csv", "seed": "15526042", "objectives": "accuracy:max", "cutoff_time": "60.0"}''. Setting status to 'UNKNOWN'.
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    warnings.warn("Solver output decoding failed from RunSolver configuration: "
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  Traceback (most recent call last):
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]    File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py", line 46, in <module>
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]      quality = float(output[objective.name])
+08:26:17.383 [CLI TAE (STDERR Thread - #0)] WARN  c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - [PROCESS-ERR]  TypeError: float() argument must be a string or a real number, not 'NoneType'
+08:26:17.526 [CLI TAE (Master Thread - #0)] ERROR c.u.c.b.a.t.b.c.CommandLineAlgorithmRun - The following algorithm call failed: cd "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example" ;  /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 15526042 -bootstrap 'False' -criterion 'log_loss' -max_depth '34' -max_depth_type 'int' -max_features_float '0.12506573477524885' -max_features_type 'float' -max_leaf_nodes '629' -max_leaf_nodes_type 'int' -min_impurity_decrease '0.44393318888577565' -min_samples_leaf '96' -min_samples_split '58' -min_weight_fraction_leaf '0.09874390426189067' -n_estimators '472'  
+08:26:38.313 [main] INFO  c.u.c.b.a.e.h.LogRuntimeStatistics - *****Developer Statistics*****
+ Count: 19
+ Incumbent ID: 10 (internal ID:0x1D8A0)
+ Number of PISPs for Incumbent: 37
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 36
+ Performance of the Incumbent: -0.962
+ Configuration Time Budget used: 63.28 s (0%)
+ Configuration Time Budget remaining: 2.15E9 s
+ Wall-clock Time Budget used: 605.39 s (100%)
+ Wall-clock Time Budget remaining: -5.39 s
+ Algorithm Runs used: 83.00  (83%)
+ Algorithm Runs remaining: 17.00 
+ Model/Iteration used: 18.00  (0%)
+ Model/Iteration remaining: 2.15E9 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 61.001 s
+ CPU time of Configurator: 2.281 s
+ User time of Configurator: 2.281 s
+ Outstanding Runs on Target Algorithm Evaluator: 0
+ Outstanding Requests on Target Algorithm Evaluator: 0
+ Total Reported Algorithm Runtime: 59.201 s
+ Sum of Measured Wallclock Runtime: 593.694 s
+ Max Memory: 990 MB
+ Total Java Memory: 39 MB
+ Free Java Memory: 18 MB
+ * PISP count is roughly the number of runs, but doesn't included redundant runs on the same problem instance & seed
+08:26:38.314 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - 
+=======================================================================================
+SMAC has finished. Reason: wall-clock time limit (605.39 s) has been reached.   
+Total number of runs performed: 83, total configurations tried: 36.
+Total CPU time used: 63 s, total wallclock time used: 605 s.
+SMAC's final incumbent: config 10 (internal ID: 0x1D8A0), with estimated mean quality: -0.9621621621621622, based on 37 run(s) on 1 training instance(s).
+Sample call for this final incumbent:
+cd /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example; /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 2702413 -bootstrap 'True' -criterion 'gini' -max_depth_type 'None' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -max_samples_type 'None' -min_impurity_decrease '0.0' -min_samples_leaf '1' -min_samples_split '2' -min_weight_fraction_leaf '0.028876910152885734' -n_estimators '124' -oob_score 'True'
+=======================================================================================
+08:26:38.314 [main] INFO  c.u.c.b.smac.executors.SMACExecutor - 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Additional information about run 14 in:/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

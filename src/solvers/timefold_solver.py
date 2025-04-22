@@ -2,7 +2,7 @@ import os
 import subprocess
 from ..utils import *
 
-path_problem_instance = "./src/input/data/problem_instance_europe_1day.json"
+path_problem_instance = "./src/input/data/problem_instance_europe.json"
 
 # Run Timefold solver in Java
 

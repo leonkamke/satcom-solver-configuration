@@ -1,0 +1,7 @@
+[INFO ] Logging to: /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/outdir_train_configuration/RandomForest_Iris_scenario/log-run15.txt
+[INFO ] Version of SMAC is v2.10.03-master-778 (3ee628ef9bf2), running on OpenJDK 64-Bit Server VM (1.8.0_442) and Linux 4.18.0-553.36.1.el8_10.x86_64 (amd64) 
+[INFO ] Call String: smac --scenario-file Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/RandomForest_Iris_scenario.txt --seed 15 
+[INFO ] SMAC started at: Apr 11, 2025 1:27:18 PM. Minimizing mean quality.
+[INFO ] First incumbent: config 1 (internal ID: 0x000B), with mean quality: -0.9; estimate based on 1 runs.
+[INFO ] Sample call for new incumbent config 1 (internal ID: 0x000B): 
+cd /rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example; /rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/RandomForest Output/Configuration/Raw_Data/SMAC2/RandomForest_Iris/tmp accuracy:max Instances/Iris/Iris.csv 0 60.0 2147483647 5440803 -bootstrap 'True' -criterion 'gini' -max_depth_type 'None' -max_features_special 'sqrt' -max_features_type 'special' -max_leaf_nodes_type 'None' -max_samples_type 'None' -min_impurity_decrease '0.0' -min_samples_leaf '1' -min_samples_split '2' -min_weight_fraction_leaf '0.0' -n_estimators '100' -oob_score 'True'  

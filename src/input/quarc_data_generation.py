@@ -1,7 +1,5 @@
 """
-Creation of satellite passes over ground terminals based on the article:
-'QUARC: Quantum Research Cubesat—A Constellation for Quantum Communication'
-Link: https://www.mdpi.com/2410-387X/4/1/7
+Creation of satellite passes over ground terminals
 """
 
 from skyfield.api import Topos, load, EarthSatellite

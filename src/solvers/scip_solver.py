@@ -1,12 +1,17 @@
 from datetime import datetime
 from pyscipopt import Model, quicksum
 from ..utils import *
+import time
+
+start = time.time()
 
 # Read problem instance
-problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_1day.json")
+print("Read problem instance")
+problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_dec_3h.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
+print("Start setting up problem and model")
 # Set parameters for optimization problem
 V = list(range(len(satellitePasses)))
 S = list(range(len(serviceTargets)))
@@ -55,9 +60,10 @@ T_min = 60  # Minimum time between consecutive contacts in seconds
 
 # Create SCIP model
 model = Model("Satellite Optimization")
+# model.setParam('display/verblevel', 0)   # Suppress display output
 
 # Computation time limit in seconds
-# model.setParam("limits/time", 60)
+# model.setParam("limits/time", 20)
 
 # Decision variables
 x = {}
@@ -73,8 +79,6 @@ model.setObjective(
 )
 
 # Constraints
-print("Start defining constraints")
-
 # Each satellite pass has at most one service target
 for i in V:
     model.addCons(quicksum(x[i, j] for j in S) <= 1)
@@ -107,13 +111,15 @@ for j1 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
             model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
 
-"""# QKD post-processing and QKD must happen in the same schedule
+"""
+# QKD post-processing and QKD must happen in the same schedule
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:  # Same application ID, QKD, and QKD post-processing
             model.addCons(
                 quicksum(x[i, j1] for i in V) == quicksum(x[i, j2] for i in V)
-            )"""
+            )
+"""
 
 
 # Maximum number of contacts per orbit
@@ -127,27 +133,30 @@ for j1 in S:
 model.addCons(quicksum(x[i, j] for j in S for i in V) <= C_max)
 """
 
-
 # Optimize the model
-model.optimize()
+try:
+    model.optimize()
 
-# Display the results
-if model.getStatus() == "optimal":
-    print("Optimal solution found!")
-else:
-    print("No optimal solution found.")
+    contacts = []
+    selected_passes = []
+    for i in V:
+        for j in S:
+            if model.getVal(x[i, j]) > 0.5:
+                contact = {}
+                selected_passes.append(satellitePasses[i])
+                contact["satellitePass"] = satellitePasses[i]
+                contact["serviceTarget"] = serviceTargets[j]
+                contacts.append(contact)
 
-contacts = []
-selected_passes = []
-for i in V:
-    for j in S:
-        if model.getVal(x[i, j]) > 0.5:
-            contact = {}
-            selected_passes.append(satellitePasses[i])
-            contact["satellitePass"] = satellitePasses[i]
-            contact["serviceTarget"] = serviceTargets[j]
-            contacts.append(contact)
+    print("###### Result ######")
+    print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
+    print("Runtime was: " + str(model.getSolvingTime()))
+    end = time.time()
+    print("Overall time was: " + str(end-start))
+    print("####################")
 
+    plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
+except Exception as ex:
+    print(f"Exception: {ex}")
 
-print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
+    
