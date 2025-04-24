@@ -1,9 +1,11 @@
 from datetime import datetime
-from gurobipy import Model, GRB, quicksum
 from ..utils import *
+import time
+
+start = time.time()
 
 # Read problem instance
-problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_6h.json")
+problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_jan_3h.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
@@ -55,6 +57,9 @@ T_min = 60  # Minimum time between consecutive contacts in seconds
 
 # Create Gurobi model
 model = Model("Gurobi Satellite Optimization")
+
+# Suppress all solver output
+model.setParam('OutputFlag', 0)
 
 # Decision variables
 x = model.addVars(V, S, vtype=GRB.BINARY, name="x")
@@ -124,7 +129,13 @@ try:
                 contact["serviceTarget"] = serviceTargets[j]
                 contacts.append(contact)
 
+    print("###### Result ######")
     print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
-    plotOptimizationResult(serviceTargets, satellitePasses, contacts, "GUROBI")
+    print("Runtime was: " + str(model.Runtime))
+    end = time.time()
+    print("Overall time was: " + str(end-start))
+    print("####################")
+
+    plotOptimizationResult(serviceTargets, satellitePasses, contacts, "Gurobi")
 except Exception as ex:
     print(f"Exception: {ex}")

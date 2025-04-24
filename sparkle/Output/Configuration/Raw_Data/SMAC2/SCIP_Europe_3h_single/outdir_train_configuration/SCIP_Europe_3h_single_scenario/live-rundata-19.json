@@ -1,0 +1,366 @@
+[ {
+  "@pi-id" : 2,
+  "pi-name" : "Instances/Europe_3h_single/problem_instance_europe_jan_3h.json",
+  "pi-instance-specific-info" : "0",
+  "pi-features" : { },
+  "pi-instance-id(deprecated)" : 1
+} ] {
+  "r-rc" : {
+    "@rc-id" : 2,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2,
+      "algo-exec" : "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/Components/smac2-v2.10.03-master-778/smac2_target_algorithm.py Solvers/SCIP Output/Configuration/Raw_Data/SMAC2/SCIP_Europe_3h_single/tmp runtime",
+      "algo-exec-dir" : "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle",
+      "algo-pcs" : {
+        "@pcs-id" : 2,
+        "pcs-filename" : "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle/Solvers/SCIP/configspace.pcs",
+        "pcs-text" : "branching_scorefunc categorical {s,p,q} [p]\nbranching_scorefac real [0.0,1.0] [0.167]\nbranching_preferbinary categorical {TRUE, FALSE} [FALSE]\nlp_initalgorithm categorical {s,p,d,b,c} [s]\nlp_pricing categorical {l,a,f,q,d} [l]\nheuristics_trivial_freq integer [-1,10] [0]\nseparating_poolfreq integer [0,10] [10]\nseparating_gomory_away real [0.0001,0.5] [0.01]\nheuristics_subnlp_presolveemphasis categorical {0,1,2,3} [0]\n",
+        "pcs-subspace" : { }
+      },
+      "algo-cutoff" : 60.0,
+      "algo-deterministic" : false,
+      "algo-tae-context" : { }
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 8534496
+    },
+    "rc-pc" : {
+      "@pc-id" : 2,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "branching_preferbinary" : "FALSE",
+        "branching_scorefac" : "0.167",
+        "branching_scorefunc" : "p",
+        "heuristics_subnlp_presolveemphasis" : "0",
+        "heuristics_trivial_freq" : "0",
+        "lp_initalgorithm" : "s",
+        "lp_pricing" : "l",
+        "separating_gomory_away" : "0.01",
+        "separating_poolfreq" : "10"
+      },
+      "pc-active-parameters" : [ "branching_preferbinary", "branching_scorefac", "branching_scorefunc", "heuristics_subnlp_presolveemphasis", "heuristics_trivial_freq", "lp_initalgorithm", "lp_pricing", "separating_gomory_away", "separating_poolfreq" ],
+      "pc-forbidden" : false,
+      "pc-default" : true
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 21.6528,
+  "r-run-length" : 0.0,
+  "r-quality" : 12.004412,
+  "r-result-seed" : 8534496,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 31.669
+} {
+  "r-rc" : {
+    "@rc-id" : 3,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 7320984
+    },
+    "rc-pc" : {
+      "@pc-id" : 2
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 20.5497,
+  "r-run-length" : 0.0,
+  "r-quality" : 11.379096,
+  "r-result-seed" : 7320984,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 28.612
+} {
+  "r-rc" : {
+    "@rc-id" : 4,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 4,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "branching_preferbinary" : "FALSE",
+        "branching_scorefac" : "0.5488960335300977",
+        "branching_scorefunc" : "s",
+        "heuristics_subnlp_presolveemphasis" : "1",
+        "heuristics_trivial_freq" : "3",
+        "lp_initalgorithm" : "b",
+        "lp_pricing" : "d",
+        "separating_gomory_away" : "0.17816769869178933",
+        "separating_poolfreq" : "4"
+      },
+      "pc-active-parameters" : [ "branching_preferbinary", "branching_scorefac", "branching_scorefunc", "heuristics_subnlp_presolveemphasis", "heuristics_trivial_freq", "lp_initalgorithm", "lp_pricing", "separating_gomory_away", "separating_poolfreq" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 19.8419,
+  "r-run-length" : 0.0,
+  "r-quality" : 11.04965,
+  "r-result-seed" : 7320984,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 26.982
+} {
+  "r-rc" : {
+    "@rc-id" : 5,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2
+    },
+    "rc-pc" : {
+      "@pc-id" : 4
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 19.7357,
+  "r-run-length" : 0.0,
+  "r-quality" : 10.518826,
+  "r-result-seed" : 8534496,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 26.72
+} {
+  "r-rc" : {
+    "@rc-id" : 6,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 6,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 1677411
+    },
+    "rc-pc" : {
+      "@pc-id" : 4
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 19.1994,
+  "r-run-length" : 0.0,
+  "r-quality" : 10.302741,
+  "r-result-seed" : 1677411,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 26.289
+} {
+  "r-rc" : {
+    "@rc-id" : 7,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 6
+    },
+    "rc-pc" : {
+      "@pc-id" : 7,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "branching_preferbinary" : "FALSE",
+        "branching_scorefac" : "0.631397906982158",
+        "branching_scorefunc" : "p",
+        "heuristics_subnlp_presolveemphasis" : "1",
+        "heuristics_trivial_freq" : "0",
+        "lp_initalgorithm" : "s",
+        "lp_pricing" : "q",
+        "separating_gomory_away" : "0.053016063544178475",
+        "separating_poolfreq" : "9"
+      },
+      "pc-active-parameters" : [ "branching_preferbinary", "branching_scorefac", "branching_scorefunc", "heuristics_subnlp_presolveemphasis", "heuristics_trivial_freq", "lp_initalgorithm", "lp_pricing", "separating_gomory_away", "separating_poolfreq" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.9143,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.970553,
+  "r-result-seed" : 1677411,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.915
+} {
+  "r-rc" : {
+    "@rc-id" : 8,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2
+    },
+    "rc-pc" : {
+      "@pc-id" : 7
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.6661,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.714755,
+  "r-result-seed" : 8534496,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.565
+} {
+  "r-rc" : {
+    "@rc-id" : 9,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 7
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.6104,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.603772,
+  "r-result-seed" : 7320984,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.47
+} {
+  "r-rc" : {
+    "@rc-id" : 10,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 10,
+      "pisp-pi" : {
+        "@pi-id" : 2
+      },
+      "pisp-seed" : 10431359
+    },
+    "rc-pc" : {
+      "@pc-id" : 7
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.4183,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.416903,
+  "r-result-seed" : 10431359,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.443
+} {
+  "r-rc" : {
+    "@rc-id" : 11,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 2
+    },
+    "rc-pc" : {
+      "@pc-id" : 11,
+      "pc-pcs" : {
+        "@pcs-id" : 2
+      },
+      "pc-settings" : {
+        "branching_preferbinary" : "FALSE",
+        "branching_scorefac" : "0.2749501963838987",
+        "branching_scorefunc" : "q",
+        "heuristics_subnlp_presolveemphasis" : "1",
+        "heuristics_trivial_freq" : "2",
+        "lp_initalgorithm" : "d",
+        "lp_pricing" : "q",
+        "separating_gomory_away" : "0.4403077616713649",
+        "separating_poolfreq" : "8"
+      },
+      "pc-active-parameters" : [ "branching_preferbinary", "branching_scorefac", "branching_scorefunc", "heuristics_subnlp_presolveemphasis", "heuristics_trivial_freq", "lp_initalgorithm", "lp_pricing", "separating_gomory_away", "separating_poolfreq" ],
+      "pc-forbidden" : false,
+      "pc-default" : false
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.3227,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.323253,
+  "r-result-seed" : 8534496,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.204
+} {
+  "r-rc" : {
+    "@rc-id" : 12,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 6
+    },
+    "rc-pc" : {
+      "@pc-id" : 11
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.4856,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.28827,
+  "r-result-seed" : 1677411,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.54
+} {
+  "r-rc" : {
+    "@rc-id" : 13,
+    "rc-algo-exec-config" : {
+      "@algo-exec-config-id" : 2
+    },
+    "rc-cutoff" : 60.0,
+    "rc-pisp" : {
+      "@pisp-id" : 3
+    },
+    "rc-pc" : {
+      "@pc-id" : 11
+    },
+    "rc-sample-idx" : 0
+  },
+  "r-run-result" : "SAT",
+  "r-runtime" : 18.3036,
+  "r-run-length" : 0.0,
+  "r-quality" : 9.240613,
+  "r-result-seed" : 7320984,
+  "r-addl-run-data" : "",
+  "r-wallclock-time" : 25.139
+}

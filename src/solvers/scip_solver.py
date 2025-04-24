@@ -7,7 +7,7 @@ start = time.time()
 
 # Read problem instance
 print("Read problem instance")
-problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_dec_3h.json")
+problemInstance = read_problem_instance("./src/input/data/problem_instance_europe_jan_3h.json")
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
@@ -60,6 +60,7 @@ T_min = 60  # Minimum time between consecutive contacts in seconds
 
 # Create SCIP model
 model = Model("Satellite Optimization")
+
 # model.setParam('display/verblevel', 0)   # Suppress display output
 
 # Computation time limit in seconds
@@ -159,4 +160,13 @@ try:
 except Exception as ex:
     print(f"Exception: {ex}")
 
-    
+params = model.getParams()
+formatted_params = {p.replace('/', '_'): params[p] for p in params}
+
+# Save to file
+with open("scip_parameters.txt", "w") as f:
+    for name in formatted_params:
+        f.write(f"{name}: {formatted_params[name]}\n")
+        
+        
+        

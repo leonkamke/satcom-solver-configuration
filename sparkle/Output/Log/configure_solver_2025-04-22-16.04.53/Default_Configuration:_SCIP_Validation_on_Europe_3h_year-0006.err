@@ -1,4 +1,0 @@
-WARNING: overwriting environment variables set in the machine
-overwriting variable ['CPATH']
-/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sparkle/structures/performance_dataframe.py:429: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '[17.6609, 2005.46484375, 9.396879, <SolverStatus.SUCCESS: 'SUCCESS'>, 18.3686]' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  self.loc[(objective, instance, run), (solver, level)] = item
