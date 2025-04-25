@@ -14,5 +14,3 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 # Apply changes to the current session
 source ~/.bashrc
-
-conda activate master-thesis

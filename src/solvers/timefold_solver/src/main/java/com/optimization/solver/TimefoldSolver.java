@@ -9,6 +9,21 @@ import ai.timefold.solver.core.api.solver.SolverFactory;
 public class TimefoldSolver {
     public static void main( String[] args )
     {
+        /* 
+        System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
+            public void write(int b) {
+                // Do nothing
+            }
+        }));*/
+        
+        /* 
+        System.setErr(new java.io.PrintStream(new java.io.OutputStream() {
+            public void write(int b) {
+                // Do nothing
+            }
+        }));
+        */
+        
         // Read problem instance and prepare planning solution
         String pathProblemInstance = args[0];
         Solution planningSolution = Utils.readProblemInstance(pathProblemInstance);

@@ -94,7 +94,7 @@ public class Utils {
     // Write solution into a json file (will be processed by python super process)
     @SuppressWarnings("CallToPrintStackTrace")
     public static void dumpSolution(Solution planningSolution) {
-        String dumpPath = "./tmp/";
+        String dumpPath = "./Tmp/";
         ObjectMapper objectMapper = new ObjectMapper();
         // Register JavaTimeModule to handle LocalDateTime
         objectMapper.registerModule(new JavaTimeModule());
