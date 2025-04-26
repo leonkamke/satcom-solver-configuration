@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-from sparkle.types import SolverStatus
 from datetime import datetime
 from gurobipy import Model, GRB, quicksum
 import re
@@ -169,7 +168,7 @@ for j1 in S:
 
 # Run the Gurobi solver
 max_runtime = 9999
-schedule_quality = 0.0
+quality = 0
 runtime = max_runtime
 
 try:
@@ -186,12 +185,12 @@ try:
             })
                 
     # Compute objectives
-    schedule_quality = round(calculateObjectiveFunction(contacts))
-    runtime = model.Runtime
+    quality = int(calculateObjectiveFunction(contacts))
+    runtime = round(model.Runtime, 4)
     
     # Print result
     result = {"status": "SUCCESS",               
-            "schedule_quality": schedule_quality,
+            "quality": quality,
             "runtime": runtime,                   
             "solver_call": None}
     print("Gurobi solver output is:")

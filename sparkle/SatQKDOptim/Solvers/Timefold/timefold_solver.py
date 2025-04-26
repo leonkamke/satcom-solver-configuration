@@ -1,12 +1,12 @@
 import sys
 from pathlib import Path
-from sparkle.types import SolverStatus
 from datetime import datetime
 import re
 import json
 import subprocess
 import os
 import uuid
+import time
 
 def read_contacts_from_timefold(file_path):
     with open(file_path, 'r') as file:
@@ -118,18 +118,21 @@ java_command = [
     # TODO: add Timefold params
 ]
 # Ask how to throw exception/error if there was an error in executed java command. also test what happens with wrong java command
+start_time = time.time()
 jar_result = subprocess.run(java_command, capture_output=True)
+end_time = time.time()
+
 if jar_result.stdout.decode().endswith("Finished Timefold computation\n"):
     contacts_file_path = "./Tmp/" + random_uuid + ".json"
     contacts = read_contacts_from_timefold(contacts_file_path)
     os.remove(contacts_file_path)
     
-    schedule_quality = round(calculateObjectiveFunction(contacts))
-    max_runtime = 99999
+    quality = int(calculateObjectiveFunction(contacts))
+    runtime = round(end_time - start_time, 4)
     
     result = {"status": "SUCCESS",               
-            "schedule_quality": schedule_quality,
-            "runtime": max_runtime,                   
+            "quality": quality,
+            "runtime": runtime,                   
             "solver_call": None}
     print("Timefold solver output is:")
     print(result)

@@ -1,7 +1,7 @@
 Solver,,,nan,nan,nan
 Meta,,,Value,Seed,Configuration
 Objective,Instance,Run,,,
-schedule_quality:max,,1,,,
+runtime,,1,,,
 status:metric,,1,,,
 cpu_time:metric,,1,,,
 wall_time:metric,,1,,,
