@@ -7,7 +7,7 @@ import json
 
 def parse_args_to_dict(argv):
     args_dict = {}
-    i = 1  # skip python gurobi_solver.py
+    i = 1  # skip python scip_solver.py
     while i < len(argv):
         if argv[i].startswith('-'):
             key = argv[i].lstrip('-')

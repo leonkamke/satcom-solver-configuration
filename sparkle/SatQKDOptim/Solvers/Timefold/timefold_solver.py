@@ -89,6 +89,10 @@ del args["seed"]
 
 config = args
 
+params = []
+for k, v in config.items():
+    params += ["-"+k, str(v)]
+
 # Read user home from file
 user_home = None
 with open("./Solvers/Timefold/cluster_home.txt", "r") as f:
@@ -115,11 +119,10 @@ java_command = [
     instance_path,
     "-uuid",
     random_uuid
-    # TODO: add Timefold params
 ]
 # Ask how to throw exception/error if there was an error in executed java command. also test what happens with wrong java command
 start_time = time.time()
-jar_result = subprocess.run(java_command, capture_output=True)
+jar_result = subprocess.run(java_command + params, capture_output=True)
 end_time = time.time()
 
 if jar_result.stdout.decode().endswith("Finished Timefold computation\n"):

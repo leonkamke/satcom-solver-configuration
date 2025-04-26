@@ -108,7 +108,7 @@ model = Model("Gurobi Solver")
 model.setParam('OutputFlag', 0)
 
 # Set parameters for model
-"""for k, v in config.items():
+for k, v in config.items():
     if v == "TRUE":
         config[k] = True
     elif v == "FALSE":
@@ -117,7 +117,7 @@ model.setParam('OutputFlag', 0)
         config[k] = int(v)
     elif re.fullmatch(r"-?[\d\.]+", v):
         config[k] = float(v)
-    # model.setParam(k.replace("_", "/"), config[k])"""
+    # model.setParam(k, config[k])
 
 
 # Decision variables
