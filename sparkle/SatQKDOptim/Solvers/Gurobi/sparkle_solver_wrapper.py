@@ -4,15 +4,15 @@
 import sys
 import subprocess
 from pathlib import Path
-from sparkle.types import SolverStatus
 from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
+import uuid
 
 def trim_to_solver_output(text):
     marker = "Gurobi solver output is:"
     parts = text.split(marker, 1)
     if len(parts) > 1:
-        return parts[1].lstrip()  # Remove leading whitespace/newlines
-    return ""  # or: return text if you want to fall back to the full output
+        return parts[1].lstrip()
+    return ""
 
 # Convert the arguments to a dictionary
 args = parse_solver_wrapper_args(sys.argv[1:])
@@ -45,10 +45,13 @@ for key in args:
         params.extend(["-" + str(key), str(args[key])])
 
 try:
-    solver_call = subprocess.run(solver_cmd + params, capture_output=True)
+    solver_call = subprocess.run(solver_cmd + params, capture_output=True, timeout=35)
     output_str = trim_to_solver_output(solver_call.stdout.decode())
     print(output_str)
-    
 except Exception as ex:
     print(f"Solver call failed with exception:\n{ex}")
+    exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
+    with open(exception_file_name, 'w') as file:
+        file.write('Solver wrapper failed with exception:\n')
+        file.write(str(ex))
     

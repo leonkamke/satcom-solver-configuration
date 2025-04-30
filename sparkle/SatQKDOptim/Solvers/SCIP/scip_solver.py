@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 from datetime import datetime
 import re
+import uuid
 from pyscipopt import Model, quicksum
 import json
 
@@ -41,73 +42,29 @@ def calculateObjectiveFunction(contacts):
         result += (priority * (1 + achievableKeyVolume * operationMode))
     return result
 
-# raise Exception("Something went wrong")
-
 # Read the arguments
 args = parse_args_to_dict(sys.argv)
 
-# Extract and delete data that needs specific formatting
-instance_path = Path(args["inst"])
-seed = args["seed"]
+instance_path_json = Path(args["inst"])
+instance_path_mps = instance_path_json.with_suffix(".mps")
 
+seed = args["seed"]
 del args["inst"]
 del args["seed"]
 
 config = args
 
-# Read the problem instance
-problemInstance = read_problem_instance(instance_path)
+# Read problem instance
+print("Read problem instance")
+problemInstance = read_problem_instance(instance_path_json)
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
-# Define the optimization problem
 V = list(range(len(satellitePasses)))
 S = list(range(len(serviceTargets)))
 
-di = {}
-ti = {}
-bi = {}
-ni = {}
-fi = {}
-oi = {}
-
-reference_time = datetime.fromisoformat(problemInstance["coverage_start"])
-for idx, satellitePass in enumerate(satellitePasses):
-    start_time = datetime.fromisoformat(satellitePass["startTime"])
-    end_time = datetime.fromisoformat(satellitePass["endTime"])
-
-    start_seconds = (start_time - reference_time).total_seconds()
-    end_seconds =   (end_time - reference_time).total_seconds()
-
-    ti[idx] = start_seconds
-
-    duration_seconds = end_seconds - start_seconds
-    di[idx] = duration_seconds
-    bi[idx] = satellitePass["achievableKeyVolume"]
-    oi[idx] = 1 if satellitePass["achievableKeyVolume"] == 0.0 else 0
-    ni[idx] = satellitePass["nodeId"]
-    fi[idx] = satellitePass["orbitId"]
-
-pj = {}
-sj = {}
-mj = {}
-aj = {}
-for idx, serviceTarget in enumerate(serviceTargets):
-    pj[idx] = serviceTarget["priority"]
-    sj[idx] = serviceTarget["nodeId"]
-    mj[idx] = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
-    aj[idx] = serviceTarget["applicationId"]
-
-# Minimum time between consecutive contacts in seconds
-T_min = 60
-
-model = Model("SCIP Solver")
-
-# Turn off all output
-model.setParam('display/verblevel', 0)   # Suppress display output
-
-# Computation time limit in seconds
-# model.setParam("limits/time", 45)
+model = Model("Satellite Optimization")
+model.readProblem(instance_path_mps)
 
 # Set parameters for model
 for k, v in config.items():
@@ -119,70 +76,47 @@ for k, v in config.items():
         config[k] = int(v)
     elif re.fullmatch(r"-?[\d\.]+", v):
         config[k] = float(v)
-    model.setParam(k.replace("_", "/"), config[k])
-
-# Decision variables
-x = {}
-for i in V:
-    for j in S:
-        x[i, j] = model.addVar(vtype="B", name=f"x_{i}_{j}")
-
-# Objective function
-model.setObjective(
-    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for i in V for j in S),
-    "maximize"
-)
-
-# Each satellite pass has at most one service target
-for i in V:
-    model.addCons(quicksum(x[i, j] for j in S) <= 1)
-
-# Each service target can be served at most once
-for j in S:
-    model.addCons(quicksum(x[i, j] for i in V) <= 1)
-
-# Non-overlapping satellite passes
-for i1 in V:
-    for i2 in V:
-        if i1 != i2 and ti[i1] <= ti[i2]:
-            model.addCons(
-                (ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - quicksum(x[i1, k] for k in S) - quicksum(x[i2, k] for k in S)) * 99999)
-            )
-
-# The node in the service target and satellite pass must match
-for i in V:
-    for j in S:
-        model.addCons(x[i, j] * (ni[i] - sj[j]) == 0)
-
-# The operation mode must match
-for i in V:
-    for j in S:
-        model.addCons(x[i, j] * oi[i] * (oi[i] - mj[j] - 1) == 0)
-
-# For a given application id first do qkd and afterwards qkd post processing
-for j1 in S:
-    for j2 in S:
-        if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
-            model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
-
+    try:
+        model.setParam(k.replace("_", "/"), config[k])
+    except Exception as ex:
+        exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
+        with open(exception_file_name, 'w') as file:
+            file.write('Setting parameter ' + str(k) + " -> " + str(config[k]) + ' failed with exception:\n')
+            file.write(str(ex))
+        sys.exit(1)
 
 # Run the SCIP solver
-max_runtime = 9999
+max_runtime = 60
+model.setParam("limits/time", max_runtime)
 quality = 0
 runtime = max_runtime
 
 try:
     # Optimize the model
     model.optimize()
+    
+    # Rebuild variable dictionary from model if x is not defined
+    if 'x' not in locals():
+        x = {}
+        for var in model.getVars():
+            if var.name.startswith("x_"):
+                try:
+                    _, i_str, j_str = var.name.split("_")
+                    i, j = int(i_str), int(j_str)
+                    x[i, j] = var
+                except ValueError:
+                    print(f"Skipping unrecognized variable name: {var.name}")
 
     contacts = []
     for i in V:
         for j in S:
-            if model.getVal(x[i, j]) > 0.5:
-                contacts.append({
-                "satellitePass": satellitePasses[i],
-                "serviceTarget": serviceTargets[j]
-            })
+            if (i, j) in x:
+                val = model.getVal(x[i, j])
+                if val > 0.5:
+                    contacts.append({
+                        "satellitePass": satellitePasses[i],
+                        "serviceTarget": serviceTargets[j]
+                    })
                 
     # Compute objectives
     quality = int(calculateObjectiveFunction(contacts))
@@ -191,10 +125,16 @@ try:
     # Print result
     result = {"status": "SUCCESS",               
             "quality": quality,
-            "runtime": runtime,                   
+            "runtime": runtime, # If runtume == maxruntime: runtime *= 10 (PAR10)                    
             "solver_call": None}
     print("SCIP solver output is:")
     print(result)
 
 except Exception as ex:
     print(ex)
+    exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
+    with open(exception_file_name, 'w') as file:
+        file.write('Optimization method failed with exception:\n')
+        file.write(str(ex) + "\n")
+        file.write("This is the configuration:\n")
+        file.write(str(config))

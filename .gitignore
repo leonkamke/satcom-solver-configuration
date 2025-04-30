@@ -162,7 +162,7 @@ cython_debug/
 #.idea/
 
 # Additional ignores
-/src/output/visualizations/*
+!.gitkeep
 smac3_output
 sparkle_test
 todo.txt
@@ -171,3 +171,6 @@ sparkle_explenation.ini
 cluster_home.txt
 TODO.txt
 test.py
+data
+stdout.txt
+visualization

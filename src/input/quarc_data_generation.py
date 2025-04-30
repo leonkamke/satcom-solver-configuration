@@ -2,12 +2,18 @@
 Creation of satellite passes over ground terminals
 """
 
+import time
 from skyfield.api import Topos, load, EarthSatellite
 from skyfield.elementslib import osculating_elements_of
 import numpy as np
 import pandas as pd
 from datetime import datetime
 import requests
+import shelve
+import pickle
+import hashlib
+from filelock import FileLock
+from functools import wraps
 
 class SatellitePass:
     def __init__(self, id, nodeId, startTime, endTime, achievableKeyVolume, orbitId):
@@ -34,33 +40,72 @@ tle_lines = [
     "2 35683  97.8105 189.5655 0001400  83.0116 277.1253 14.74670943834658",
 ]
 
-# Store weather data to reduce amount of api requests
-request_answer_dict = dict()
 
-# Function for getting weather data for a specific day and position
-def fetch_weather_data_with_cloud_coverage(latitude, longitude, date):
+# Define cache file and lock file paths
+WEATHER_CACHE_FILE = './src/input/data/tmp/weather_data_cache.db'
+WEATHER_LOCK_FILE = WEATHER_CACHE_FILE + '.lock'
+
+def shelve_weather_cache(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        key_bytes = pickle.dumps((args, kwargs))
+        key = hashlib.sha256(key_bytes).hexdigest()
+
+        with FileLock(WEATHER_LOCK_FILE):
+            with shelve.open(WEATHER_CACHE_FILE) as db:
+                if key in db:
+                    print("Weather cache hit")
+                    return db[key]
+
+        result = func(*args, **kwargs)
+
+        with FileLock(WEATHER_LOCK_FILE):
+            with shelve.open(WEATHER_CACHE_FILE) as db:
+                if key not in db:
+                    print("Weather cache write")
+                    db[key] = result
+
+        return result
+    return wrapper
+
+@shelve_weather_cache
+def fetch_weather_data_with_cloud_coverage(latitude, longitude, date, max_retries=60):
     response = None
+    
+    # Base URL for the Open-Meteo API
+    url = "https://archive-api.open-meteo.com/v1/era5"
+    params = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "start_date": date,
+        "end_date": date,
+        "daily": "sunshine_duration,sunrise,sunset",
+        "timezone": "auto"
+    }
+    
+    # Try making the request with retry mechanism
+    retries = 0
+    while retries < max_retries:
+        try:
+            response = requests.get(url, params=params)
+            if response.status_code == 200:
+                break
+            elif response.status_code == 429:
+                print(f"Rate limit hit. Retrying in 60 seconds... ({retries+1}/{max_retries})")
+                time.sleep(60)
+                retries += 1
+            else:
+                raise Exception(f"Failed to fetch data: {response.status_code}, {response.text} " + 
+                                f"with location {latitude}, {longitude}, {date}")
+        except Exception as e:
+            if retries >= max_retries - 1:
+                raise Exception(f"Exception in quarc_data_generation.py with location {latitude}, {longitude}, {date}. Exception: {e}")
+            print(f"Request failed. Retrying in 60 seconds... ({retries+1}/{max_retries})")
+            time.sleep(60)
+            retries += 1
 
-    # If data was already fetched return from set
-    if ((latitude, longitude, date) in request_answer_dict):
-        response = request_answer_dict[(latitude, longitude, date)]
-    else:
-        # Base URL for the Open-Meteo API
-        url = "https://archive-api.open-meteo.com/v1/era5"
-        params = {
-            "latitude": latitude,
-            "longitude": longitude,
-            "start_date": date,
-            "end_date": date,
-            "daily": "sunshine_duration,sunrise,sunset",
-            "timezone": "auto"
-        }
-        
-        # Make the request
-        response = requests.get(url, params=params)
-        request_answer_dict[(latitude, longitude, date)] = response
-        if response.status_code != 200:
-            raise Exception(f"Failed to fetch data: {response.status_code}, {response.text}")
+    if response is None or response.status_code != 200:
+        raise Exception(f"Failed to get a successful response after {max_retries} attempts.")
     
     # Parse the JSON response
     data = response.json()
@@ -115,6 +160,37 @@ def convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes):
     satellite_passes.sort(key=lambda sp: sp["startTime"])
     return satellite_passes
 
+CACHE_FILE = './src/input/data/tmp/satellite_passes_cache.db'
+LOCK_FILE = CACHE_FILE + '.lock'
+
+def shelve_cache(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # Serialize args/kwargs to create a unique cache key
+        key_bytes = pickle.dumps((args, kwargs))
+        key = hashlib.sha256(key_bytes).hexdigest()
+
+        # Use file lock for thread/process safety
+        with FileLock(LOCK_FILE):
+            with shelve.open(CACHE_FILE) as db:
+                if key in db:
+                    print("Satellite pass cache hit")
+                    return db[key]
+
+        # Compute result outside lock to avoid holding it for long
+        result = func(*args, **kwargs)
+
+        # Store result
+        with FileLock(LOCK_FILE):
+            with shelve.open(CACHE_FILE, writeback=True) as db:
+                if key not in db:
+                    print("Satellite pass cache write")
+                    db[key] = result
+
+        return result
+    return wrapper
+
+@shelve_cache
 def get_quarc_satellite_passes(ground_terminals, start_time, end_time, step_duration, min_elevation_angle):
     # Load the satellite from TLE
     satellite = EarthSatellite(tle_lines[0], tle_lines[1], 'QUARC', ts)
@@ -218,7 +294,7 @@ def get_quarc_satellite_passes(ground_terminals, start_time, end_time, step_dura
     # Calculate orbits
     print("Calculating orbits ...")
     df_satellite_passes["Orbit"] = df_satellite_passes.apply(assign_orbit, axis=1)
-    print(df_satellite_passes)
+    # print(df_satellite_passes)
 
     # Convert satellite passes dataframe to list of satellite pass objects
     satellite_passes_dict_list = convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes)
