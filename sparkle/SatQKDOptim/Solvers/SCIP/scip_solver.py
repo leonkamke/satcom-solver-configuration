@@ -6,6 +6,8 @@ import uuid
 from pyscipopt import Model, quicksum
 import json
 
+max_runtime = 60
+
 def parse_args_to_dict(argv):
     args_dict = {}
     i = 1  # skip python scip_solver.py
@@ -86,7 +88,6 @@ for k, v in config.items():
         sys.exit(1)
 
 # Run the SCIP solver
-max_runtime = 60
 model.setParam("limits/time", max_runtime)
 quality = 0
 runtime = max_runtime

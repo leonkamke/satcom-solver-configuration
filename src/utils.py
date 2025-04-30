@@ -104,3 +104,72 @@ def read_contacts_from_timefold(file_path):
         })
     
     return contacts
+
+# Validates satcom schedules
+def verify_contacts_solution(contacts, T_min=60):
+    used_passes = set()
+    used_targets = set()
+    pass_times = {}
+    application_times = {}
+
+    # Extract and validate contact assignments
+    for contact in contacts:
+        sp = contact["satellitePass"]
+        st = contact["serviceTarget"]
+        pass_id = sp["id"]
+        target_id = st["id"]
+        node_pass = sp["nodeId"]
+        node_target = st["nodeId"]
+
+        # Constraint: matching nodeId
+        if node_pass != node_target:
+            print(f"Node mismatch: pass {pass_id} and target {target_id}")
+            return False
+
+        # Constraint: o[i]==1 and m[j]==1 not allowed
+        if sp["achievableKeyVolume"] == 0.0 and st["requestedOperation"] == "QKD":
+            print(f"Invalid QKD contact: pass {pass_id} has zero volume")
+            return False
+
+        # Constraint: Each satellite pass assigned at most once
+        if pass_id in used_passes:
+            print(f"Satellite pass {pass_id} used more than once")
+            return False
+        used_passes.add(pass_id)
+
+        # Constraint: Each service target assigned at most once
+        if target_id in used_targets:
+            print(f"Service target {target_id} used more than once")
+            return False
+        used_targets.add(target_id)
+
+        start_time = datetime.fromisoformat(sp["startTime"])
+        end_time = datetime.fromisoformat(sp["endTime"])
+        pass_times[pass_id] = (start_time, end_time)
+
+        # Group contact times by application for sequencing
+        app_id = st["applicationId"]
+        if app_id not in application_times:
+            application_times[app_id] = {"QKD": [], "PP": []}
+        if st["requestedOperation"] == "QKD":
+            application_times[app_id]["QKD"].append(start_time)
+        else:
+            application_times[app_id]["PP"].append(start_time)
+
+    # Constraint: No overlapping satellite passes with less than T_min separation
+    sorted_times = sorted(pass_times.items(), key=lambda x: x[1][0])
+    for i in range(len(sorted_times) - 1):
+        _, (start1, end1) = sorted_times[i]
+        _, (start2, _) = sorted_times[i + 1]
+        if (start2 - end1).total_seconds() < T_min:
+            print(f"Passes overlap or are too close: {end1} vs {start2}")
+            return False
+
+    # Constraint: QKD must come before Post-Processing for each application
+    for app_id, times in application_times.items():
+        if times["PP"] and times["QKD"]:
+            if min(times["PP"]) < max(times["QKD"]):
+                print(f"App {app_id}: Post-Processing before QKD")
+                return False
+
+    return True

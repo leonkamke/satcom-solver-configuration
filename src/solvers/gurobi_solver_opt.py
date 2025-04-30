@@ -7,10 +7,10 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "./src/input/data/Dataset_year_europe_24h_60app/test_europe_jun_15.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_60app/test_europe_apr_15.mps"
 
 # Json file path
-json_file_path = "./src/input/data/Dataset_year_europe_24h_60app/test_europe_jun_15.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_60app/test_europe_apr_15.json"
 
 # Read problem instance
 print("Read problem instance")
@@ -20,6 +20,8 @@ serviceTargets = problemInstance["service_targets"]
 
 V = list(range(len(satellitePasses)))
 S = list(range(len(serviceTargets)))
+
+T_min = 60  # Minimum time between consecutive contacts in seconds
 
 # Try to load model from MPS if available
 if os.path.exists(mps_file_path):
@@ -48,8 +50,6 @@ else:
         sj[idx] = st["nodeId"]
         mj[idx] = 1 if st["requestedOperation"] == "QKD" else 0
         aj[idx] = st["applicationId"]
-
-    T_min = 60  # Minimum time between consecutive contacts in seconds
 
     model = Model("Satellite Optimization")
 
@@ -107,7 +107,7 @@ else:
 
 # Optimize the model
 try:
-    model.setParam("TimeLimit", 1)
+    model.setParam("TimeLimit", 60)
     model.optimize()
     
     contacts = []
@@ -119,6 +119,10 @@ try:
                     "satellitePass": satellitePasses[i],
                     "serviceTarget": serviceTargets[j]
                 })
+    
+    solution_valid = verify_contacts_solution(contacts, T_min)
+    if not solution_valid:
+        raise Exception("Invalid Solution!")
 
     print("###### Result ######")
     print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))

@@ -7,10 +7,13 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satellite-operations-planning/src/input/data/Dataset_year_europe_24h_10app/train_europe_jan_5.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_12h_60app/test_world_apr_15.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satellite-operations-planning/src/input/data/Dataset_year_europe_24h_10app/train_europe_jan_5.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_12h_60app/test_world_apr_15.json"
+
+# Time limit
+max_runtime = 30
 
 # Read problem instance
 print("Read problem instance")
@@ -20,6 +23,8 @@ serviceTargets = problemInstance["service_targets"]
 
 V = list(range(len(satellitePasses)))
 S = list(range(len(serviceTargets)))
+
+T_min = 60  # Minimum time between consecutive contacts in seconds
     
 # Try to load MPS model
 model = Model("Satellite Optimization")
@@ -49,8 +54,6 @@ else:
         sj[idx] = st["nodeId"]
         mj[idx] = 1 if st["requestedOperation"] == "QKD" else 0
         aj[idx] = st["applicationId"]
-
-    T_min = 60  # Minimum time between consecutive contacts in seconds
 
     model = Model("Satellite Optimization")
 
@@ -105,6 +108,7 @@ else:
 
 # Solve model
 try:
+    model.setParam("limits/time", max_runtime)
     model.optimize()
     
     # Rebuild variable dictionary from model if x is not defined
@@ -129,6 +133,10 @@ try:
                         "satellitePass": satellitePasses[i],
                         "serviceTarget": serviceTargets[j]
                     })
+                    
+    solution_valid = verify_contacts_solution(contacts, T_min)
+    if not solution_valid:
+        raise Exception("Invalid Solution!")
             
     print("###### Result ######")
     print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))

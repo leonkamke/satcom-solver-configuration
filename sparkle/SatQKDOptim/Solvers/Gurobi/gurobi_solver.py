@@ -6,6 +6,8 @@ import re
 import json
 import uuid
 
+max_runtime = 60
+
 def parse_args_to_dict(argv):
     args_dict = {}
     i = 1  # skip python gurobi_solver.py
@@ -81,7 +83,6 @@ for k, v in config.items():
         sys.exit(1)
 
 # Run the Gurobi solver
-max_runtime = 60
 model.setParam("TimeLimit", max_runtime)
 quality = 0
 runtime = max_runtime
@@ -91,15 +92,14 @@ try:
     model.optimize()
 
     contacts = []
-    if model.Status == GRB.OPTIMAL or model.Status == GRB.TIME_LIMIT:
-        for i in V:
-            for j in S:
-                var = model.getVarByName(f"x_{i}_{j}")
-                if var is not None and var.X > 0.5:
-                    contacts.append({
-                        "satellitePass": satellitePasses[i],
-                        "serviceTarget": serviceTargets[j]
-                    })
+    for i in V:
+        for j in S:
+            var = model.getVarByName(f"x_{i}_{j}")
+            if var is not None and var.X > 0.5:
+                contacts.append({
+                    "satellitePass": satellitePasses[i],
+                    "serviceTarget": serviceTargets[j]
+                })
                 
     # Compute objectives
     quality = int(calculateObjectiveFunction(contacts))
