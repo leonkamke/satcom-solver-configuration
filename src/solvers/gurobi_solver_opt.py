@@ -7,10 +7,10 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_60app/test_europe_apr_15.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_80app/train_europe_12h_80app_nov_5.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_60app/test_europe_apr_15.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_80app/train_europe_12h_80app_nov_5.json"
 
 # Read problem instance
 print("Read problem instance")

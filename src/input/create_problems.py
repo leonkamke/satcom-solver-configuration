@@ -337,8 +337,8 @@ for month in range(1, 13):
             coverage_start = date
             coverage_end = coverage_start + coverage_duration
 
-            filename_json = output_base + f"{type}_{locations}_{calendar.month_abbr[month].lower()}_{day}.json"
-            filename_mps = output_base + f"{type}_{locations}_{calendar.month_abbr[month].lower()}_{day}.mps"
+            filename_json = output_base + f"{type}_{locations}_{str(planning_horizon)}h_{str(number_app_contexts_per_node)}app_{calendar.month_abbr[month].lower()}_{day}.json"
+            filename_mps = output_base + f"{type}_{locations}_{str(planning_horizon)}h_{str(number_app_contexts_per_node)}app_{calendar.month_abbr[month].lower()}_{day}.mps"
             if not os.path.exists(filename_json):
                 problem_instances = [
                     generate_problem_instance(

@@ -1,9 +1,97 @@
-branching_scorefunc categorical {s,p,q} [p]
-branching_scorefac real [0.0,1.0] [0.167]
-branching_preferbinary categorical {TRUE, FALSE} [FALSE]
-lp_initalgorithm categorical {s,p,d,b,c} [s]
-lp_pricing categorical {l,a,f,q,d} [l]
-heuristics_trivial_freq integer [-1,10] [0]
-separating_poolfreq integer [0,10] [10]
-separating_gomory_away real [0.0001,0.5] [0.01]
-heuristics_subnlp_presolveemphasis categorical {0,1,2,3} [0]
+presolving/maxrounds
+presolving/restartfac
+presolving/restartminred
+presolving/milp/enabledualinfer
+presolving/milp/enablesparsify
+presolving/milp/enablemultiaggr
+presolving/maxrestarts
+presolving/dualfix
+presolving/simplifyineqs
+presolving/substitution
+presolving/aggregator
+
+branching/scorefunc
+branching/useweightedsum
+branching/preferbinary
+branching/forceallchildren
+branching/checksol
+branching/pscost/strategy
+branching/random/priority
+branching/relpscost/confidencelevel
+branching/gomory/priority
+
+cutselection/dynamic/efficacyweight
+cutselection/dynamic/priority
+cutselection/hybrid/priority
+
+nodeselection/estimate/stdpriority
+nodeselection/hybridestim/stdpriority
+
+heuristics/rins/priority
+heuristics/rins/freq
+heuristics/feaspump/priority
+heuristics/feaspump/freq
+heuristics/undercover/priority
+heuristics/undercover/freq
+heuristics/rens/priority
+heuristics/rens/freq
+heuristics/dins/priority
+heuristics/dins/freq
+heuristics/actconsdiving/freq
+heuristics/rounding/freq
+heuristics/alns/freq
+heuristics/gins/freq
+heuristics/mutation/freq
+heuristics/trustregion/freq
+heuristics/localbranching/freq
+heuristics/scheduler/freq
+
+lp/solver
+lp/presolve
+lp/feastol
+lp/dualfeastol
+lp/primfeastol
+lp/fastmip
+lp/pricing
+lp/scaling
+lp/presolving
+
+separating/maxcuts
+separating/maxrounds
+separating/maxcutsroot
+separating/maxroundsroot
+separating/gomory/freq
+separating/gomory/priority
+separating/clique/freq
+separating/clique/priority
+separating/flowcover/freq
+separating/flowcover/priority
+separating/cmir/freq
+separating/cmir/priority
+separating/efficacyfac
+separating/strongcg/freq
+separating/mcfcut/freq
+
+randomization/lpseed
+randomization/permutationseed
+randomization/randomseedshift
+randomization/useperm
+
+conflict/enable
+conflict/useprop
+
+constraints/linear/aggregatevariables
+
+parallel/maxnthreads
+parallel/mode
+
+nodeselection/priority
+nodeselection/bestbound/stdpriority
+nodeselection/estimate/stdpriority
+nodeselection/hybrid/stdpriority
+
+misc/emphasis/performance
+misc/emphasis/optimality
+misc/emphasis/feasibility
+misc/emphasis/hardlp
+misc/usesymmetry

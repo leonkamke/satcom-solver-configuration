@@ -1,7 +1,9 @@
 Solver,,,nan,nan,nan
 Meta,,,Value,Seed,Configuration
 Objective,Instance,Run,,,
-runtime,,1,,,
+solve_time,,1,,,
+par10:metric,,1,,,
+quality:metric,,1,,,
 status:metric,,1,,,
 cpu_time:metric,,1,,,
 wall_time:metric,,1,,,

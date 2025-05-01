@@ -174,3 +174,5 @@ test.py
 data
 stdout.txt
 visualization
+experiment_setup.txt
+scip_parameters.txt

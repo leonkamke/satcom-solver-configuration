@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -6,7 +7,7 @@ import re
 import json
 import uuid
 
-max_runtime = 60
+max_solve_time = 180
 
 def parse_args_to_dict(argv):
     args_dict = {}
@@ -44,50 +45,45 @@ def calculateObjectiveFunction(contacts):
         result += (priority * (1 + achievableKeyVolume * operationMode))
     return result
 
-# Read the arguments
-args = parse_args_to_dict(sys.argv)
-
-instance_path_json = Path(args["inst"])
-instance_path_mps = instance_path_json.with_suffix(".mps")
-
-seed = args["seed"]
-del args["inst"]
-del args["seed"]
-
-config = args
-
-# Read problem instance
-print("Read problem instance")
-problemInstance = read_problem_instance(instance_path_json)
-satellitePasses = problemInstance["satellite_passes"]
-serviceTargets = problemInstance["service_targets"]
-
-V = list(range(len(satellitePasses)))
-S = list(range(len(serviceTargets)))
-
-model = read(instance_path_mps)
-
-# Suppress all solver output
-model.setParam('OutputFlag', 0)
-
-# Set parameters for model
-for k, v in config.items():
-    config[k] = float(v)
-    try:
-        model.setParam(k, config[k])
-    except Exception as ex:
-        exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
-        with open(exception_file_name, 'w') as file:
-            file.write('Setting parameter ' + str(k) + " -> " + str(config[k]) + ' failed with exception:\n')
-            file.write(str(ex))
-        sys.exit(1)
-
-# Run the Gurobi solver
-model.setParam("TimeLimit", max_runtime)
-quality = 0
-runtime = max_runtime
-
 try:
+    # Read the arguments
+    args = parse_args_to_dict(sys.argv)
+
+    instance_path_json = args["inst"]
+    full_path_json = Path(instance_path_json)
+    name_parts = full_path_json.name.split("_")
+    instance_path_mps = "../src/input/data/Dataset_year_" + str(name_parts[1]) + "_" + str(name_parts[2]) + "_" + str(name_parts[3]) + "/" + full_path_json.with_suffix('.mps').name
+
+    seed = args["seed"]
+    del args["inst"]
+    del args["seed"]
+
+    config = args
+
+    # Read problem instance
+    print("Read problem instance")
+    problemInstance = read_problem_instance(instance_path_json)
+    satellitePasses = problemInstance["satellite_passes"]
+    serviceTargets = problemInstance["service_targets"]
+
+    V = list(range(len(satellitePasses)))
+    S = list(range(len(serviceTargets)))
+
+    model = read(instance_path_mps)
+
+    # Suppress all solver output
+    model.setParam('OutputFlag', 0)
+
+    # Set parameters for model
+    for k, v in config.items():
+        config[k] = float(v)
+        model.setParam(k, config[k])
+
+    # Run the Gurobi solver
+    model.setParam("TimeLimit", max_solve_time)
+    quality = 0
+    solve_time = max_solve_time
+
     # Optimize the model
     model.optimize()
 
@@ -102,13 +98,18 @@ try:
                 })
                 
     # Compute objectives
-    quality = int(calculateObjectiveFunction(contacts))
-    runtime = round(model.Runtime, 4)
+    if len(contacts) > 0:
+        quality = int(calculateObjectiveFunction(contacts))
+    if model.Runtime != None:
+        solve_time = round(model.Runtime, 4)
+    if solve_time < max_solve_time:
+        par10 = solve_time
     
     # Print result
-    result = {"status": "SUCCESS",               
+    result = {"status": "SUCCESS",    
+              "par10": par10,            
             "quality": quality,
-            "runtime": runtime,  # If runtume == maxruntime: runtime *= 10 (PAR10)                 
+            "solve_time": solve_time,               
             "solver_call": None}
     print("Gurobi solver output is:")
     print(result)
@@ -119,5 +120,5 @@ except Exception as ex:
     with open(exception_file_name, 'w') as file:
         file.write('Optimization method failed with exception:\n')
         file.write(str(ex) + "\n")
-        file.write("This is the configuration:\n")
+        file.write("This was the configuration:\n")
         file.write(str(config))
