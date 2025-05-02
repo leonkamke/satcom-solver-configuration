@@ -79,12 +79,12 @@ presolving_milp_internalmaxrounds | presolving_milp_enabledualinfer == TRUE || p
 presolving_restartfac | presolving_maxrestarts > 0 && presolving_maxrounds > 1 
 branching_scorefac | branching_scorefunc == p || branching_scorefunc == q
 branching_pscost_strategy | branching_scorefunc == p
-heuristics_rins_priority | heuristics_rins_freq != -1
-heuristics_feaspump_priority | heuristics_feaspump_freq != -1
-heuristics_undercover_priority | heuristics_undercover_freq != -1
-heuristics_rens_priority | heuristics_rens_freq != -1
-heuristics_dins_priority | heuristics_dins_freq != -1
-lp_initalgorithm | lp_solvefreq != -1
-lp_resolvealgorithm | lp_solvefreq != -1
+heuristics_rins_priority | heuristics_rins_freq > 0
+heuristics_feaspump_priority | heuristics_feaspump_freq > 0
+heuristics_undercover_priority | heuristics_undercover_freq > 0
+heuristics_rens_priority | heuristics_rens_freq > 0
+heuristics_dins_priority | heuristics_dins_freq > 0
+lp_initalgorithm | lp_solvefreq > 0
+lp_resolvealgorithm | lp_solvefreq > 0
 parallel_maxnthreads | parallel_mode == 1
 conflict_useprop | conflict_enable == TRUE
