@@ -1,6 +1,0 @@
-Run Number,Run History Configuration ID,Instance ID,Response Value (y),Censored?,Cutoff Time Used,Seed,Runtime,Run Length,Run Result Code,Run Quality,SMAC Iteration,SMAC Cumulative Runtime,Run Result,Additional Algorithm Run Data,Wall Clock Time,
-1,1,1,-0.9333333333333333,0,60.0,5219272,1.2236,0.0,1,-0.9333333333333333,0,1.2236,SAT,,9.845,
-2,1,1,-0.9666666666666667,0,60.0,8623161,1.12121,0.0,1,-0.9666666666666667,1,2.34481,SAT,,8.282,
-3,2,1,1.0E9,0,60.0,5219272,0.0,0.0,-1,1.0E9,1,2.34481,CRASHED,ERROR: Wrapper did not output anything that matched the expected output ("Result of algorithm run:..."). Please try executing the wrapper directly,7.617,
-4,1,1,-0.9333333333333333,0,60.0,2568839,1.10788,0.0,1,-0.9333333333333333,1,3.4526899999999996,SAT,,7.443,
-5,3,1,1.0E9,0,60.0,5219272,0.0,0.0,-1,1.0E9,1,3.4526899999999996,CRASHED,ERROR: Wrapper did not output anything that matched the expected output ("Result of algorithm run:..."). Please try executing the wrapper directly,7.467,

@@ -1,7 +1,0 @@
-0.61/0.86	Traceback (most recent call last):
-0.61/0.86	  File "/rwthfs/rz/cluster/home/vx475510/satellite-operations-planning/sparkle_example/Solvers/RandomForest/sparkle_solver_wrapper.py", line 290, in <module>
-0.61/0.86	    config = Configuration(rf.configspace, config)
-0.61/0.86	  File "/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/ConfigSpace/configuration.py", line 117, in __init__
-0.61/0.87	    raise IllegalValueError(hp, value)
-0.61/0.87	ConfigSpace.exceptions.IllegalValueError: Value 2.574596761938386E-4: (<class 'str'>) is not allowed for hyperparameter with name 'min_impurity_decrease'
-0.61/0.87	min_impurity_decrease, Type: UniformFloat, Range: [0.0, 0.5], Default: 0.0

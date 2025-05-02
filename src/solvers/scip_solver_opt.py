@@ -7,10 +7,10 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_12h_10app/train_world_12h_10app_jan_25.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_10app/test_europe_12h_10app_apr_15.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_12h_10app/train_world_12h_10app_jan_25.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_10app/test_europe_12h_10app_apr_15.json"
 
 # Time limit
 max_runtime = 30
@@ -116,12 +116,9 @@ try:
         x = {}
         for var in model.getVars():
             if var.name.startswith("x_"):
-                try:
-                    _, i_str, j_str = var.name.split("_")
-                    i, j = int(i_str), int(j_str)
-                    x[i, j] = var
-                except ValueError:
-                    print(f"Skipping unrecognized variable name: {var.name}")
+                _, i_str, j_str = var.name.split("_")
+                i, j = int(i_str), int(j_str)
+                x[i, j] = var
 
     contacts = []
     for i in V:
@@ -143,48 +140,6 @@ try:
     print("Runtime was:", model.getSolvingTime())
     print("Overall time was:", time.time() - start)
     print("####################")
-    
-    def format_param_info(model):
-        output_lines = []
-        for name in model.getParams():
-            try:
-                output_lines.append(name)
-                param = model.getParam(name)
-                ptype = param.getParamtype()
-                default = param.getDefault()
-
-                if ptype == "REAL":
-                    minval = param.getMinreal()
-                    maxval = param.getMaxreal()
-                    val_range = f"[{minval},{maxval}]"
-                    type_str = "real"
-                elif ptype == "INT":
-                    minval = param.getMinint()
-                    maxval = param.getMaxint()
-                    val_range = f"[{minval},{maxval}]"
-                    type_str = "integer"
-                elif ptype == "BOOL":
-                    val_range = "{TRUE, FALSE}"
-                    type_str = "categorical"
-                    default = "TRUE" if default else "FALSE"
-                elif ptype == "CHAR":
-                    allowed = ",".join(param.getAllowedChars())
-                    val_range = f"{{{allowed}}}"
-                    type_str = "categorical"
-                else:
-                    continue  # Skip unknown types
-
-                line = f"{name} {type_str} {val_range} [{default}]"
-                output_lines.append(line)
-            except Exception:
-                continue  # Skip inaccessible parameters
-
-        return sorted(output_lines)
-
-    lines = format_param_info(model)
-
-    with open("scip_parameters.txt", "w") as f:
-        f.write("\n".join(lines))
 
     # plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
 

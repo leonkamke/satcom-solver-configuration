@@ -1,2 +1,0 @@
-0.68/0.95	The 'min_samples_split' parameter of RandomForestClassifier must be an int in the range [2, inf) or a float in the range (0.0, 1.0]. Got 1 instead.
-0.68/0.95	{<sparkle.types.objective.SparkleObjective object at 0x14e93b31fbe0>: 0, 'status': 'CRASHED'}

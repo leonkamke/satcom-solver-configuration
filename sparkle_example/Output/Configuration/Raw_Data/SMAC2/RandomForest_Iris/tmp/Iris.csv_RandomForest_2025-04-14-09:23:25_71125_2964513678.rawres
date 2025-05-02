@@ -1,3 +1,0 @@
-0.70/1.01	/rwthfs/rz/cluster/home/vx475510/miniforge3/envs/sparkle/lib/python3.10/site-packages/sklearn/ensemble/_forest.py:578: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable OOB estimates.
-0.70/1.01	  warn(
-0.70/1.01	{'accuracy': 0.9333333333333333, 'precision': 0.9333333333333333, 'recall': 0.9333333333333333, 'f1': 0.9333333333333333, 'time': 0.014292240142822266, 'size': 114, 'status': 'SUCCESS'}

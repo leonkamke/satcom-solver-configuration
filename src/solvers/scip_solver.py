@@ -106,9 +106,3 @@ try:
     plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
 except Exception as ex:
     print(f"Exception: {ex}")
-
-# Save SCIP parameters
-params = model.getParams()
-with open("scip_parameters.txt", "w") as f:
-    for name in params:
-        f.write(f"{name.replace('/', '_')}: {params[name]}\n")
