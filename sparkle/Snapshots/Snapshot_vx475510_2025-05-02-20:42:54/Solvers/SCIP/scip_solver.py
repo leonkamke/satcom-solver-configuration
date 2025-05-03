@@ -9,29 +9,31 @@ import traceback
 
 max_solve_time = 240
 
+
 def parse_args_to_dict(argv):
     args_dict = {}
     i = 1  # skip python scip_solver.py
     while i < len(argv):
-        if argv[i].startswith('-'):
-            key = argv[i].lstrip('-')
+        if argv[i].startswith("-"):
+            key = argv[i].lstrip("-")
             # Make sure there's a value after the key
-            if i + 1 < len(argv) and not argv[i + 1].startswith('-'):
+            if i + 1 < len(argv) and not argv[i + 1].startswith("-"):
                 args_dict[key] = argv[i + 1]
                 i += 2
-            else: # Else skip
+            else:  # Else skip
                 i += 1
-        else: # Else skip
+        else:  # Else skip
             i += 1
     return args_dict
 
 
 # Helper function
 def read_problem_instance(instance_path):
-    with open(instance_path, 'r') as file:
+    with open(instance_path, "r") as file:
         data = json.load(file)
         return data[0]
-    
+
+
 # Helper function
 def calculateObjectiveFunction(contacts):
     result = 0
@@ -42,8 +44,9 @@ def calculateObjectiveFunction(contacts):
         priority = serviceTarget["priority"]
         achievableKeyVolume = satellitePass["achievableKeyVolume"]
         operationMode = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
-        result += (priority * (1 + achievableKeyVolume * operationMode))
+        result += priority * (1 + achievableKeyVolume * operationMode)
     return result
+
 
 try:
     # Read the arguments
@@ -52,7 +55,16 @@ try:
     instance_path_json = args["inst"]
     full_path_json = Path(instance_path_json)
     name_parts = full_path_json.name.split("_")
-    instance_path_mps = "../src/input/data/Dataset_year_" + str(name_parts[1]) + "_" + str(name_parts[2]) + "_" + str(name_parts[3]) + "/" + full_path_json.with_suffix('.mps').name
+    instance_path_mps = (
+        "../src/input/data/Dataset_year_"
+        + str(name_parts[1])
+        + "_"
+        + str(name_parts[2])
+        + "_"
+        + str(name_parts[3])
+        + "/"
+        + full_path_json.with_suffix(".mps").name
+    )
 
     seed = args["seed"]
     del args["inst"]
@@ -93,9 +105,9 @@ try:
 
     # Optimize the model
     model.optimize()
-    
+
     # Rebuild variable dictionary from model if x is not defined
-    if 'x' not in locals():
+    if "x" not in locals():
         x = {}
         for var in model.getVars():
             if var.name.startswith("x_"):
@@ -109,11 +121,13 @@ try:
             if (i, j) in x:
                 val = model.getVal(x[i, j])
                 if val > 0.5:
-                    contacts.append({
-                        "satellitePass": satellitePasses[i],
-                        "serviceTarget": serviceTargets[j]
-                    })
-      
+                    contacts.append(
+                        {
+                            "satellitePass": satellitePasses[i],
+                            "serviceTarget": serviceTargets[j],
+                        }
+                    )
+
     # Compute objectives
     if len(contacts) > 0:
         quality = int(calculateObjectiveFunction(contacts))
@@ -121,30 +135,33 @@ try:
         solve_time = round(model.getSolvingTime(), 4)
     if solve_time < max_solve_time:
         par10 = solve_time
-    
+
     # Print result
-    result = {"status": "SUCCESS", 
-              "par10": par10,              
-            "quality": quality,
-            "solve_time": solve_time,
-            "solver_call": None}
+    result = {
+        "status": "SUCCESS",
+        "par10": par10,
+        "quality": quality,
+        "solve_time": solve_time,
+        "solver_call": None,
+    }
     print("SCIP solver output is:")
     print(result)
 
 except Exception as ex:
     print(ex)
-    exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
+    exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"
     error_message = traceback.format_exc()
-    with open(exception_file_name, 'w') as file:
+    with open(exception_file_name, "w") as file:
         file.write(str(ex) + "\n")
         file.write(error_message)
         file.write("\n\nThis is the configuration:\n")
         file.write(str(config))
-    result = {"status": "SUCCESS", 
-              "par10": max_solve_time * 10,              
-            "quality": 0,
-            "solve_time": max_solve_time,
-            "solver_call": None}
+    result = {
+        "status": "SUCCESS",
+        "par10": max_solve_time * 10,
+        "quality": 0,
+        "solve_time": max_solve_time,
+        "solver_call": None,
+    }
     print("SCIP solver output is:")
     print(result)
-    

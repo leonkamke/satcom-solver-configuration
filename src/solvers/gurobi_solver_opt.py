@@ -64,8 +64,7 @@ else:
 
     # Objective
     model.setObjective(
-        quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x),
-        GRB.MAXIMIZE
+        quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x), GRB.MAXIMIZE
     )
 
     # Constraints: each pass at most once
@@ -109,28 +108,33 @@ else:
 try:
     model.setParam("TimeLimit", 60)
     model.optimize()
-    
+
     contacts = []
     for i in V:
         for j in S:
             var = model.getVarByName(f"x_{i}_{j}")
             if var is not None and var.X > 0.5:
-                contacts.append({
-                    "satellitePass": satellitePasses[i],
-                    "serviceTarget": serviceTargets[j]
-                })
-    
+                contacts.append(
+                    {
+                        "satellitePass": satellitePasses[i],
+                        "serviceTarget": serviceTargets[j],
+                    }
+                )
+
     solution_valid = verify_contacts_solution(contacts, T_min)
     if not solution_valid:
         raise Exception("Invalid Solution!")
 
     print("###### Result ######")
-    print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))
+    print(
+        "Performance of the solution is:",
+        round(calculateObjectiveFunction(contacts), 2),
+    )
     print("Runtime was:", model.Runtime)
     print("Overall time was:", time.time() - start)
     print("####################")
 
     plotOptimizationResult(serviceTargets, satellitePasses, contacts, "Gurobi")
-    
+
 except Exception as ex:
     print(f"Exception: {ex}")

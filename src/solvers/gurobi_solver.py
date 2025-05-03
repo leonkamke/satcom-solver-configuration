@@ -7,7 +7,9 @@ start = time.time()
 
 # Read problem instance
 print("Read problem instance")
-problemInstance = read_problem_instance("/home/vx475510/satellite-operations-planning/src/input/data/Dataset_year_europe_12h_10app/test_europe_apr_15.json")
+problemInstance = read_problem_instance(
+    "/home/vx475510/satellite-operations-planning/src/input/data/Dataset_year_europe_12h_10app/test_europe_apr_15.json"
+)
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 
@@ -50,8 +52,7 @@ model.update()
 
 # Objective
 model.setObjective(
-    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x),
-    GRB.MAXIMIZE
+    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x), GRB.MAXIMIZE
 )
 
 # Constraints: each pass at most once
@@ -73,9 +74,7 @@ for idx1, i1 in enumerate(sorted_V):
         expr2 = quicksum(x[i2, k] for k in S if (i2, k) in x)
         # Use big-M constraint
         M = 99999
-        model.addConstr(
-            (ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - expr1 - expr2) * M)
-        )
+        model.addConstr((ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - expr1 - expr2) * M))
 
 # Application sequencing constraints: QKD before Post-Processing
 for app_id in set(aj.values()):
@@ -96,17 +95,22 @@ try:
         for i in V:
             for j in S:
                 if (i, j) in x and x[i, j].X > 0.5:
-                    contacts.append({
-                        "satellitePass": satellitePasses[i],
-                        "serviceTarget": serviceTargets[j]
-                    })
+                    contacts.append(
+                        {
+                            "satellitePass": satellitePasses[i],
+                            "serviceTarget": serviceTargets[j],
+                        }
+                    )
         print(len(contacts))
         print(len(V))
         print(len(S))
         print(contacts)
 
         print("###### Result ######")
-        print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))
+        print(
+            "Performance of the solution is:",
+            round(calculateObjectiveFunction(contacts), 2),
+        )
         print("Runtime was:", model.Runtime)
         print("Overall time was:", time.time() - start)
         print("####################")

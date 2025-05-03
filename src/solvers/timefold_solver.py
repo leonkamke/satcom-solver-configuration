@@ -15,11 +15,7 @@ export JAVA_HOME=$HOME/java/openlogic-openjdk-17.0.14+7-linux-x64
 export PATH=$JAVA_HOME/bin:$PATH
 """
 
-mvn_build_command = [
-    "mvn",
-    "clean",
-    "package"
-]
+mvn_build_command = ["mvn", "clean", "package"]
 subprocess.run(mvn_build_command, cwd="./src/solvers/timefold_solver")
 
 java_command = [
@@ -27,7 +23,7 @@ java_command = [
     "-Xmx4g",
     "-jar",
     "./src/solvers/timefold_solver/target/timefold_solver-1.0-SNAPSHOT-jar-with-dependencies.jar",
-    path_problem_instance
+    path_problem_instance,
 ]
 subprocess.run(java_command)
 
@@ -39,5 +35,8 @@ contacts_file_path = "./Tmp/timefold_solution_tmp.json"
 contacts = read_contacts_from_timefold(contacts_file_path)
 os.remove("./Tmp/timefold_solution_tmp.json")
 
-print("Performance of the solution is: " + str(round(calculateObjectiveFunction(contacts), 2)))
+print(
+    "Performance of the solution is: "
+    + str(round(calculateObjectiveFunction(contacts), 2))
+)
 plotOptimizationResult(serviceTargets, satellitePasses, contacts, "Timefold")

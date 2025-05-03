@@ -7,13 +7,13 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_10app/test_europe_12h_10app_apr_15.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_80app/test_europe_12h_80app_apr_15.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_10app/test_europe_12h_10app_apr_15.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_80app/test_europe_12h_80app_apr_15.json"
 
 # Time limit
-max_runtime = 30
+max_runtime = 45
 
 # Read problem instance
 print("Read problem instance")
@@ -25,7 +25,7 @@ V = list(range(len(satellitePasses)))
 S = list(range(len(serviceTargets)))
 
 T_min = 60  # Minimum time between consecutive contacts in seconds
-    
+
 # Try to load MPS model
 model = Model("Satellite Optimization")
 if os.path.exists(mps_file_path):
@@ -66,8 +66,7 @@ else:
 
     # Objective
     model.setObjective(
-        quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x),
-        "maximize"
+        quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x), "maximize"
     )
 
     # Constraints: each pass at most once
@@ -98,8 +97,8 @@ else:
         for j1 in qkd_targets:
             for j2 in pp_targets:
                 model.addCons(
-                    quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x) <=
-                    quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
+                    quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x)
+                    <= quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
                 )
 
     # Save MPS model for next time
@@ -109,10 +108,12 @@ else:
 # Solve model
 try:
     model.setParam("limits/time", max_runtime)
+    model.setParam("misc/usesymmetry", 0)
+
     model.optimize()
-    
+
     # Rebuild variable dictionary from model if x is not defined
-    if 'x' not in locals():
+    if "x" not in locals():
         x = {}
         for var in model.getVars():
             if var.name.startswith("x_"):
@@ -126,17 +127,22 @@ try:
             if (i, j) in x:
                 val = model.getVal(x[i, j])
                 if val > 0.5:
-                    contacts.append({
-                        "satellitePass": satellitePasses[i],
-                        "serviceTarget": serviceTargets[j]
-                    })
-                    
+                    contacts.append(
+                        {
+                            "satellitePass": satellitePasses[i],
+                            "serviceTarget": serviceTargets[j],
+                        }
+                    )
+
     solution_valid = verify_contacts_solution(contacts, T_min)
     if not solution_valid:
         raise Exception("Invalid Solution!")
-            
+
     print("###### Result ######")
-    print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))
+    print(
+        "Performance of the solution is:",
+        round(calculateObjectiveFunction(contacts), 2),
+    )
     print("Runtime was:", model.getSolvingTime())
     print("Overall time was:", time.time() - start)
     print("####################")

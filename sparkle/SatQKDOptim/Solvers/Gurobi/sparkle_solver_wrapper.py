@@ -7,12 +7,14 @@ from pathlib import Path
 from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
 import uuid
 
+
 def trim_to_solver_output(text):
     marker = "Gurobi solver output is:"
     parts = text.split(marker, 1)
     if len(parts) > 1:
         return parts[1].lstrip()
     return ""
+
 
 try:
     # Convert the arguments to a dictionary
@@ -34,10 +36,7 @@ try:
         solver_exec = f"{solver_dir / solver_name}"
     else:
         solver_exec = f"./{solver_name}"
-    solver_cmd = ["python",
-                solver_exec,
-                "-inst", str(instance),
-                "-seed", str(seed)]
+    solver_cmd = ["python", solver_exec, "-inst", str(instance), "-seed", str(seed)]
 
     # Construct call from args dictionary
     params = []
@@ -50,8 +49,7 @@ try:
     print(output_str)
 except Exception as ex:
     print(f"Solver call failed with exception:\n{ex}")
-    exception_file_name = './Tmp/' + str(uuid.uuid4()) + '.txt'
-    with open(exception_file_name, 'w') as file:
-        file.write('Solver wrapper failed with exception:\n')
+    exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"
+    with open(exception_file_name, "w") as file:
+        file.write("Solver wrapper failed with exception:\n")
         file.write(str(ex))
-    

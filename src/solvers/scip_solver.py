@@ -48,8 +48,7 @@ for i in V:
 
 # Objective
 model.setObjective(
-    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x),
-    "maximize"
+    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for (i, j) in x), "maximize"
 )
 
 # Constraints: each pass at most once
@@ -80,8 +79,8 @@ for app_id in set(aj.values()):
     for j1 in qkd_targets:
         for j2 in pp_targets:
             model.addCons(
-                quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x) <=
-                quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
+                quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x)
+                <= quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
             )
 
 # Optimize
@@ -92,13 +91,18 @@ try:
     for i in V:
         for j in S:
             if (i, j) in x and model.getVal(x[i, j]) > 0.5:
-                contacts.append({
-                    "satellitePass": satellitePasses[i],
-                    "serviceTarget": serviceTargets[j]
-                })
+                contacts.append(
+                    {
+                        "satellitePass": satellitePasses[i],
+                        "serviceTarget": serviceTargets[j],
+                    }
+                )
 
     print("###### Result ######")
-    print("Performance of the solution is:", round(calculateObjectiveFunction(contacts), 2))
+    print(
+        "Performance of the solution is:",
+        round(calculateObjectiveFunction(contacts), 2),
+    )
     print("Runtime was:", model.getSolvingTime())
     print("Overall time was:", time.time() - start)
     print("####################")

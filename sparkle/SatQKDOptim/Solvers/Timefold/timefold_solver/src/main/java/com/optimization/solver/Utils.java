@@ -2,6 +2,7 @@ package com.optimization.solver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -63,7 +64,7 @@ public class Utils {
         int id = 0;
         for (SatellitePass sp : satellitePasses) {
             for (ServiceTarget st : serviceTargets) {
-                if (sp.getNodeId() == st.getNodeId() && !isInvalidServiceTarget(sp, st)) {
+                if (!isInvalidServiceTarget(sp, st)) {
                     potentialContacts.add(new Contact(id, st, sp));
                     id++;
                 }
@@ -101,5 +102,32 @@ public class Utils {
         // Serialize to JSON
         objectMapper.writeValue(new File(dumpPath), planningSolution);
 
+    }
+
+    // Read configuration params and create SolverConfig object
+    SolverConfig getSolverConfig(String args) {
+        SolverConfig solverConfig = new SolverConfig();
+
+        // Set the solution class and constraint provider
+        solverConfig.setSolutionClass(Solution.class);
+        solverConfig.setConstraintProviderClass(SolutionConstraintProvider.class);
+
+        // Termination config
+        TerminationConfig terminationConfig = new TerminationConfig();
+        terminationConfig.setSecondsSpentLimit(30L);
+        solverConfig.setTerminationConfig(terminationConfig);
+
+        // Construction heuristic phase
+        ConstructionHeuristicPhaseConfig chPhaseConfig = new ConstructionHeuristicPhaseConfig();
+        chPhaseConfig.setConstructionHeuristicType(ConstructionHeuristicType.FIRST_FIT);
+
+        // Local search phase
+        LocalSearchPhaseConfig lsPhaseConfig = new LocalSearchPhaseConfig();
+        lsPhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+
+        // Set the phase configs
+        solverConfig.setPhaseConfigList(Arrays.asList(chPhaseConfig, lsPhaseConfig));
+
+        return solverConfig;
     }
 }

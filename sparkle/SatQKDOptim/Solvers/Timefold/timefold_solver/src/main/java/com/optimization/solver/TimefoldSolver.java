@@ -29,6 +29,7 @@ public class TimefoldSolver {
             String instancePath = null;
             String uuid = null;
 
+            // Read instance path and uuid (for tmp solution file)
             for (int i = 0; i < 4; i++) {
                 switch (args[i]) {
                     case "-inst":
@@ -49,8 +50,11 @@ public class TimefoldSolver {
             // Read problem instance and prepare planning solution
             Solution planningSolution = Utils.readProblemInstance(instancePath);
 
+            // Instantiate object for configuration
+            SolverConfig solverConfig = Utils.getSolverConfig(args);
+
             // Configure timefold solver
-            SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("solverConfig.xml");
+            SolverFactory<Solution> solverFactory = SolverFactory.create(solverConfig);
             Solver<Solution> timefoldSolver = solverFactory.buildSolver();
 
             // Run optimization

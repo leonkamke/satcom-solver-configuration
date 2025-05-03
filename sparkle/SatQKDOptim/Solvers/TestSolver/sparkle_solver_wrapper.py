@@ -8,12 +8,14 @@ from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
 from datetime import datetime
 from pyscipopt import Model, quicksum
 
+
 # Helper function
 def read_problem_instance(instance_path):
-    with open(instance_path, 'r') as file:
+    with open(instance_path, "r") as file:
         data = json.load(file)
         return data[0]
-    
+
+
 # Helper function
 def calculateObjectiveFunction(contacts):
     result = 0
@@ -24,9 +26,9 @@ def calculateObjectiveFunction(contacts):
         priority = serviceTarget["priority"]
         achievableKeyVolume = satellitePass["achievableKeyVolume"]
         operationMode = 1 if serviceTarget["requestedOperation"] == "QKD" else 0
-        result += (priority * (1 + achievableKeyVolume * operationMode))
+        result += priority * (1 + achievableKeyVolume * operationMode)
     return result
-    
+
 
 # Convert the arguments to a dictionary
 args = parse_solver_wrapper_args(sys.argv[1:])
@@ -66,7 +68,7 @@ for idx, satellitePass in enumerate(satellitePasses):
     end_time = datetime.fromisoformat(satellitePass["endTime"])
 
     start_seconds = (start_time - reference_time).total_seconds()
-    end_seconds =   (end_time - reference_time).total_seconds()
+    end_seconds = (end_time - reference_time).total_seconds()
 
     ti[idx] = start_seconds
 
@@ -93,7 +95,7 @@ T_min = 60
 model = Model("SCIP Solver")
 
 # Turn off all output
-model.setParam('display/verblevel', 0)   # Suppress display output
+model.setParam("display/verblevel", 0)  # Suppress display output
 
 # Computation time limit in seconds
 # model.setParam("limits/time", 45)
@@ -118,8 +120,7 @@ for i in V:
 
 # Objective function
 model.setObjective(
-    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for i in V for j in S),
-    "maximize"
+    quicksum(x[i, j] * pj[j] * (1 + bi[i] * mj[j]) for i in V for j in S), "maximize"
 )
 
 # Each satellite pass has at most one service target
@@ -135,7 +136,16 @@ for i1 in V:
     for i2 in V:
         if i1 != i2 and ti[i1] <= ti[i2]:
             model.addCons(
-                (ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - quicksum(x[i1, k] for k in S) - quicksum(x[i2, k] for k in S)) * 99999)
+                (ti[i1] + di[i1] + T_min)
+                <= (
+                    ti[i2]
+                    + (
+                        2
+                        - quicksum(x[i1, k] for k in S)
+                        - quicksum(x[i2, k] for k in S)
+                    )
+                    * 99999
+                )
             )
 
 # The node in the service target and satellite pass must match
@@ -152,7 +162,10 @@ for i in V:
 for j1 in S:
     for j2 in S:
         if aj[j1] == aj[j2] and mj[j1] == 1 and mj[j2] == 0:
-            model.addCons(quicksum(ti[i] * x[i, j1] for i in V) <= quicksum(ti[i] * x[i, j2] for i in V))
+            model.addCons(
+                quicksum(ti[i] * x[i, j1] for i in V)
+                <= quicksum(ti[i] * x[i, j2] for i in V)
+            )
 
 
 # Run the SCIP solver
@@ -165,30 +178,36 @@ runtime = max_runtime
 try:
     # Optimize the model
     model.optimize()
-    
+
     contacts = []
     for i in V:
         for j in S:
             if model.getVal(x[i, j]) > 0.5:
-                contacts.append({
-                "satellitePass": satellitePasses[i],
-                "serviceTarget": serviceTargets[j]
-            })
-                
+                contacts.append(
+                    {
+                        "satellitePass": satellitePasses[i],
+                        "serviceTarget": serviceTargets[j],
+                    }
+                )
+
     # Compute objectives
     schedule_quality = round(calculateObjectiveFunction(contacts))
     runtime = model.getSolvingTime()
 
-    result = {"status": "SUCCESS",               
-            "schedule_quality": schedule_quality,
-            "runtime": runtime,                   
-            "solver_call": None}
+    result = {
+        "status": "SUCCESS",
+        "schedule_quality": schedule_quality,
+        "runtime": runtime,
+        "solver_call": None,
+    }
 
     print(result)
-    
+
 except Exception as ex:
-    result = {"status": "TIMEOUT",               
-            "schedule_quality": 0.0,
-            "runtime": max_runtime,                   
-            "solver_call": None}
+    result = {
+        "status": "TIMEOUT",
+        "schedule_quality": 0.0,
+        "runtime": max_runtime,
+        "solver_call": None,
+    }
     print(result)

@@ -72,7 +72,6 @@ nodeselection_bfs_stdpriority integer [-536870912,1073741823] [100000]
 nodeselection_hybridestim_stdpriority integer [-536870912,1073741823] [50000]
 misc_allowstrongdualreds categorical {TRUE,FALSE} [TRUE]
 misc_allowweakdualreds categorical {TRUE,FALSE} [TRUE]
-misc_usesymmetry integer [0,7] [7]
 
 presolving_milp_maxrounds | presolving_milp_enabledualinfer == TRUE || presolving_milp_enablesparsify == TRUE || presolving_milp_enablemultiaggr == TRUE
 presolving_milp_internalmaxrounds | presolving_milp_enabledualinfer == TRUE || presolving_milp_enablesparsify == TRUE || presolving_milp_enablemultiaggr == TRUE
