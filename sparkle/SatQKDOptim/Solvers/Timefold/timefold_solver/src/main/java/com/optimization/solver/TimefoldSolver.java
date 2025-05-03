@@ -1,13 +1,27 @@
 package com.optimization.solver;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 
 import com.optimization.solver.model.Solution;
 
 import ai.timefold.solver.core.api.solver.Solver;
 import ai.timefold.solver.core.api.solver.SolverFactory;
+import ai.timefold.solver.core.config.solver.SolverConfig;
+import ai.timefold.solver.core.config.phase.PhaseConfig;
+import ai.timefold.solver.core.config.heuristic.selector.move.generic.chained.SubChainChangeMoveSelectorConfig;
+import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicPhaseConfig;
+import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicType;
+import ai.timefold.solver.core.config.localsearch.LocalSearchPhaseConfig;
+import ai.timefold.solver.core.config.localsearch.LocalSearchType;
+import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
+
 
 public class TimefoldSolver {
+
+    // Maximum solving time in seconds
+    public static Long maxSolveTime = 30L;
+
     public static void main(String[] args) {
         try {
             /*
@@ -51,7 +65,8 @@ public class TimefoldSolver {
             Solution planningSolution = Utils.readProblemInstance(instancePath);
 
             // Instantiate object for configuration
-            SolverConfig solverConfig = Utils.getSolverConfig(args);
+            HashMap<String, String> config = Utils.getConfigHashMap(args);
+            SolverConfig solverConfig = Utils.getSolverConfig(config);
 
             // Configure timefold solver
             SolverFactory<Solution> solverFactory = SolverFactory.create(solverConfig);

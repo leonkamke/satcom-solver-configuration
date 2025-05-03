@@ -1,21 +1,7 @@
+moveThreadCount integer [1,32] [1]
 constructionHeuristicType categorical {FIRST_FIT, FIRST_FIT_DECREASING, NONE} [NONE]
-constructionHeuristicTerminationStepCount integer [1,10000] [500]
+ls1Type categorical {HILL_CLIMBING, TABU_SEARCH, SIMULATED_ANNEALING, LATE_ACCEPTANCE, NONE} [None]
+ls2Type categorical {HILL_CLIMBING, TABU_SEARCH, SIMULATED_ANNEALING, LATE_ACCEPTANCE, NONE} [None]
+fractionTime real [0.05,0.95] [0.5]
 
-ls1_type categorical {LATE_ACCEPTANCE, SIMULATED_ANNEALING, TABU_SEARCH, HILL_CLIMBING, NONE} [None]
-ls1_acceptanceType categorical {ONLY_ACCEPT_BETTER_SCORES, ACCEPT_ALL} [ONLY_ACCEPT_BETTER_SCORES]
-ls1_foragerType categorical {FINALIST, LOWEST_SCORE} [FINALIST]
-ls1_simulatedAnnealingStartingTemperature real [0.01,1000.0] [1.0]
-ls1_lateAcceptanceSize integer [1,10000] [100]
-ls1_tabuSize integer [1,1000] [50]
-
-ls2_type categorical {LATE_ACCEPTANCE, SIMULATED_ANNEALING, TABU_SEARCH, HILL_CLIMBING, NONE} [NONE]
-ls2_acceptanceType categorical {ONLY_ACCEPT_BETTER_SCORES, ACCEPT_ALL} [ONLY_ACCEPT_BETTER_SCORES]
-ls2_foragerType categorical {FINALIST, LOWEST_SCORE} [FINALIST]
-ls2_simulatedAnnealingStartingTemperature real [0.01,1000.0] [1.0]
-ls2_lateAcceptanceSize integer [1,10000] [100]
-ls2_tabuSize integer [1,1000] [50]
-
-moveThreadCount integer [1,64] [1]
-scoreDirectorType categorical {SIMPLE, CONSTRAINT_STREAMS} [CONSTRAINT_STREAMS]
-terminationSpentLimitSeconds integer [1,3600] [30]
-terminationBestScoreLimit string {auto} [auto]
+fractionTime | ls1Type != NONE && ls2Type != NONE

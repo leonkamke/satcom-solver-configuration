@@ -2,7 +2,10 @@ package com.optimization.solver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,69 +15,82 @@ import com.optimization.solver.model.Contact;
 import com.optimization.solver.model.SatellitePass;
 import com.optimization.solver.model.ServiceTarget;
 import com.optimization.solver.model.Solution;
+import com.optimization.solver.model.SolutionConstraintProvider;
+
+import ai.timefold.solver.core.config.solver.SolverConfig;
+import ai.timefold.solver.core.config.phase.PhaseConfig;
+import ai.timefold.solver.core.config.heuristic.selector.move.generic.chained.SubChainChangeMoveSelectorConfig;
+import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicPhaseConfig;
+import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicType;
+import ai.timefold.solver.core.config.localsearch.LocalSearchPhaseConfig;
+import ai.timefold.solver.core.config.localsearch.LocalSearchType;
+import ai.timefold.solver.core.config.localsearch.decider.acceptor.AcceptorType;
+import ai.timefold.solver.core.config.localsearch.decider.acceptor.LocalSearchAcceptorConfig;
+import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
+
+
+
+import ai.timefold.solver.core.config.solver.SolverConfig;
+
 
 public class Utils {
-    
+
     @SuppressWarnings("CallToPrintStackTrace")
-    public static Solution readProblemInstance(String path) {
+    public static Solution readProblemInstance(String path) throws Exception {
         Solution solution = new Solution();
-        try {
-            File jsonFile = new File(path);
 
-            // Jackson ObjectMapper
-            ObjectMapper mapper = new ObjectMapper();
+        File jsonFile = new File(path);
 
-            // Register JavaTimeModule to handle LocalDateTime
-            mapper.registerModule(new JavaTimeModule());
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        // Jackson ObjectMapper
+        ObjectMapper mapper = new ObjectMapper();
 
-            // Read the JSON into a tree structure
-            JsonNode root = mapper.readTree(jsonFile);
+        // Register JavaTimeModule to handle LocalDateTime
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-            // Create lists to store satellite passes and service targets
-            LinkedList<SatellitePass> satellitePasses = new LinkedList<>();
-            LinkedList<ServiceTarget> serviceTargets = new LinkedList<>();
+        // Read the JSON into a tree structure
+        JsonNode root = mapper.readTree(jsonFile);
 
-            // Iterate through the problem instances
-            for (JsonNode instance : root) {
-                // Read satellite passes
-                JsonNode passes = instance.get("satellite_passes");
-                if (passes != null) {
-                    for (JsonNode pass : passes) {
-                        SatellitePass satellitePass = mapper.treeToValue(pass, SatellitePass.class);
-                        satellitePasses.add(satellitePass);
-                    }
-                }
+        // Create lists to store satellite passes and service targets
+        LinkedList<SatellitePass> satellitePasses = new LinkedList<>();
+        LinkedList<ServiceTarget> serviceTargets = new LinkedList<>();
 
-                // Read service targets
-                JsonNode targets = instance.get("service_targets");
-                if (targets != null) {
-                    for (JsonNode target : targets) {
-                        ServiceTarget serviceTarget = mapper.treeToValue(target, ServiceTarget.class);
-                        serviceTargets.add(serviceTarget);
-                    }
+        // Iterate through the problem instances
+        for (JsonNode instance : root) {
+            // Read satellite passes
+            JsonNode passes = instance.get("satellite_passes");
+            if (passes != null) {
+                for (JsonNode pass : passes) {
+                    SatellitePass satellitePass = mapper.treeToValue(pass, SatellitePass.class);
+                    satellitePasses.add(satellitePass);
                 }
             }
 
-            solution.setServiceTargets(serviceTargets);
-            solution.setSatellitePasses(satellitePasses);
-
-            LinkedList<Contact> potentialContacts = new LinkedList<>();
-            int id = 0;
-            for (SatellitePass sp : satellitePasses) {
-                for (ServiceTarget st: serviceTargets) {
-                    if (sp.getNodeId() == st.getNodeId() && !isInvalidServiceTarget(sp, st)) {
-                        potentialContacts.add(new Contact(id, st, sp));
-                        id++;
-                    }
+            // Read service targets
+            JsonNode targets = instance.get("service_targets");
+            if (targets != null) {
+                for (JsonNode target : targets) {
+                    ServiceTarget serviceTarget = mapper.treeToValue(target, ServiceTarget.class);
+                    serviceTargets.add(serviceTarget);
                 }
             }
-            solution.setContacts(potentialContacts);
-
-        } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
         }
-        
+
+        solution.setServiceTargets(serviceTargets);
+        solution.setSatellitePasses(satellitePasses);
+
+        LinkedList<Contact> potentialContacts = new LinkedList<>();
+        int id = 0;
+        for (SatellitePass sp : satellitePasses) {
+            for (ServiceTarget st : serviceTargets) {
+                if (!isInvalidServiceTarget(sp, st)) {
+                    potentialContacts.add(new Contact(id, st, sp));
+                    id++;
+                }
+            }
+        }
+        solution.setContacts(potentialContacts);
+
         return solution;
     }
 
@@ -88,22 +104,163 @@ public class Utils {
 
     // Remove all contacts that are not assigned
     public static void filterContacts(Solution planningSolution) {
-        planningSolution.setContacts(planningSolution.getContacts().stream().filter(contact -> contact.getSelected()).toList());
+        planningSolution
+                .setContacts(planningSolution.getContacts().stream().filter(contact -> contact.getSelected()).toList());
     }
 
     // Write solution into a json file (will be processed by python super process)
     @SuppressWarnings("CallToPrintStackTrace")
-    public static void dumpSolution(Solution planningSolution) {
-        String dumpPath = "./Tmp/";
+    public static void dumpSolution(Solution planningSolution, String filename) throws Exception{
+        String dumpPath = "./Tmp/" + filename;
+        dumpPath += ".json";
         ObjectMapper objectMapper = new ObjectMapper();
         // Register JavaTimeModule to handle LocalDateTime
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        try {
-            // Serialize to JSON
-            objectMapper.writeValue(new File(dumpPath + "timefold_solution_tmp.json"), planningSolution);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        // Serialize to JSON
+        objectMapper.writeValue(new File(dumpPath), planningSolution);
+
+    }
+
+    // Read configuration params and create SolverConfig object
+    public static SolverConfig getSolverConfig(HashMap<String, String> config) {
+        SolverConfig solverConfig = new SolverConfig();
+        ArrayList<PhaseConfig> searchPhases = new ArrayList();
+
+        solverConfig.setMoveThreadCount(config.get("moveThreadCount"));
+
+        // Set the solution class and constraint provider
+        solverConfig.setSolutionClass(Solution.class);
+        solverConfig.withConstraintProviderClass(SolutionConstraintProvider.class);
+
+        // Set termination config
+        TerminationConfig terminationConfig = new TerminationConfig();
+        terminationConfig.setSecondsSpentLimit(TimefoldSolver.maxSolveTime); // Maximum solving time
+        solverConfig.setTerminationConfig(terminationConfig);
+
+        // Compute runtime for both phases in seconds
+        Long ls1SolveTime = TimefoldSolver.maxSolveTime;
+        Long ls2Solvetime = TimefoldSolver.maxSolveTime;
+        String ls1Type = config.get("ls1Type");
+        String ls2Type = config.get("ls2Type");
+        if (!ls1Type.equals("NONE") && !ls2Type.equals("NONE")) {
+            double fraction = Double.parseDouble(config.get("fractionTime"));
+            ls1SolveTime = Math.round(TimefoldSolver.maxSolveTime * fraction);
+            ls2Solvetime = TimefoldSolver.maxSolveTime - ls1SolveTime;
         }
+
+        // Construction heuristic phase
+        if (!config.get("constructionHeuristicType").equals("NONE")) {
+            ConstructionHeuristicPhaseConfig chPhaseConfig = new ConstructionHeuristicPhaseConfig();
+            ConstructionHeuristicType chType = null;
+            if (config.get("constructionHeuristicType").equals("FIRST_FIT")) {
+                chType = ConstructionHeuristicType.FIRST_FIT;
+            } else {    // First Fit Decreasing
+                chType = ConstructionHeuristicType.FIRST_FIT_DECREASING;
+            }
+            chPhaseConfig.setConstructionHeuristicType(chType);
+            searchPhases.add(chPhaseConfig);
+        }
+
+        // Local search phase 1
+        if (!ls1Type.equals("NONE")) {
+            LocalSearchPhaseConfig ls1PhaseConfig = new LocalSearchPhaseConfig();
+            
+            // Set termination config
+            TerminationConfig ls1TerminationConfig = new TerminationConfig();
+            ls1TerminationConfig.setSecondsSpentLimit(ls1SolveTime);
+            ls1PhaseConfig.setTerminationConfig(ls1TerminationConfig);
+            
+            if (ls1Type.equals("HILL_CLIMBING")) {
+                ls1PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+            } else if (ls1Type.equals("TABU_SEARCH")) {
+                ls1PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
+            } else if (ls1Type.equals("SIMULATED_ANNEALING")) {
+                ls1PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
+            } else {    // Late Acceptance
+                ls1PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+            }
+
+            searchPhases.add(ls1PhaseConfig);
+        }
+
+        // Local search phase 2
+        if (!ls2Type.equals("NONE")) {
+            LocalSearchPhaseConfig ls2PhaseConfig = new LocalSearchPhaseConfig();
+            
+            // Set termination config
+            TerminationConfig ls2TerminationConfig = new TerminationConfig();
+            ls2TerminationConfig.setSecondsSpentLimit(ls2Solvetime);
+            ls2PhaseConfig.setTerminationConfig(ls2TerminationConfig);
+            
+            if (ls2Type.equals("HILL_CLIMBING")) {
+                ls2PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+            } else if (ls2Type.equals("TABU_SEARCH")) {
+                ls2PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
+            } else if (ls2Type.equals("SIMULATED_ANNEALING")) {
+                ls2PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
+            } else {    // Late Acceptance
+                ls2PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+            }
+
+            searchPhases.add(ls2PhaseConfig);
+        }
+
+        // Set the phase configs and return
+        solverConfig.setPhaseConfigList(searchPhases);
+        return solverConfig;
+    }
+
+    public static HashMap<String, String> getConfigHashMap(String[] args) {
+        HashMap<String, String> config = new HashMap<>();
+
+        // Read configuration parameters
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-inst":   // Skip
+                    if (i + 1 < args.length) {
+                        i++;
+                    }
+                    break;
+                case "-uuid":   // Skip
+                    if (i + 1 < args.length) {
+                        i++;
+                    }
+                    break;
+                case "-moveThreadCount":
+                    if (i + 1 < args.length) {
+                        config.put("moveThreadCount", args[i+1]);
+                        i++;
+                    }
+                    break;
+                case "-constructionHeuristicType":
+                    if (i + 1 < args.length) {
+                        config.put("constructionHeuristicType", args[i+1]);
+                        i++;
+                    }
+                    break;
+                case "-ls1Type":
+                    if (i + 1 < args.length) {
+                        config.put("ls1Type", args[i+1]);
+                        i++;
+                    }
+                    break;
+                case "-ls2Type":
+                    if (i + 1 < args.length) {
+                        config.put("ls2Type", args[i+1]);
+                        i++;
+                    }
+                    break;
+                case "-fractionTime":
+                    if (i + 1 < args.length) {
+                        config.put("fractionTime", args[i+1]);
+                        i++;
+                    }
+                    break;
+            }
+        }
+
+        return config;
     }
 }
