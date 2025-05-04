@@ -7,6 +7,7 @@ import com.optimization.solver.model.Solution;
 
 import ai.timefold.solver.core.api.solver.Solver;
 import ai.timefold.solver.core.api.solver.SolverFactory;
+import ai.timefold.solver.core.config.solver.EnvironmentMode;
 import ai.timefold.solver.core.config.solver.SolverConfig;
 import ai.timefold.solver.core.config.phase.PhaseConfig;
 import ai.timefold.solver.core.config.heuristic.selector.move.generic.chained.SubChainChangeMoveSelectorConfig;
@@ -20,7 +21,7 @@ import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
 public class TimefoldSolver {
 
     // Maximum solving time in seconds
-    public static Long maxSolveTime = 30L;
+    public static Long maxSolveTime = 1L;
 
     public static void main(String[] args) {
         try {
@@ -70,6 +71,7 @@ public class TimefoldSolver {
 
             // Configure timefold solver
             SolverFactory<Solution> solverFactory = SolverFactory.create(solverConfig);
+            // SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("solverConfig.xml");            
             Solver<Solution> timefoldSolver = solverFactory.buildSolver();
 
             // Run optimization
@@ -78,11 +80,22 @@ public class TimefoldSolver {
             System.out.println("Ended solving");
 
             // Filter not assigned contacts
-            Utils.filterContacts(solution);
+            Utils.filterServiceTargets(solution);
+
+            // Create contacts
+            Utils.calculateContacts(solution);
 
             // Dump solution as json
             Utils.dumpSolution(solution, uuid);
 
+            for (PhaseConfig<?> pc: solverConfig.getPhaseConfigList()) {
+                System.out.println("Phase type: " + pc.getClass().getSimpleName());
+
+                if (pc instanceof LocalSearchPhaseConfig lsConfig) {
+                    System.out.println("Local Search algorithm: " +
+                        lsConfig.getLocalSearchType());
+                }
+            }
             System.out.println("Finished Timefold computation");
         } catch (Exception ex) {
             ex.printStackTrace();

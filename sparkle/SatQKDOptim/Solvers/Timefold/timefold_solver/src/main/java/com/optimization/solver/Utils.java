@@ -2,9 +2,12 @@ package com.optimization.solver;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Provider.Service;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -28,10 +31,7 @@ import ai.timefold.solver.core.config.localsearch.decider.acceptor.AcceptorType;
 import ai.timefold.solver.core.config.localsearch.decider.acceptor.LocalSearchAcceptorConfig;
 import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
 
-
-
 import ai.timefold.solver.core.config.solver.SolverConfig;
-
 
 public class Utils {
 
@@ -76,20 +76,18 @@ public class Utils {
             }
         }
 
-        solution.setServiceTargets(serviceTargets);
-        solution.setSatellitePasses(satellitePasses);
-
-        LinkedList<Contact> potentialContacts = new LinkedList<>();
-        int id = 0;
-        for (SatellitePass sp : satellitePasses) {
-            for (ServiceTarget st : serviceTargets) {
+        for (ServiceTarget st : serviceTargets) {
+            LinkedList<SatellitePass> possibleSatellitePasses = new LinkedList<>();
+            for (SatellitePass sp : satellitePasses) {
                 if (!isInvalidServiceTarget(sp, st)) {
-                    potentialContacts.add(new Contact(id, st, sp));
-                    id++;
+                    possibleSatellitePasses.add(sp);
                 }
             }
+            st.setPossibleSatellitePasses(possibleSatellitePasses);
         }
-        solution.setContacts(potentialContacts);
+
+        solution.setServiceTargets(serviceTargets);
+        solution.setSatellitePasses(satellitePasses);
 
         return solution;
     }
@@ -103,14 +101,25 @@ public class Utils {
     }
 
     // Remove all contacts that are not assigned
-    public static void filterContacts(Solution planningSolution) {
-        planningSolution
-                .setContacts(planningSolution.getContacts().stream().filter(contact -> contact.getSelected()).toList());
+    public static void filterServiceTargets(Solution planningSolution) {
+        planningSolution.setServiceTargets(
+                planningSolution.getServiceTargets().stream().filter(st -> st.getAssignedPass() != null).toList());
+    }
+
+    // Remove all contacts that are not assigned
+    public static void calculateContacts(Solution planningSolution) {
+        LinkedList<Contact> contacts = new LinkedList<>();
+        int id = 0;
+        for (ServiceTarget st : planningSolution.getServiceTargets()) {
+            contacts.add(new Contact(id, st, st.getAssignedPass()));
+            id++;
+        }
+        planningSolution.setContacts(contacts);
     }
 
     // Write solution into a json file (will be processed by python super process)
     @SuppressWarnings("CallToPrintStackTrace")
-    public static void dumpSolution(Solution planningSolution, String filename) throws Exception{
+    public static void dumpSolution(Solution planningSolution, String filename) throws Exception {
         String dumpPath = "./Tmp/" + filename;
         dumpPath += ".json";
         ObjectMapper objectMapper = new ObjectMapper();
@@ -132,11 +141,12 @@ public class Utils {
 
         // Set the solution class and constraint provider
         solverConfig.setSolutionClass(Solution.class);
+        solverConfig.setEntityClassList(List.of(ServiceTarget.class));
         solverConfig.withConstraintProviderClass(SolutionConstraintProvider.class);
 
         // Set termination config
         TerminationConfig terminationConfig = new TerminationConfig();
-        terminationConfig.setSecondsSpentLimit(TimefoldSolver.maxSolveTime); // Maximum solving time
+        terminationConfig.setSpentLimit(Duration.ofSeconds(TimefoldSolver.maxSolveTime)); // Maximum solving time in seconds
         solverConfig.setTerminationConfig(terminationConfig);
 
         // Compute runtime for both phases in seconds
@@ -156,7 +166,7 @@ public class Utils {
             ConstructionHeuristicType chType = null;
             if (config.get("constructionHeuristicType").equals("FIRST_FIT")) {
                 chType = ConstructionHeuristicType.FIRST_FIT;
-            } else {    // First Fit Decreasing
+            } else { // First Fit Decreasing
                 chType = ConstructionHeuristicType.FIRST_FIT_DECREASING;
             }
             chPhaseConfig.setConstructionHeuristicType(chType);
@@ -166,19 +176,19 @@ public class Utils {
         // Local search phase 1
         if (!ls1Type.equals("NONE")) {
             LocalSearchPhaseConfig ls1PhaseConfig = new LocalSearchPhaseConfig();
-            
+
             // Set termination config
             TerminationConfig ls1TerminationConfig = new TerminationConfig();
             ls1TerminationConfig.setSecondsSpentLimit(ls1SolveTime);
             ls1PhaseConfig.setTerminationConfig(ls1TerminationConfig);
-            
+
             if (ls1Type.equals("HILL_CLIMBING")) {
-                ls1PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+                ls1PhaseConfig.setLocalSearchType(LocalSearchType.HILL_CLIMBING);
             } else if (ls1Type.equals("TABU_SEARCH")) {
                 ls1PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
             } else if (ls1Type.equals("SIMULATED_ANNEALING")) {
                 ls1PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
-            } else {    // Late Acceptance
+            } else { // Late Acceptance
                 ls1PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
             }
 
@@ -188,19 +198,19 @@ public class Utils {
         // Local search phase 2
         if (!ls2Type.equals("NONE")) {
             LocalSearchPhaseConfig ls2PhaseConfig = new LocalSearchPhaseConfig();
-            
+
             // Set termination config
             TerminationConfig ls2TerminationConfig = new TerminationConfig();
             ls2TerminationConfig.setSecondsSpentLimit(ls2Solvetime);
             ls2PhaseConfig.setTerminationConfig(ls2TerminationConfig);
-            
+
             if (ls2Type.equals("HILL_CLIMBING")) {
-                ls2PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
+                ls2PhaseConfig.setLocalSearchType(LocalSearchType.HILL_CLIMBING);
             } else if (ls2Type.equals("TABU_SEARCH")) {
                 ls2PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
             } else if (ls2Type.equals("SIMULATED_ANNEALING")) {
                 ls2PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
-            } else {    // Late Acceptance
+            } else { // Late Acceptance
                 ls2PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
             }
 
@@ -218,43 +228,43 @@ public class Utils {
         // Read configuration parameters
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
-                case "-inst":   // Skip
+                case "-inst": // Skip
                     if (i + 1 < args.length) {
                         i++;
                     }
                     break;
-                case "-uuid":   // Skip
+                case "-uuid": // Skip
                     if (i + 1 < args.length) {
                         i++;
                     }
                     break;
                 case "-moveThreadCount":
                     if (i + 1 < args.length) {
-                        config.put("moveThreadCount", args[i+1]);
+                        config.put("moveThreadCount", args[i + 1]);
                         i++;
                     }
                     break;
                 case "-constructionHeuristicType":
                     if (i + 1 < args.length) {
-                        config.put("constructionHeuristicType", args[i+1]);
+                        config.put("constructionHeuristicType", args[i + 1]);
                         i++;
                     }
                     break;
                 case "-ls1Type":
                     if (i + 1 < args.length) {
-                        config.put("ls1Type", args[i+1]);
+                        config.put("ls1Type", args[i + 1]);
                         i++;
                     }
                     break;
                 case "-ls2Type":
                     if (i + 1 < args.length) {
-                        config.put("ls2Type", args[i+1]);
+                        config.put("ls2Type", args[i + 1]);
                         i++;
                     }
                     break;
                 case "-fractionTime":
                     if (i + 1 < args.length) {
-                        config.put("fractionTime", args[i+1]);
+                        config.put("fractionTime", args[i + 1]);
                         i++;
                     }
                     break;

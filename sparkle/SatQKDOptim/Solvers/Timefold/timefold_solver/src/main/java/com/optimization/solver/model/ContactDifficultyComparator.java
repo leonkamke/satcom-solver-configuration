@@ -2,11 +2,11 @@ package com.optimization.solver.model;
 
 import java.util.Comparator;
 
-public class ContactDifficultyComparator implements Comparator<Contact> {
+public class ContactDifficultyComparator implements Comparator<ServiceTarget> {
 
     @Override
-    public int compare(Contact arg0, Contact arg1) {
-        return Integer.compare(arg0.getSatellitePass().getOrbitId(), arg1.getSatellitePass().getOrbitId());
+    public int compare(ServiceTarget arg0, ServiceTarget arg1) {
+        return Integer.compare(arg0.getNodeId(), arg1.getNodeId());
     }
     
 }

@@ -3,7 +3,7 @@ import subprocess
 from ..utils import *
 import uuid
 
-instance_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_50app/test_europe_24h_50app_aug_15.json"
+instance_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_100app/test_europe_24h_100app_aug_15.json"
 
 # Run Timefold solver in Java
 

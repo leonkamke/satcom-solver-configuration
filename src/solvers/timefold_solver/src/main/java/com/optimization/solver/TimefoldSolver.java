@@ -21,7 +21,7 @@ import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
 public class TimefoldSolver {
 
     // Maximum solving time in seconds
-    public static Long maxSolveTime = 60L;
+    public static Long maxSolveTime = 1L;
 
     public static void main(String[] args) {
         try {
