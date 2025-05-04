@@ -1,39 +1,52 @@
 import os
 import subprocess
 from ..utils import *
+import uuid
 
-path_problem_instance = "./src/input/data/problem_instance_europe_jan_3h.json"
+instance_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_50app/test_europe_24h_50app_aug_15.json"
 
 # Run Timefold solver in Java
 
-"""
-M2_HOME="$HOME/maven/apache-maven-3.9.9"
-export M2_HOME=$HOME/maven/apache-maven-3.9.9
-export PATH=$M2_HOME/bin:$PATH
+# Read user home from file
+user_home = None
+with open("./src/solvers/cluster_home.txt", "r") as f:
+    user_home = f.read().strip()
 
-export JAVA_HOME=$HOME/java/openlogic-openjdk-17.0.14+7-linux-x64
-export PATH=$JAVA_HOME/bin:$PATH
-"""
+# Compile and build Java Timefold project (WORKS WITH SPARKLE!)
+# TODO: Remove for big experiments (takes some time)
+"""mvn_build_command = [
+    os.path.join(user_home, "maven/apache-maven-3.9.9/bin/mvn"),
+    "clean",
+    "package"
+]
+subprocess.run(mvn_build_command, cwd="./Solvers/Timefold/timefold_solver")"""
 
-mvn_build_command = ["mvn", "clean", "package"]
-subprocess.run(mvn_build_command, cwd="./src/solvers/timefold_solver")
-
+# Run Timefold jar file
+java_path = os.path.join(user_home, "java/openlogic-openjdk-17.0.14+7-linux-x64/bin/java")
+random_uuid = str(uuid.uuid4())
 java_command = [
-    "java",
-    "-Xmx4g",
+    java_path,
+    "-Xmx20g",
     "-jar",
     "./src/solvers/timefold_solver/target/timefold_solver-1.0-SNAPSHOT-jar-with-dependencies.jar",
-    path_problem_instance,
+    "-inst",
+    instance_path,
+    "-uuid",
+    random_uuid,
+    "-constructionHeuristicType", "NONE", "-ls1Type", "NONE", "-ls2Type", "NONE"
 ]
 subprocess.run(java_command)
 
 # Calculate performance and plot solution
-problemInstance = read_problem_instance(path_problem_instance)
+problemInstance = read_problem_instance(instance_path)
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
-contacts_file_path = "./Tmp/timefold_solution_tmp.json"
+contacts_file_path = "./Tmp/" + random_uuid + ".json"
 contacts = read_contacts_from_timefold(contacts_file_path)
-os.remove("./Tmp/timefold_solution_tmp.json")
+os.remove(contacts_file_path)
+print("Number of contacts in solution: " + str(len(contacts)))
+print("Solution is valid: " + str(verify_contacts_solution(contacts)))
+
 
 print(
     "Performance of the solution is: "

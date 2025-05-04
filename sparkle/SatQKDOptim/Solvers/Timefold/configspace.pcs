@@ -1,4 +1,3 @@
-moveThreadCount integer [1,32] [1]
 constructionHeuristicType categorical {FIRST_FIT, FIRST_FIT_DECREASING, NONE} [NONE]
 ls1Type categorical {HILL_CLIMBING, TABU_SEARCH, SIMULATED_ANNEALING, LATE_ACCEPTANCE, NONE} [None]
 ls2Type categorical {HILL_CLIMBING, TABU_SEARCH, SIMULATED_ANNEALING, LATE_ACCEPTANCE, NONE} [None]

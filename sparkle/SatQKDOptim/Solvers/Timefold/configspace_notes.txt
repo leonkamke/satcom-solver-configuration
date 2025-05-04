@@ -27,5 +27,3 @@ ls2_foragerType categorical {FINALIST, LOWEST_SCORE} [FINALIST]
 ls2_simulatedAnnealingStartingTemperature real [0.01,1000.0] [1.0]
 ls2_lateAcceptanceSize integer [1,10000] [100]
 ls2_tabuSize integer [1,1000] [50]
-
-moveThreadCount integer [1,64] [1]

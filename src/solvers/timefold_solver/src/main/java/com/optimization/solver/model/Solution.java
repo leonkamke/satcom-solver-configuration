@@ -20,14 +20,13 @@ import lombok.NoArgsConstructor;
 public class Solution {
 
     @JsonIgnore
-    @ProblemFactCollectionProperty
+    @PlanningEntityCollectionProperty
     private List<ServiceTarget> serviceTargets;
 
     @JsonIgnore
     @ProblemFactCollectionProperty
     private List<SatellitePass> satellitePasses;
 
-    @PlanningEntityCollectionProperty
     private List<Contact> contacts;
 
     @JsonIgnore

@@ -10,6 +10,7 @@ import ai.timefold.solver.core.api.score.stream.Constraint;
 import ai.timefold.solver.core.api.score.stream.ConstraintCollectors;
 import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
 import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
+import ai.timefold.solver.core.api.score.stream.Joiners;
 
 public class SolutionConstraintProvider implements ConstraintProvider {
 
@@ -19,111 +20,73 @@ public class SolutionConstraintProvider implements ConstraintProvider {
     @Override
     public Constraint[] defineConstraints(ConstraintFactory constraintFactory) {
         return new Constraint[] {
-            // Hard constraint
-            nonOverlappingContacts(constraintFactory),
-            singleAssignmentPerPass(constraintFactory),
-            singleAssignmentPerServiceTarget(constraintFactory),
-            validServiceTarget(constraintFactory),
-            qkdAndThenPostprocessing(constraintFactory),
+                // Hard constraint
+                satellitePassUsedAtMostOnce(constraintFactory),
+                overlappingContacts(constraintFactory),
+                enforceQkdBeforePostProcessing(constraintFactory),
 
-            // Soft constraint
-            maximizePriorityAndBitRate(constraintFactory)
+                // Soft constraint
+                maximizeObjective(constraintFactory)
         };
     }
 
-    private Constraint nonOverlappingContacts(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEachUniquePair(Contact.class)
-            .filter((c1, c2) -> c1.getSelected() && c2.getSelected()
-                            && isOverlapping(c1, c2, this.t_min))
-            .penalize(HardSoftBigDecimalScore.ONE_HARD)
-            .asConstraint("Overlapping contacts conflict");
+    private Constraint satellitePassUsedAtMostOnce(ConstraintFactory constraintFactory) {
+        return constraintFactory.from(ServiceTarget.class)
+                .filter(st -> st.getAssignedPass() != null)
+                .groupBy(ServiceTarget::getAssignedPass, ConstraintCollectors.count())
+                .filter((sp, count) -> count > 1)
+                .penalize("Satellite pass used more than once", HardSoftBigDecimalScore.ONE_HARD);
     }
 
-    private Constraint singleAssignmentPerPass(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEach(Contact.class)
-            .filter(contact -> contact.getSelected())
-            .groupBy(contact -> contact.getSatellitePass().getId(), ConstraintCollectors.count())
-            .penalize(HardSoftBigDecimalScore.ONE_HARD, (satellitePassId, count) -> {
-                if (count > 1) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            })
-            .asConstraint("Single assignment per pass");
-    }
+    private Constraint overlappingContacts(ConstraintFactory constraintFactory) {
+        return constraintFactory.forEachUniquePair(ServiceTarget.class)
+                .filter((st1, st2) -> {
+                    SatellitePass p1 = st1.getAssignedPass();
+                    SatellitePass p2 = st2.getAssignedPass();
+                    if (p1 == null || p2 == null)
+                        return false;
 
-    private Constraint singleAssignmentPerServiceTarget(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEach(Contact.class)
-            .filter(contact -> contact.getSelected())
-            .groupBy(contact -> contact.getServiceTarget().getId(), ConstraintCollectors.count())
-            .penalize(HardSoftBigDecimalScore.ONE_HARD, (serviceTargetid, count) -> {
-                if (count > 1) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            })
-            .asConstraint("Single assignment per service target");
-    }
-
-    private Constraint validServiceTarget(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEach(Contact.class)
-            .filter(contact -> contact.getSelected() && Utils.isInvalidServiceTarget(contact.getSatellitePass(), contact.getServiceTarget()))
-            .penalize(HardSoftBigDecimalScore.ONE_HARD)
-            .asConstraint("Invalid service target");
-    }
-
-    private Constraint qkdAndThenPostprocessing(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEachUniquePair(Contact.class)
-            .filter((c1, c2) -> (c1.getSelected() && c2.getSelected()) && c1.getServiceTarget().getApplicationId() == c2.getServiceTarget().getApplicationId())
-            .penalize(HardSoftBigDecimalScore.ONE_HARD, (c1, c2) -> {
-                String operation1;
-                String operation2;
-                if (c1.getSatellitePass().getStartTime().isBefore(c2.getSatellitePass().getStartTime())) {
-                    operation1 = c1.getServiceTarget().getRequestedOperation();
-                    operation2 = c2.getServiceTarget().getRequestedOperation();
-                } else {
-                    operation1 = c2.getServiceTarget().getRequestedOperation();
-                    operation2 = c1.getServiceTarget().getRequestedOperation();
-                }
-
-                if (!(operation1.equals("QKD") && operation2.equals("OPTICAL_ONLY"))) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            })
-            .asConstraint("For a given application id, first do QKD and afterwards QKD post-processing");
-    }
-
-    private Constraint maximizePriorityAndBitRate(ConstraintFactory constraintFactory) {
-        return constraintFactory
-            .forEach(Contact.class)
-            .filter(contact -> contact.getSelected())
-            .rewardBigDecimal(HardSoftBigDecimalScore.ONE_SOFT,
-                contact -> {
-                    double priority = contact.getServiceTarget().getPriority();
-                    double achievableKeyVolume = contact.getSatellitePass().getAchievableKeyVolume();
-                    double requestedOperation = contact.getServiceTarget().getRequestedOperation().equals("QKD") ? 1 : 0;
-                    return new BigDecimal(priority * (1.0 + achievableKeyVolume * requestedOperation));
+                    return isOverlapping(p1, p2, t_min);
                 })
-            .asConstraint("Maximize objective function");
+                .penalize("Overlapping contacts", HardSoftBigDecimalScore.ONE_HARD);
+    }
+
+    private Constraint enforceQkdBeforePostProcessing(ConstraintFactory constraintFactory) {
+        return constraintFactory.forEachUniquePair(ServiceTarget.class,
+                Joiners.equal(ServiceTarget::getApplicationId))
+                .filter((st1, st2) -> {
+                    SatellitePass p1 = st1.getAssignedPass();
+                    SatellitePass p2 = st2.getAssignedPass();
+                    if (p1 == null || p2 == null)
+                        return false;
+
+                    // st1 is QKD, st2 is Post-Processing
+                    if (st1.getRequestedOperation().equals("QKD") && !st2.getRequestedOperation().equals("QKD")) {
+                        return p1.getStartTime().isAfter(p2.getStartTime());
+                    }
+                    return false;
+                })
+                .penalize("QKD must happen before Post-Processing", HardSoftBigDecimalScore.ONE_HARD);
+    }
+
+    private Constraint maximizeObjective(ConstraintFactory constraintFactory) {
+        return constraintFactory.from(ServiceTarget.class)
+                .filter(st -> st.getAssignedPass() != null)
+                .rewardBigDecimal("Maximize weighted priority", HardSoftBigDecimalScore.ONE_SOFT,
+                        st -> {
+                            double volume = st.getRequestedOperation().equals("QKD")
+                                    ? st.getAssignedPass().getAchievableKeyVolume()
+                                    : 0.0;
+                            return new BigDecimal(st.getPriority() * (1 + volume));
+                        });
     }
 
     // Checks if two contacts are considered as overlapping
-    private boolean isOverlapping(Contact c1, Contact c2, int minimumGap) {
+    private boolean isOverlapping(SatellitePass sp1, SatellitePass sp2, int minimumGap) {
         Duration gap = Duration.ofSeconds(minimumGap);
         // Check if c1 overlaps or is within minimumGap minutes of c2
-        return c1.getSatellitePass().getStartTime()
-                .isBefore(c2.getSatellitePass().getEndTime().plus(gap))
-                && c1.getSatellitePass().getEndTime()
-                        .isAfter(c2.getSatellitePass().getStartTime().minus(gap));
+        return sp1.getStartTime().isBefore(sp2.getEndTime().plus(gap))
+                && sp1.getEndTime().isAfter(sp2.getStartTime().minus(gap));
     }
 
 }
