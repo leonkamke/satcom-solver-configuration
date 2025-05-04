@@ -4,6 +4,8 @@ from datetime import datetime
 from gurobipy import *
 from ..utils import *
 
+max_solve_time = 600
+
 start = time.time()
 
 # MPS file path
@@ -106,7 +108,7 @@ else:
 
 # Optimize the model
 try:
-    model.setParam("TimeLimit", 60)
+    model.setParam("TimeLimit", max_solve_time)
     model.optimize()
 
     contacts = []
