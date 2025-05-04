@@ -17,6 +17,11 @@ def trim_to_solver_output(text):
 
 
 try:
+    # Set max_solve_time
+    max_solve_time = None
+    with open("./Solvers/SCIP/max_solve_time.txt", 'r') as file:
+        max_solve_time = int(file.read().strip())
+    
     # Convert the arguments to a dictionary
     args = parse_solver_wrapper_args(sys.argv[1:])
 

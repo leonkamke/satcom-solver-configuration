@@ -7,9 +7,6 @@ import os
 import uuid
 import time
 
-max_solve_time = 30
-
-
 def read_contacts_from_timefold(file_path):
     with open(file_path, "r") as file:
         data = json.load(file)
@@ -110,6 +107,11 @@ try:
     user_home = None
     with open("./Solvers/Timefold/cluster_home.txt", "r") as f:
         user_home = f.read().strip()
+        
+    # Set max_solve_time
+    max_solve_time = None
+    with open("./Solvers/Timefold/max_solve_time.txt", 'r') as file:
+        max_solve_time = int(file.read().strip())
 
     # Compile and build Java Timefold project (WORKS WITH SPARKLE!)
     # TODO: Remove for big experiments (takes some time)
