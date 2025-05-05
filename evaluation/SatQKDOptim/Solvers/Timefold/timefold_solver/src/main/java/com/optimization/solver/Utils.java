@@ -138,7 +138,7 @@ public class Utils {
         SolverConfig solverConfig = new SolverConfig();
         ArrayList<PhaseConfig> searchPhases = new ArrayList();
 
-        solverConfig.withRandomSeed(TimefoldSolver.seed);
+        // solverConfig.withRandomSeed(TimefoldSolver.seed);
 
         // Set the solution class and constraint provider
         solverConfig.setSolutionClass(Solution.class);

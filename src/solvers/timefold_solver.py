@@ -22,7 +22,9 @@ with open("./src/solvers/cluster_home.txt", "r") as f:
 subprocess.run(mvn_build_command, cwd="./Solvers/Timefold/timefold_solver")"""
 
 # Run Timefold jar file
-java_path = os.path.join(user_home, "java/openlogic-openjdk-17.0.14+7-linux-x64/bin/java")
+java_path = os.path.join(
+    user_home, "java/openlogic-openjdk-17.0.14+7-linux-x64/bin/java"
+)
 random_uuid = str(uuid.uuid4())
 java_command = [
     java_path,
@@ -33,7 +35,12 @@ java_command = [
     instance_path,
     "-uuid",
     random_uuid,
-    "-constructionHeuristicType", "NONE", "-ls1Type", "NONE", "-ls2Type", "NONE"
+    "-constructionHeuristicType",
+    "NONE",
+    "-ls1Type",
+    "NONE",
+    "-ls2Type",
+    "NONE",
 ]
 subprocess.run(java_command)
 

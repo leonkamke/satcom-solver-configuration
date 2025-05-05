@@ -8,6 +8,7 @@ import uuid
 import time
 import traceback
 
+
 def read_contacts_from_timefold(file_path):
     with open(file_path, "r") as file:
         data = json.load(file)
@@ -87,6 +88,7 @@ def calculateObjectiveFunction(contacts):
         result += priority * (1 + achievableKeyVolume * operationMode)
     return result
 
+
 jar_result = None
 params = []
 args = None
@@ -104,18 +106,25 @@ try:
 
     for k, v in config.items():
         params += ["-" + k, str(v)]
-    
+
     if len(params) == 0:
-        params = ["-constructionHeuristicType", "NONE", "-ls1Type", "NONE", "-ls2Type", "NONE"]
+        params = [
+            "-constructionHeuristicType",
+            "NONE",
+            "-ls1Type",
+            "NONE",
+            "-ls2Type",
+            "NONE",
+        ]
 
     # Read user home from file
     user_home = None
     with open("./Solvers/Timefold/cluster_home.txt", "r") as f:
         user_home = f.read().strip()
-        
+
     # Set max_solve_time
     max_solve_time = None
-    with open("./Solvers/Timefold/max_solve_time.txt", 'r') as file:
+    with open("./Solvers/Timefold/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
 
     # Compile and build Java Timefold project (WORKS WITH SPARKLE!)

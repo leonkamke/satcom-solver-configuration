@@ -5,6 +5,7 @@ from gurobipy import Model, GRB, quicksum, read
 import json
 import uuid
 
+
 def parse_args_to_dict(argv):
     args_dict = {}
     i = 1  # skip python gurobi_solver.py
@@ -46,9 +47,9 @@ def calculateObjectiveFunction(contacts):
 try:
     # Set max_solve_time
     max_solve_time = None
-    with open("./Solvers/Gurobi/max_solve_time.txt", 'r') as file:
+    with open("./Solvers/Gurobi/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
-    
+
     # Read the arguments
     args = parse_args_to_dict(sys.argv)
 
@@ -85,7 +86,7 @@ try:
 
     # Suppress all solver output
     model.setParam("OutputFlag", 0)
-    
+
     # Set Gurobi seed
     model.setParam("Seed", int(seed))
 

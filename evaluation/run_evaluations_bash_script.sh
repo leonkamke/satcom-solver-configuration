@@ -2,12 +2,12 @@
 
 ### Job Parameters 
 #SBATCH --qos=normal
-#SBATCH --mem=5000
+#SBATCH --mem=10000
 #SBATCH --partition=c23ms
 #SBATCH --time=24:00:00         # Run time of 24 hours
-#SBATCH --job-name=create_problems  # Sets the job name
+#SBATCH --job-name=eval         # Sets the job name
 #SBATCH --output=stdout.txt     # redirects stdout and stderr to stdout.txt
-#SBATCH --account=thes1934  # Replace with your project-id or delete the line
+#SBATCH --account=thes1934      # Replace with your project-id or delete the line
 
 ### Program Code
 export CONDA_ROOT=$HOME/miniforge3

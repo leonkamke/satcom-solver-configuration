@@ -1,0 +1,27 @@
+constructionHeuristicType categorical {FIRST_FIT,FIRST_FIT_DECREASING,NONE} [NONE]
+ls1_type categorical {HILL_CLIMBING,TABU_SEARCH,SIMULATED_ANNEALING,LATE_ACCEPTANCE,NONE} [None]
+ls1_tabuAcceptedCountLimit integer [500,5000] [1000]
+ls1_entityTabuRatio real [0.0,0.3] [0.02]
+ls1_valueTabuRatio real [0.0,0.3] [0.02]
+
+
+
+
+
+
+
+
+
+#################################### 
+ls1_acceptanceType categorical {ONLY_ACCEPT_BETTER_SCORES, ACCEPT_ALL} [ONLY_ACCEPT_BETTER_SCORES]
+ls1_foragerType categorical {FINALIST, LOWEST_SCORE} [FINALIST]
+ls1_simulatedAnnealingStartingTemperature real [0.01,1000.0] [1.0]
+ls1_lateAcceptanceSize integer [1,10000] [100]
+ls1_tabuSize integer [1,1000] [50]
+
+ls2_type categorical {HILL_CLIMBING, TABU_SEARCH, SIMULATED_ANNEALING, LATE_ACCEPTANCE, NONE} [None]
+ls2_acceptanceType categorical {ONLY_ACCEPT_BETTER_SCORES, ACCEPT_ALL} [ONLY_ACCEPT_BETTER_SCORES]
+ls2_foragerType categorical {FINALIST, LOWEST_SCORE} [FINALIST]
+ls2_simulatedAnnealingStartingTemperature real [0.01,1000.0] [1.0]
+ls2_lateAcceptanceSize integer [1,10000] [100]
+ls2_tabuSize integer [1,1000] [50]

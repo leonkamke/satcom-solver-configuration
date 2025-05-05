@@ -8,6 +8,7 @@ from sparkle.tools.solver_wrapper_parsing import parse_solver_wrapper_args
 import uuid
 import traceback
 
+
 def trim_to_solver_output(text):
     marker = "Timefold solver output is:"
     parts = text.split(marker, 1)

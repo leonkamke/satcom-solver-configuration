@@ -13,7 +13,7 @@ mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Datas
 json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_80app/test_europe_12h_80app_apr_15.json"
 
 # Time limit
-max_runtime = 45
+max_runtime = 30
 
 # Read problem instance
 print("Read problem instance")
@@ -109,6 +109,75 @@ else:
 try:
     model.setParam("limits/time", max_runtime)
     model.setParam("misc/usesymmetry", 0)
+
+    tmpparams = {
+        "branching_checksol": True,
+        "branching_forceallchildren": False,
+        "branching_gomory_priority": 72071924,
+        "branching_preferbinary": False,
+        "branching_relpscost_confidencelevel": 2,
+        "branching_scorefac": 0.14121197684769626,
+        "branching_scorefunc": "q",
+        "conflict_enable": False,
+        "constraints_linear_aggregatevariables": False,
+        "constraints_linear_proptiming": 2,
+        "constraints_linear_sepafreq": 461961634,
+        "cutselection_dynamic_efficacyweight": 879304.5976928559,
+        "cutselection_hybrid_priority": 564442401,
+        "heuristics_actconsdiving_freq": 978392638,
+        "heuristics_alns_freq": 956691656,
+        "heuristics_dins_freq": 450210403,
+        "heuristics_feaspump_freq": 876504788,
+        "heuristics_gins_freq": 294877508,
+        "heuristics_localbranching_freq": 954988040,
+        "heuristics_mutation_freq": 987620083,
+        "heuristics_rens_freq": 368823167,
+        "heuristics_rens_priority": 478883798,
+        "heuristics_rins_freq": 576029859,
+        "heuristics_rounding_freq": 649926310,
+        "heuristics_scheduler_freq": 184568753,
+        "heuristics_trustregion_freq": 149969819,
+        "heuristics_undercover_freq": 131180632,
+        "heuristics_undercover_priority": 363364839,
+        "lp_fastmip": 1,
+        "lp_initalgorithm": "b",
+        "lp_presolving": True,
+        "lp_pricing": "f",
+        "lp_resolvealgorithm": "b",
+        "lp_scaling": 2,
+        "lp_solvefreq": 501306455,
+        "lp_threads": 21,
+        "misc_allowstrongdualreds": True,
+        "misc_allowweakdualreds": False,
+        "nodeselection_bfs_stdpriority": 1066130691,
+        "nodeselection_dfs_stdpriority": 1037298603,
+        "nodeselection_estimate_stdpriority": 107562887,
+        "nodeselection_hybridestim_stdpriority": 765042499,
+        "parallel_mode": 0,
+        "presolving_maxrestarts": 1618597296,
+        "presolving_maxrounds": 1789029270,
+        "presolving_milp_enabledualinfer": False,
+        "presolving_milp_enablemultiaggr": True,
+        "presolving_milp_enablesparsify": True,
+        "presolving_milp_internalmaxrounds": 1711922534,
+        "presolving_milp_maxrounds": 1801288061,
+        "presolving_restartfac": 0.3632183745532702,
+        "presolving_restartminred": 0.7937056062006929,
+        "separating_clique_freq": 576453343,
+        "separating_cmir_freq": 414683884,
+        "separating_cmir_priority": 215498175,
+        "separating_flowcover_freq": 770778782,
+        "separating_flowcover_priority": 70689790,
+        "separating_gomory_freq": 301365980,
+        "separating_maxcuts": 1828009121,
+        "separating_maxcutsroot": 65785104,
+        "separating_maxrounds": 1282328041,
+        "separating_maxroundsroot": 1218547494,
+        "separating_strongcg_freq": 965934401,
+    }
+    
+    for key, value in tmpparams.items():
+        model.setParam(key.replace("_", "/"), value)
 
     model.optimize()
 

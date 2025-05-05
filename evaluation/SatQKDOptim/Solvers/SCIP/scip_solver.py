@@ -56,7 +56,7 @@ try:
     full_path_json = Path(instance_path_json)
     name_parts = full_path_json.name.split("_")
     instance_path_mps = (
-        "../src/input/data/Dataset_year_"
+        "../../../src/input/data/Dataset_year_"
         + str(name_parts[1])
         + "_"
         + str(name_parts[2])
@@ -99,7 +99,7 @@ try:
     model.setParam("limits/time", max_solve_time)
     model.setParam("display/verblevel", 0)
     model.setParam("misc/usesymmetry", 0)
-    model.setParam("randomization/randomseedshift", int(seed))
+    # model.setParam("randomization/randomseedshift", int(seed))
 
     # Run the SCIP solver
     quality = 0
@@ -143,7 +143,7 @@ try:
     result = {
         "status": "SUCCESS",
         "par10": par10,
-        "quality": quality,
+        "quality": 1 if quality <= 0 else quality,
         "solve_time": solve_time,
         "solver_call": None,
     }
@@ -153,9 +153,8 @@ try:
 except Exception as ex:
     print(ex)
     exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"
-    error_message = traceback.format_exc()
     with open(exception_file_name, "w") as file:
         file.write(str(ex) + "\n")
-        file.write(error_message)
+        file.write(traceback.format_exc() + "\n")
         file.write("\n\nThis is the configuration:\n")
         file.write(str(config))

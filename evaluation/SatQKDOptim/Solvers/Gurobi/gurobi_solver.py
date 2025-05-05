@@ -4,6 +4,8 @@ from datetime import datetime
 from gurobipy import Model, GRB, quicksum, read
 import json
 import uuid
+import traceback
+
 
 def parse_args_to_dict(argv):
     args_dict = {}
@@ -46,9 +48,9 @@ def calculateObjectiveFunction(contacts):
 try:
     # Set max_solve_time
     max_solve_time = None
-    with open("./Solvers/Gurobi/max_solve_time.txt", 'r') as file:
+    with open("./Solvers/Gurobi/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
-    
+
     # Read the arguments
     args = parse_args_to_dict(sys.argv)
 
@@ -56,7 +58,7 @@ try:
     full_path_json = Path(instance_path_json)
     name_parts = full_path_json.name.split("_")
     instance_path_mps = (
-        "../src/input/data/Dataset_year_"
+        "../../../src/input/data/Dataset_year_"
         + str(name_parts[1])
         + "_"
         + str(name_parts[2])
@@ -85,9 +87,9 @@ try:
 
     # Suppress all solver output
     model.setParam("OutputFlag", 0)
-    
+
     # Set Gurobi seed
-    model.setParam("Seed", int(seed))
+    # model.setParam("Seed", int(seed))
 
     # Set parameters for model
     for k, v in config.items():
@@ -127,7 +129,7 @@ try:
     result = {
         "status": "SUCCESS",
         "par10": par10,
-        "quality": quality,
+        "quality": 1 if quality <= 0 else quality,
         "solve_time": solve_time,
         "solver_call": None,
     }
@@ -140,5 +142,6 @@ except Exception as ex:
     with open(exception_file_name, "w") as file:
         file.write("Optimization method failed with exception:\n")
         file.write(str(ex) + "\n")
+        file.write(traceback.format_exc() + "\n")
         file.write("This was the configuration:\n")
         file.write(str(config))
