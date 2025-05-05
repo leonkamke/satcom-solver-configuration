@@ -23,6 +23,7 @@ import com.optimization.solver.model.SolutionConstraintProvider;
 import ai.timefold.solver.core.config.solver.SolverConfig;
 import ai.timefold.solver.core.config.phase.PhaseConfig;
 import ai.timefold.solver.core.config.heuristic.selector.move.generic.chained.SubChainChangeMoveSelectorConfig;
+import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicPhaseConfig;
 import ai.timefold.solver.core.config.constructionheuristic.ConstructionHeuristicType;
 import ai.timefold.solver.core.config.localsearch.LocalSearchPhaseConfig;
@@ -137,8 +138,6 @@ public class Utils {
         SolverConfig solverConfig = new SolverConfig();
         ArrayList<PhaseConfig> searchPhases = new ArrayList();
 
-        solverConfig.setMoveThreadCount(config.get("moveThreadCount"));
-
         // Set the solution class and constraint provider
         solverConfig.setSolutionClass(Solution.class);
         solverConfig.setEntityClassList(List.of(ServiceTarget.class));
@@ -187,7 +186,9 @@ public class Utils {
             } else if (ls1Type.equals("TABU_SEARCH")) {
                 ls1PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
             } else if (ls1Type.equals("SIMULATED_ANNEALING")) {
-                ls1PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
+                LocalSearchAcceptorConfig acceptorConfig = new LocalSearchAcceptorConfig();
+                acceptorConfig.setSimulatedAnnealingStartingTemperature("1hard/0soft");
+                ls1PhaseConfig.setAcceptorConfig(acceptorConfig);
             } else { // Late Acceptance
                 ls1PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
             }
@@ -209,7 +210,9 @@ public class Utils {
             } else if (ls2Type.equals("TABU_SEARCH")) {
                 ls2PhaseConfig.setLocalSearchType(LocalSearchType.TABU_SEARCH);
             } else if (ls2Type.equals("SIMULATED_ANNEALING")) {
-                ls2PhaseConfig.setLocalSearchType(LocalSearchType.SIMULATED_ANNEALING);
+                LocalSearchAcceptorConfig acceptorConfig = new LocalSearchAcceptorConfig();
+                acceptorConfig.setSimulatedAnnealingStartingTemperature("1hard/0soft");
+                ls2PhaseConfig.setAcceptorConfig(acceptorConfig);
             } else { // Late Acceptance
                 ls2PhaseConfig.setLocalSearchType(LocalSearchType.LATE_ACCEPTANCE);
             }

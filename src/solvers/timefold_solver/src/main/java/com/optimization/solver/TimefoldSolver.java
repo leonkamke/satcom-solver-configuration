@@ -1,6 +1,8 @@
 package com.optimization.solver;
 
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import com.optimization.solver.model.Solution;
@@ -17,11 +19,10 @@ import ai.timefold.solver.core.config.localsearch.LocalSearchPhaseConfig;
 import ai.timefold.solver.core.config.localsearch.LocalSearchType;
 import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
 
-
 public class TimefoldSolver {
 
     // Maximum solving time in seconds
-    public static Long maxSolveTime = 1L;
+    public static Long maxSolveTime = null;
 
     public static void main(String[] args) {
         try {
@@ -41,10 +42,13 @@ public class TimefoldSolver {
              * }));
              */
 
-            String instancePath = null;
-            String uuid = null;
+            // Read max solve time from txt file
+            String content = Files.readString(Paths.get("./src/solvers/max_solve_time.txt")).trim();
+            maxSolveTime = Long.parseLong(content);
 
             // Read instance path and uuid (for tmp solution file)
+            String instancePath = null;
+            String uuid = null;
             for (int i = 0; i < 4; i++) {
                 switch (args[i]) {
                     case "-inst":
@@ -71,7 +75,8 @@ public class TimefoldSolver {
 
             // Configure timefold solver
             SolverFactory<Solution> solverFactory = SolverFactory.create(solverConfig);
-            // SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("solverConfig.xml");            
+            // SolverFactory<Solution> solverFactory =
+            // SolverFactory.createFromXmlResource("solverConfig.xml");
             Solver<Solution> timefoldSolver = solverFactory.buildSolver();
 
             // Run optimization
@@ -88,14 +93,6 @@ public class TimefoldSolver {
             // Dump solution as json
             Utils.dumpSolution(solution, uuid);
 
-            for (PhaseConfig<?> pc: solverConfig.getPhaseConfigList()) {
-                System.out.println("Phase type: " + pc.getClass().getSimpleName());
-
-                if (pc instanceof LocalSearchPhaseConfig lsConfig) {
-                    System.out.println("Local Search algorithm: " +
-                        lsConfig.getLocalSearchType());
-                }
-            }
             System.out.println("Finished Timefold computation");
         } catch (Exception ex) {
             ex.printStackTrace();
