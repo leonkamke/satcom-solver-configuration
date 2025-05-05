@@ -1,10 +1,10 @@
-Solver,,,Solvers/Timefold,Solvers/Timefold,Solvers/Timefold
+Solver,,,nan,nan,nan
 Meta,,,Value,Seed,Configuration
 Objective,Instance,Run,,,
-cpu_time:metric,,1,,,
-memory:metric,,1,,,
-par10:metric,,1,,,
 quality:max,,1,,,
+par10:metric,,1,,,
 solve_time:metric,,1,,,
 status:metric,,1,,,
+cpu_time:metric,,1,,,
 wall_time:metric,,1,,,
+memory:metric,,1,,,
