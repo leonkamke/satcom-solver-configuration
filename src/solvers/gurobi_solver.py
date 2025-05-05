@@ -73,7 +73,7 @@ for idx1, i1 in enumerate(sorted_V):
         expr1 = quicksum(x[i1, k] for k in S if (i1, k) in x)
         expr2 = quicksum(x[i2, k] for k in S if (i2, k) in x)
         # Use big-M constraint
-        M = 99999
+        M = 9999999999
         model.addConstr((ti[i1] + di[i1] + T_min) <= (ti[i2] + (2 - expr1 - expr2) * M))
 
 # Application sequencing constraints: QKD before Post-Processing
