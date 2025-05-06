@@ -18,7 +18,6 @@ europe_quality_eval_gurobi_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_scip_15s = [
@@ -32,7 +31,6 @@ europe_quality_eval_scip_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_timefold_15s = [
@@ -46,7 +44,6 @@ europe_quality_eval_timefold_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 30 seconds limit -------------------------------------------
@@ -62,7 +59,6 @@ europe_quality_eval_gurobi_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_scip_30s = [
@@ -76,7 +72,6 @@ europe_quality_eval_scip_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_timefold_30s = [
@@ -90,7 +85,6 @@ europe_quality_eval_timefold_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 45 seconds limit -------------------------------------------
@@ -106,7 +100,6 @@ europe_quality_eval_gurobi_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_scip_45s = [
@@ -120,7 +113,6 @@ europe_quality_eval_scip_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_timefold_45s = [
@@ -134,7 +126,6 @@ europe_quality_eval_timefold_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 60 seconds limit -------------------------------------------
@@ -150,7 +141,6 @@ europe_quality_eval_gurobi_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_scip_60s = [
@@ -164,7 +154,6 @@ europe_quality_eval_scip_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_timefold_60s = [
@@ -178,7 +167,6 @@ europe_quality_eval_timefold_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 300 seconds limit -------------------------------------------
@@ -192,9 +180,8 @@ europe_quality_eval_gurobi_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_scip_300s = [
@@ -206,9 +193,8 @@ europe_quality_eval_scip_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 europe_quality_eval_timefold_300s = [
@@ -220,12 +206,11 @@ europe_quality_eval_timefold_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_Europe_All_Train --instance-set-test Instances/Dataset_Europe_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
-# Runtime evaluations for ground terminals located in Europe ########################
+# Runtime evaluations for ground terminals located on all continents ########################
 
 world_quality_eval_gurobi_15s = [
     "sparkle initialise",
@@ -238,7 +223,6 @@ world_quality_eval_gurobi_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_scip_15s = [
@@ -252,7 +236,6 @@ world_quality_eval_scip_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_timefold_15s = [
@@ -266,7 +249,6 @@ world_quality_eval_timefold_15s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 30 seconds limit -------------------------------------------
@@ -282,7 +264,6 @@ world_quality_eval_gurobi_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_scip_30s = [
@@ -296,7 +277,6 @@ world_quality_eval_scip_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_timefold_30s = [
@@ -310,7 +290,6 @@ world_quality_eval_timefold_30s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 45 seconds limit -------------------------------------------
@@ -326,7 +305,6 @@ world_quality_eval_gurobi_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_scip_45s = [
@@ -340,7 +318,6 @@ world_quality_eval_scip_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_timefold_45s = [
@@ -354,7 +331,6 @@ world_quality_eval_timefold_45s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 60 seconds limit -------------------------------------------
@@ -370,7 +346,6 @@ world_quality_eval_gurobi_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_scip_60s = [
@@ -384,7 +359,6 @@ world_quality_eval_scip_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_timefold_60s = [
@@ -398,7 +372,6 @@ world_quality_eval_timefold_60s = [
     "sed -i '12s/.*/wallclock_time = 2700/' ./Settings/sparkle_settings.ini",
     "sed -i '30s/.*/time = 90:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 # Quality evaluations for 300 seconds limit -------------------------------------------
@@ -412,9 +385,8 @@ world_quality_eval_gurobi_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Gurobi --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_scip_300s = [
@@ -426,9 +398,8 @@ world_quality_eval_scip_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/SCIP --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 world_quality_eval_timefold_300s = [
@@ -440,9 +411,8 @@ world_quality_eval_timefold_300s = [
     "rm -rf ./Settings && cp -r ../../Settings .",
     "sed -i '4s/.*/target_cutoff_time = 360/' ./Settings/sparkle_settings.ini",
     "sed -i '12s/.*/wallclock_time = 3600/' ./Settings/sparkle_settings.ini",
-    "sed -i '30s/.*/time = 120:00/' ./Settings/sparkle_settings.ini",
+    "sed -i '30s/.*/time = 180:00/' ./Settings/sparkle_settings.ini",
     "sparkle configure_solver --solver Solvers/Timefold --instance-set-train Instances/Dataset_World_All_Train --instance-set-test Instances/Dataset_World_All_Test --objectives quality:max",
-    # "sparkle generate_report"
 ]
 
 
@@ -567,10 +537,16 @@ def wait_until_no_jobs():
 def run_evaluation(eval):
     # Go into results folder
     os.chdir("results")
-
+    
     # Create new folder for evaluation (with timestamp)
-    folder_name = f"{eval['name']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    os.makedirs(folder_name, exist_ok=True)
+    folder_name = f"{eval['name']}"
+    
+    # Skip if folder exists
+    if os.path.exists(folder_name):
+        return
+    
+    # Create folder
+    os.makedirs(folder_name, exist_ok=False)
 
     # Switch to the new folder
     os.chdir(folder_name)
@@ -583,9 +559,11 @@ def run_evaluation(eval):
 
     # Switch back to evaluation root directory
     os.chdir(BASE_DIR)
+    
 
 
 # Run the evaluations
 for eval in evaluations:
     run_evaluation(eval)
     wait_until_no_jobs()
+    
