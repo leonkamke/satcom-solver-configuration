@@ -68,7 +68,7 @@ try:
         + full_path_json.with_suffix(".mps").name
     )
 
-    seed = args["seed"]
+    seed = int(args["seed"]) % 1999999999
     del args["inst"]
     del args["seed"]
 
@@ -89,7 +89,7 @@ try:
     model.setParam("OutputFlag", 0)
 
     # Set Gurobi seed
-    # model.setParam("Seed", int(seed))
+    model.setParam("Seed", seed)
 
     # Set parameters for model
     for k, v in config.items():
@@ -137,7 +137,19 @@ try:
     print(result)
 
 except Exception as ex:
-    print(ex)
+    max_solve_time = None
+    with open("./Solvers/Gurobi/max_solve_time.txt", "r") as file:
+        max_solve_time = int(file.read().strip())
+        
+    result = {
+        "status": "SUCCESS",
+        "par10": max_solve_time * 10,
+        "quality": 1,
+        "solve_time": max_solve_time,
+        "solver_call": None,
+    }
+    print("Gurobi solver output is:")
+    print(result)
     exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"
     with open(exception_file_name, "w") as file:
         file.write("Optimization method failed with exception:\n")

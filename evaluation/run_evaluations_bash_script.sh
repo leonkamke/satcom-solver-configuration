@@ -4,7 +4,7 @@
 #SBATCH --qos=normal
 #SBATCH --mem=10000
 #SBATCH --partition=c23ms
-#SBATCH --time=48:00:00         # Run time of 48 hours
+#SBATCH --time=24:00:00         # Run time of 24 hours
 #SBATCH --job-name=eval         # Sets the job name
 #SBATCH --output=stdout.txt     # redirects stdout and stderr to stdout.txt
 #SBATCH --account=thes1934      # Replace with your project-id or delete the line

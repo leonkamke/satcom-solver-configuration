@@ -53,7 +53,9 @@ try:
     with open("./Solvers/SCIP/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
 
-    solver_call = subprocess.run(solver_cmd + params, capture_output=True, timeout=max_solve_time+10)
+    solver_call = subprocess.run(
+        solver_cmd + params, capture_output=True, timeout=max_solve_time + 10
+    )
     output_str = trim_to_solver_output(solver_call.stdout.decode())
     print(output_str)
 except subprocess.TimeoutExpired as e:
@@ -65,7 +67,7 @@ except subprocess.TimeoutExpired as e:
         "solve_time": max_solve_time,
         "solver_call": None,
     }
-    print(result) 
+    print(result)
 except Exception as ex:
     print(f"Solver call failed with exception:\n{ex}")
     exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"

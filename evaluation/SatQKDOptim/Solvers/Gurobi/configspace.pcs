@@ -25,11 +25,9 @@ NoRelHeurTime real [0, 60] [0]
 NoRelHeurWork real [0, 60] [0]
 OBBT integer [-1, 3] [-1]
 PumpPasses integer [-1, 2000000000] [-1]
-SubMIPNodes integer [0, 2000000000] [500]
-Symmetry integer [-1, 2] [-1]
+SubMIPNodes integer [0, 2000] [500]
 VarBranch integer [-1, 3] [-1]
 Cuts integer [-1, 3] [-1]
-CliqueCuts integer [-1, 2] [-1]
 CoverCuts integer [-1, 2] [-1]
 CutPasses integer [-1, 2000000000] [-1]
 DualImpliedCuts integer [-1, 2] [-1]
@@ -60,7 +58,6 @@ SiftMethod | Method == 1 && Sifting != 0
 BarOrder | Method == 2
 CrossoverBasis | Method == 2
 Crossover | Method == 2
-CliqueCuts | Cuts != 0
 CoverCuts | Cuts != 0
 CutPasses | Cuts != 0
 DualImpliedCuts | Cuts != 0

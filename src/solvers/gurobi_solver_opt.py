@@ -4,7 +4,7 @@ from datetime import datetime
 from gurobipy import *
 from ..utils import *
 
-max_solve_time = 600
+max_solve_time = 10
 
 start = time.time()
 
@@ -109,6 +109,7 @@ else:
 # Optimize the model
 try:
     model.setParam("TimeLimit", max_solve_time)
+    model.setParam("Seed", int("1999999999"))
     model.optimize()
 
     contacts = []

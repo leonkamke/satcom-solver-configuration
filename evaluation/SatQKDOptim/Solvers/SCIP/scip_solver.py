@@ -7,8 +7,6 @@ from pyscipopt import Model, quicksum
 import json
 import traceback
 
-max_solve_time = 45
-
 
 def parse_args_to_dict(argv):
     args_dict = {}
@@ -49,6 +47,11 @@ def calculateObjectiveFunction(contacts):
 
 
 try:
+    # Set max_solve_time
+    max_solve_time = None
+    with open("./Solvers/SCIP/max_solve_time.txt", "r") as file:
+        max_solve_time = int(file.read().strip())
+        
     # Read the arguments
     args = parse_args_to_dict(sys.argv)
 
@@ -66,7 +69,7 @@ try:
         + full_path_json.with_suffix(".mps").name
     )
 
-    seed = args["seed"]
+    seed = int(args["seed"]) % 2147483647
     del args["inst"]
     del args["seed"]
 
@@ -99,7 +102,7 @@ try:
     model.setParam("limits/time", max_solve_time)
     model.setParam("display/verblevel", 0)
     model.setParam("misc/usesymmetry", 0)
-    # model.setParam("randomization/randomseedshift", int(seed))
+    model.setParam("randomization/randomseedshift", int(seed))
 
     # Run the SCIP solver
     quality = 0
@@ -151,7 +154,20 @@ try:
     print(result)
 
 except Exception as ex:
-    print(ex)
+    # Set max_solve_time
+    max_solve_time = None
+    with open("./Solvers/SCIP/max_solve_time.txt", "r") as file:
+        max_solve_time = int(file.read().strip())
+    # Print result
+    result = {
+        "status": "SUCCESS",
+        "par10": max_solve_time * 10,
+        "quality": 1,
+        "solve_time": solve_time,
+        "solver_call": None,
+    }
+    print("SCIP solver output is:")
+    print(result)
     exception_file_name = "./Tmp/" + str(uuid.uuid4()) + ".txt"
     with open(exception_file_name, "w") as file:
         file.write(str(ex) + "\n")

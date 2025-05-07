@@ -537,14 +537,10 @@ def wait_until_no_jobs():
 def run_evaluation(eval):
     # Go into results folder
     os.chdir("results")
-    
+
     # Create new folder for evaluation (with timestamp)
     folder_name = f"{eval['name']}"
-    
-    # Skip if folder exists
-    if os.path.exists(folder_name):
-        return
-    
+
     # Create folder
     os.makedirs(folder_name, exist_ok=False)
 
@@ -559,11 +555,12 @@ def run_evaluation(eval):
 
     # Switch back to evaluation root directory
     os.chdir(BASE_DIR)
-    
 
 
 # Run the evaluations
 for eval in evaluations:
+    # Skip if folder exists
+    if os.path.exists(f"./results/{eval['name']}"):
+        continue
     run_evaluation(eval)
     wait_until_no_jobs()
-    
