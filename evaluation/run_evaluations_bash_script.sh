@@ -15,4 +15,4 @@ source $CONDA_ROOT/etc/profile.d/conda.sh
 export PATH="$CONDA_ROOT/bin:$PATH"
 conda activate sparkle
 
-python evaluation.py
+python convergence_eval_par10.py

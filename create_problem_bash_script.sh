@@ -15,4 +15,4 @@ source $CONDA_ROOT/etc/profile.d/conda.sh
 export PATH="$CONDA_ROOT/bin:$PATH"
 conda activate sparkle
 
-python -m src.input.create_problems -ground_terminal europe -planning_horizon 24 -num_app_contexts 80
+python -m src.input.create_problems -ground_terminal europe -planning_horizon 48 -num_app_contexts 80

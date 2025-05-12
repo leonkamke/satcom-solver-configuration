@@ -267,20 +267,21 @@ def get_service_targets(number_ground_terminals, number_application_contexts_per
     applicationId = 0
     for id in range(number_ground_terminals):
         for _ in range(number_application_contexts_per_node):
-            priority = round(random.uniform(0.5, 1), 2)
+            priority1 = round(random.uniform(0.01, 1.0), 2)
 
             requestedOperation = "QKD"
             service_targets_dict_list.append(
                 ServiceTarget(
-                    serviceTargetId, applicationId, priority, id, requestedOperation
+                    serviceTargetId, applicationId, priority1, id, requestedOperation
                 ).to_dict()
             )
             serviceTargetId += 1
 
+            priority2 = round(random.uniform(0.01, 1.0), 2)
             requestedOperation = "OPTICAL_ONLY"
             service_targets_dict_list.append(
                 ServiceTarget(
-                    serviceTargetId, applicationId, priority, id, requestedOperation
+                    serviceTargetId, applicationId, priority2, id, requestedOperation
                 ).to_dict()
             )
             serviceTargetId += 1
@@ -300,7 +301,7 @@ def generate_problem_instance(
     coverage_end,
     ground_terminals,
     step_duration=10,
-    min_elevation_angle=20,
+    min_elevation_angle=15,
     number_app_contexts_per_node=10,
 ):
     # Calculate satellite passes over ground terminals for QUARC mission
@@ -350,7 +351,7 @@ for i in range(0, len(args), 2):
         params[key] = val
 
 min_elevation_angle = 15
-step_duration = 5
+step_duration = 10
 locations = params["ground_terminal"]
 number_app_contexts_per_node = int(params["num_app_contexts"])
 planning_horizon = int(params["planning_horizon"])
@@ -370,7 +371,7 @@ name = (
 )
 
 
-output_base = "./src/input/data/" + name + "/"
+output_base = "./src/input/hardData/" + name + "/"
 for month in range(1, 13):
     for type, day in [("train", 5), ("train", 25), ("test", 15)]:
         try:
@@ -387,6 +388,11 @@ for month in range(1, 13):
                 + f"{type}_{locations}_{str(planning_horizon)}h_{str(number_app_contexts_per_node)}app_{calendar.month_abbr[month].lower()}_{day}.mps"
             )
             if not os.path.exists(filename_json):
+                print(coverage_start)
+                print(coverage_end)
+                print(planning_horizon)
+                print(filename_json)
+
                 problem_instances = [
                     generate_problem_instance(
                         coverage_start,
@@ -402,7 +408,7 @@ for month in range(1, 13):
                 save_problem_instances_to_json(problem_instances, str(filename_json))
                 print(f"Saved: {filename_json}")
 
-            if not os.path.exists(filename_mps):
+            if True: # not os.path.exists(filename_mps):
                 # Read problem instance
                 problemInstance = read_problem_instance(filename_json)
                 satellitePasses = problemInstance["satellite_passes"]
@@ -476,7 +482,7 @@ for month in range(1, 13):
                             <= (ti[i2] + (2 - expr1 - expr2) * M)
                         )
 
-                # Application sequencing constraints: QKD before Post-Processing
+                """# Application sequencing constraints: QKD before Post-Processing
                 for app_id in set(aj.values()):
                     qkd_targets = [j for j in S if aj[j] == app_id and mj[j] == 1]
                     pp_targets = [j for j in S if aj[j] == app_id and mj[j] == 0]
@@ -484,7 +490,7 @@ for month in range(1, 13):
                         for j2 in pp_targets:
                             lhs = quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x)
                             rhs = quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
-                            model.addConstr(lhs <= rhs)
+                            model.addConstr(lhs <= rhs)"""
 
                 # Save the model to MPS file
                 model.write(filename_mps)

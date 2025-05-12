@@ -129,7 +129,7 @@ public class Utils {
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         // Serialize to JSON
-        objectMapper.writeValue(new File(dumpPath), planningSolution);
+        objectMapper.writeValue(new File(dumpPath), planningSolution.getContacts());
 
     }
 

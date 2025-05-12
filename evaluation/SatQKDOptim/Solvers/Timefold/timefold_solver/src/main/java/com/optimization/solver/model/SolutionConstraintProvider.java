@@ -2,6 +2,7 @@ package com.optimization.solver.model;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.time.LocalDate;
 
 import com.optimization.solver.Utils;
 
@@ -23,11 +24,20 @@ public class SolutionConstraintProvider implements ConstraintProvider {
                 // Hard constraint
                 satellitePassUsedAtMostOnce(constraintFactory),
                 overlappingContacts(constraintFactory),
-                enforceQkdBeforePostProcessing(constraintFactory),
+                targetUsedAtMostOnce(constraintFactory),
 
                 // Soft constraint
                 maximizeObjective(constraintFactory)
         };
+    }
+
+
+    private Constraint targetUsedAtMostOnce(ConstraintFactory constraintFactory) {
+    return constraintFactory.from(ServiceTarget.class)
+            .filter(st -> st.getAssignedPass() != null)
+            .groupBy(ServiceTarget::getId, ConstraintCollectors.count())
+            .filter((id, count) -> count > 1)
+            .penalize("Service target assigned more than once", HardSoftBigDecimalScore.ONE_HARD);
     }
 
     private Constraint satellitePassUsedAtMostOnce(ConstraintFactory constraintFactory) {
@@ -83,10 +93,16 @@ public class SolutionConstraintProvider implements ConstraintProvider {
 
     // Checks if two contacts are considered as overlapping
     private boolean isOverlapping(SatellitePass sp1, SatellitePass sp2, int minimumGap) {
-        Duration gap = Duration.ofSeconds(minimumGap);
-        // Check if c1 overlaps or is within minimumGap minutes of c2
-        return sp1.getStartTime().isBefore(sp2.getEndTime().plus(gap))
-                && sp1.getEndTime().isAfter(sp2.getStartTime().minus(gap));
+        Duration minGap = Duration.ofSeconds(minimumGap);
+        long gap;
+        if (sp1.getEndTime().isBefore(sp2.getStartTime())) {
+            gap = Duration.between(sp1.getEndTime(), sp2.getStartTime()).getSeconds();
+        } else if (sp2.getEndTime().isBefore(sp1.getStartTime())) {
+            gap = Duration.between(sp2.getEndTime(), sp1.getStartTime()).getSeconds();
+        } else {
+            return true;
+        }
+        return gap < minimumGap;
     }
 
 }

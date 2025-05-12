@@ -7,13 +7,13 @@ from ..utils import *
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_24h_100app/test_world_24h_100app_jul_15.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/hardData/Dataset_year_europe_48h_100app/test_europe_48h_100app_dec_15.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_world_24h_100app/test_world_24h_100app_jul_15.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/hardData/Dataset_year_europe_48h_100app/test_europe_48h_100app_dec_15.json"
 
 # Time limit
-max_runtime = 15
+max_runtime = 600
 
 # Read problem instance
 print("Read problem instance")
@@ -91,7 +91,7 @@ else:
             )
 
     # Application sequencing constraints: QKD before Post-Processing
-    for app_id in set(aj.values()):
+    """for app_id in set(aj.values()):
         qkd_targets = [j for j in S if aj[j] == app_id and mj[j] == 1]
         pp_targets = [j for j in S if aj[j] == app_id and mj[j] == 0]
         for j1 in qkd_targets:
@@ -99,18 +99,19 @@ else:
                 model.addCons(
                     quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x)
                     <= quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
-                )
+                )"""
 
     # Save MPS model for next time
-    model.writeProblem(mps_file_path)
+    # model.writeProblem(mps_file_path)
     print(f"Model saved to {mps_file_path}")
 
 # Solve model
 try:
     testvar = int("21474836475669999")
     model.setParam("limits/time", max_runtime)
-    model.setParam("misc/usesymmetry", 0)
-    model.setParam("randomization/randomseedshift", int("2147483647"))
+    # model.setParam("misc/usesymmetry", 0)
+    # model.setParam("lp/threads", 64)
+    # model.setParam("randomization/randomseedshift", int("2147483647"))
 
 
     tmpparams = {
@@ -178,8 +179,8 @@ try:
         "separating_strongcg_freq": 955433686,
     }
 
-    for key, value in tmpparams.items():
-        model.setParam(key.replace("_", "/"), value)
+    #for key, value in tmpparams.items():
+     #   model.setParam(key.replace("_", "/"), value)
 
     model.optimize()
 
@@ -218,7 +219,7 @@ try:
     print("Overall time was:", time.time() - start)
     print("####################")
 
-    # plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
+    plotOptimizationResult(serviceTargets, satellitePasses, contacts, "SCIP")
 
 except Exception as ex:
     print(f"Exception: {ex}")

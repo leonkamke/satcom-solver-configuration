@@ -3,7 +3,7 @@ import subprocess
 from ..utils import *
 import uuid
 
-instance_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_100app/test_europe_24h_100app_aug_15.json"
+instance_path = "/home/vx475510/satcom-solver-configuration/src/input/data2/Dataset_year_europe_48h_100app/test_europe_48h_100app_feb_15.json"
 
 # Run Timefold solver in Java
 
@@ -50,7 +50,7 @@ satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]
 contacts_file_path = "./Tmp/" + random_uuid + ".json"
 contacts = read_contacts_from_timefold(contacts_file_path)
-os.remove(contacts_file_path)
+# os.remove(contacts_file_path)
 print("Number of contacts in solution: " + str(len(contacts)))
 print("Solution is valid: " + str(verify_contacts_solution(contacts)))
 

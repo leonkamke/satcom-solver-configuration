@@ -1,9 +1,0 @@
-<configuration>
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-    </root>
-
-    <!-- Suppress DEBUG logs from Micrometer -->
-    <logger name="io.micrometer" level="WARN"/>
-    <logger name="io.timefold" level="INFO"/>
-</configuration>

@@ -4,15 +4,15 @@ from datetime import datetime
 from gurobipy import *
 from ..utils import *
 
-max_solve_time = 10
+max_solve_time = 600
 
 start = time.time()
 
 # MPS file path
-mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_50app/test_europe_24h_50app_aug_15.mps"
+mps_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data2/Dataset_year_europe_48h_50app/test_europe_48h_50app_aug_15.mps"
 
 # Json file path
-json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_24h_50app/test_europe_24h_50app_aug_15.json"
+json_file_path = "/home/vx475510/satcom-solver-configuration/src/input/data2/Dataset_year_europe_48h_50app/test_europe_48h_50app_aug_15.json"
 
 # Read problem instance
 print("Read problem instance")
@@ -93,22 +93,27 @@ else:
             )
 
     # Application sequencing constraints: QKD before Post-Processing
-    for app_id in set(aj.values()):
+    """for app_id in set(aj.values()):
         qkd_targets = [j for j in S if aj[j] == app_id and mj[j] == 1]
         pp_targets = [j for j in S if aj[j] == app_id and mj[j] == 0]
         for j1 in qkd_targets:
             for j2 in pp_targets:
                 lhs = quicksum(ti[i] * x[i, j1] for i in V if (i, j1) in x)
                 rhs = quicksum(ti[i] * x[i, j2] for i in V if (i, j2) in x)
-                model.addConstr(lhs <= rhs)
+                model.addConstr(lhs <= rhs)"""
 
     # Save the model to MPS file
-    model.write(mps_file_path)
+    # model.write(mps_file_path)
     print(f"Model saved to {mps_file_path}")
 
 # Optimize the model
 try:
-    model.setParam("TimeLimit", max_solve_time)
+    """tmpparam = {'Aggregate': 1, 'BranchDir': 0, 'DualReductions': 1, 'Heuristics': 0.05, 'IntegralityFocus': 0, 'MIPFocus': 0, 'NoRelHeurTime': 0.0, 'NoRelHeurWork': 0.0, 'PerturbValue': 2.0E-4, 'SubMIPNodes': 500}
+    for k, v in tmpparam.items():
+        model.setParam(k, v)"""
+    
+    
+    # model.setParam("TimeLimit", max_solve_time)
     model.setParam("Seed", int("1999999999"))
     model.optimize()
 
@@ -127,12 +132,16 @@ try:
     solution_valid = verify_contacts_solution(contacts, T_min)
     if not solution_valid:
         raise Exception("Invalid Solution!")
+    
+    with open('./Tmp/gurobi_sol.json', 'w') as f:
+        json.dump(contacts, f)  
 
     print("###### Result ######")
     print(
         "Performance of the solution is:",
         round(calculateObjectiveFunction(contacts), 2),
     )
+    print("Number of contacts in solution: " + str(len(contacts)))
     print("Runtime was:", model.Runtime)
     print("Overall time was:", time.time() - start)
     print("####################")

@@ -13,10 +13,8 @@ def read_contacts_from_timefold(file_path):
     with open(file_path, "r") as file:
         data = json.load(file)
 
-    contacts_from_json = data.get("contacts", [])
-
     contacts = []
-    for contact in contacts_from_json:
+    for contact in data:
         service_target = contact.get("serviceTarget", {})
         satellite_pass = contact.get("satellitePass", {})
 

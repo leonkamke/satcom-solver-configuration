@@ -129,7 +129,7 @@ public class Utils {
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         // Serialize to JSON
-        objectMapper.writeValue(new File(dumpPath), planningSolution);
+        objectMapper.writeValue(new File(dumpPath), planningSolution.getContacts());
 
     }
 
@@ -137,6 +137,8 @@ public class Utils {
     public static SolverConfig getSolverConfig(HashMap<String, String> config) {
         SolverConfig solverConfig = new SolverConfig();
         ArrayList<PhaseConfig> searchPhases = new ArrayList();
+
+        // solverConfig.withRandomSeed(TimefoldSolver.seed);
 
         // Set the solution class and constraint provider
         solverConfig.setSolutionClass(Solution.class);

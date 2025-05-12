@@ -24,6 +24,9 @@ public class TimefoldSolver {
     // Maximum solving time in seconds
     public static Long maxSolveTime = null;
 
+    // Random seed for solver
+    public static Long seed = null;
+
     public static void main(String[] args) {
         try {
             /*
@@ -46,14 +49,20 @@ public class TimefoldSolver {
             String content = Files.readString(Paths.get("./src/solvers/max_solve_time.txt")).trim();
             maxSolveTime = Long.parseLong(content);
 
-            // Read instance path and uuid (for tmp solution file)
+            // Read instance path, seed, and uuid (for tmp solution file)
             String instancePath = null;
             String uuid = null;
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 6; i++) {
                 switch (args[i]) {
                     case "-inst":
                         if (i + 1 < args.length) {
                             instancePath = args[i + 1];
+                            i++;
+                        }
+                        break;
+                    case "-seed":
+                        if (i + 1 < args.length) {
+                            seed = Long.parseLong(args[i+1]);
                             i++;
                         }
                         break;

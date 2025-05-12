@@ -8,7 +8,7 @@ start = time.time()
 # Read problem instance
 print("Read problem instance")
 problemInstance = read_problem_instance(
-    "/home/vx475510/satellite-operations-planning/src/input/data/Dataset_year_europe_12h_10app/test_europe_apr_15.json"
+    "/home/vx475510/satcom-solver-configuration/src/input/data/Dataset_year_europe_12h_10app/test_europe_12h_10app_aug_15.json"
 )
 satellitePasses = problemInstance["satellite_passes"]
 serviceTargets = problemInstance["service_targets"]

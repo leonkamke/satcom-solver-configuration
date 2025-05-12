@@ -1,9 +1,8 @@
 import sys
 from pathlib import Path
-from datetime import datetime
 import re
 import uuid
-from pyscipopt import Model, quicksum
+from pyscipopt import Model
 import json
 import traceback
 
@@ -51,7 +50,7 @@ try:
     max_solve_time = None
     with open("./Solvers/SCIP/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
-        
+
     # Read the arguments
     args = parse_args_to_dict(sys.argv)
 
@@ -59,7 +58,7 @@ try:
     full_path_json = Path(instance_path_json)
     name_parts = full_path_json.name.split("_")
     instance_path_mps = (
-        "../../../src/input/data/Dataset_year_"
+        "../../../src/input/data2/Dataset_year_"
         + str(name_parts[1])
         + "_"
         + str(name_parts[2])
@@ -102,7 +101,7 @@ try:
     model.setParam("limits/time", max_solve_time)
     model.setParam("display/verblevel", 0)
     model.setParam("misc/usesymmetry", 0)
-    model.setParam("randomization/randomseedshift", int(seed))
+    # model.setParam("randomization/randomseedshift", int(seed))
 
     # Run the SCIP solver
     quality = 0

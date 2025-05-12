@@ -1,5 +1,0 @@
-constructionHeuristicType categorical {FIRST_FIT,FIRST_FIT_DECREASING,NONE} [NONE]
-ls1Type categorical {HILL_CLIMBING,TABU_SEARCH,SIMULATED_ANNEALING,LATE_ACCEPTANCE,NONE} [NONE]
-ls2Type categorical {HILL_CLIMBING,TABU_SEARCH,SIMULATED_ANNEALING,LATE_ACCEPTANCE,NONE} [NONE]
-fractionTime real [0.05,0.95] [0.5]
-fractionTime | ls1Type != NONE && ls2Type != NONE

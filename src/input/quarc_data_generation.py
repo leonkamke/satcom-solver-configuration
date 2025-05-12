@@ -46,7 +46,7 @@ tle_lines = [
 
 
 # Define cache file and lock file paths
-WEATHER_CACHE_FILE = "./src/input/data/tmp/weather_data_cache.db"
+WEATHER_CACHE_FILE = "./src/input/hardData/tmp/weather_data_cache.db"
 WEATHER_LOCK_FILE = WEATHER_CACHE_FILE + ".lock"
 
 
@@ -180,7 +180,7 @@ def convert_and_sort_dataframe_to_satellite_passes(df_satellite_passes):
     return satellite_passes
 
 
-CACHE_FILE = "./src/input/data/tmp/satellite_passes_cache.db"
+CACHE_FILE = "./src/input/hardData/tmp/satellite_passes_cache.db"
 LOCK_FILE = CACHE_FILE + ".lock"
 
 

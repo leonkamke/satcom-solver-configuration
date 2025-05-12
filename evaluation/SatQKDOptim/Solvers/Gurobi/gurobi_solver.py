@@ -58,7 +58,7 @@ try:
     full_path_json = Path(instance_path_json)
     name_parts = full_path_json.name.split("_")
     instance_path_mps = (
-        "../../../src/input/data/Dataset_year_"
+        "../../../src/input/data2/Dataset_year_"
         + str(name_parts[1])
         + "_"
         + str(name_parts[2])
@@ -89,7 +89,7 @@ try:
     model.setParam("OutputFlag", 0)
 
     # Set Gurobi seed
-    model.setParam("Seed", seed)
+    # model.setParam("Seed", seed)
 
     # Set parameters for model
     for k, v in config.items():
@@ -140,7 +140,7 @@ except Exception as ex:
     max_solve_time = None
     with open("./Solvers/Gurobi/max_solve_time.txt", "r") as file:
         max_solve_time = int(file.read().strip())
-        
+
     result = {
         "status": "SUCCESS",
         "par10": max_solve_time * 10,

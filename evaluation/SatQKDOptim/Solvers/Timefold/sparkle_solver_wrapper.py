@@ -50,11 +50,15 @@ try:
         max_solve_time = int(file.read().strip())
 
     solver_call = subprocess.run(
-        solver_cmd + params, capture_output=True, timeout=max_solve_time + 10
+        solver_cmd + params, capture_output=True, timeout=float(max_solve_time + 13)
     )
     output_str = trim_to_solver_output(solver_call.stdout.decode())
     print(output_str)
 except subprocess.TimeoutExpired as e:
+    # Set max_solve_time
+    max_solve_time = None
+    with open("./Solvers/Timefold/max_solve_time.txt", "r") as file:
+        max_solve_time = int(file.read().strip())
     # Print result
     result = {
         "status": "SUCCESS",
